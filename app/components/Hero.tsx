@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Boostrap", "REST APIs","JavaScript"];
+const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Boostrap", "REST APIs","JavaScript","Redux","JAVA"];
 const ROLES  = [
   "Frontend Developer",
   "React & Next.js Developer",
@@ -183,12 +183,19 @@ export default function Hero() {
           </div>
 
           {/* Description */}
-          <p ref={descRef} className={styles.desc}>
+          {/* <p ref={descRef} className={styles.desc}>
             I build{" "}
             <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
             web experiences — crafting interfaces that feel intuitive, look
             refined, and perform exceptionally with React &amp; Next.js.
-          </p>
+          </p> */}
+          <p ref={descRef} className={styles.desc}>
+  I build <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
+  web experiences — crafting interfaces that feel intuitive, look refined,
+  and perform exceptionally. With a strong focus on performance, scalability,
+  and clean UI architecture, I transform complex ideas into elegant and
+  engaging digital products using React, Next.js, and modern frontend tools.
+</p>
 
           {/* Skill chips */}
           <div ref={chipsRef} className={styles.chips}>

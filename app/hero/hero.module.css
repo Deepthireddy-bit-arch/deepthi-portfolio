@@ -17,7 +17,7 @@
 }
 
 /* ── Square grid lines ── */
-.gridLines {
+/* .gridLines {
   position: absolute;
   inset: 0;
   background-image:
@@ -26,7 +26,7 @@
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
-}
+} */
 
 /* ── Solid white layer so grid doesn't show through content ── */
 .heroBg {
@@ -38,7 +38,7 @@
 }
 
 /* ── Orange top bar ── */
-.hero::after {
+/* .hero::after {
   content: '';
   position: absolute;
   top: 0;
@@ -52,7 +52,7 @@
       #fbbf24 80%,
       transparent 100%);
   z-index: 20;
-}
+} */
 
 /* ── Glow orbs ── */
 .glow {
@@ -103,7 +103,7 @@
   grid-template-columns: 1fr 340px;
   align-items: center;
   gap: 4.5rem;
-  max-width: 1180px;
+  max-width: 1380px;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -117,7 +117,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono, 'DM Mono', monospace);
+
   font-size: 0.67rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -150,7 +150,7 @@
 }
 
 .nameFirst {
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -161,7 +161,7 @@
 
 /* ★ "Deepthi" — vivid orange gradient, unmissable on white */
 .nameLast {
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -214,7 +214,7 @@
 }
 
 .rolePrefix {
-  font-family: var(--font-mono, 'DM Mono', monospace);
+  
   font-size: 0.7rem;
   color: #A8A29E;
   letter-spacing: 0.12em;
@@ -224,7 +224,7 @@
 
 /* ★ Orange typewriter text */
 .roleText {
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  
   font-size: 1.05rem;
   font-weight: 700;
   color: #F97316;
@@ -248,9 +248,11 @@
   font-size: 0.97rem;
   line-height: 1.9;
   color: #57534E;
-  max-width: 440px;
+  max-width: 740px;
   margin-bottom: 2rem;
+  text-align: justify;
 }
+
 
 .descEm {
   color: #1C1917;
@@ -266,7 +268,7 @@
 }
 
 .chip {
-  font-family: var(--font-mono, 'DM Mono', monospace);
+  
   font-size: 0.68rem;
   color: #57534E;
   background: #fff;
@@ -304,7 +306,7 @@
   color: #fff;
   padding: 13px 28px;
   border-radius: 8px;
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  
   font-size: 0.88rem;
   font-weight: 700;
   box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
@@ -326,7 +328,7 @@
   border: 1.5px solid #E7E5E4;
   padding: 12px 24px;
   border-radius: 8px;
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+ 
   font-size: 0.88rem;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -347,7 +349,7 @@
 }
 
 .socLabel {
-  font-family: var(--font-mono, 'DM Mono', monospace);
+  
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -452,7 +454,7 @@
 }
 
 .cardNum {
-  font-family: var(--font-display, 'Bricolage Grotesque', sans-serif);
+  
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1;
@@ -463,7 +465,7 @@
 }
 
 .cardSub {
-  font-family: var(--font-mono, 'DM Mono', monospace);
+ 
   font-size: 0.58rem;
   color: #A8A29E;
   letter-spacing: 0.1em;
@@ -475,7 +477,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: var(--font-mono, 'DM Mono', monospace);
+ 
   font-size: 0.65rem;
   font-weight: 500;
   color: #1C1917;
@@ -507,7 +509,7 @@
 }
 
 .scrollLabel {
-  font-family: var(--font-mono, 'DM Mono', monospace);
+  
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;

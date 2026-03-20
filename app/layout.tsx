@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "./components/nav/Navbar";
 
 /* ── Fonts ── */
 const bricolage = Bricolage_Grotesque({
@@ -44,7 +45,11 @@ export default function RootLayout({
     >
       <body>
         {/* <PageBackground> */}
-          {children}
+         <Navbar /> 
+    
+<main style={{ paddingTop: '96px' }}>
+  {children}
+</main>
         {/* </PageBackground> */}
       </body>
     </html>

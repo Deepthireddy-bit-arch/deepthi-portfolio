@@ -37,7 +37,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1380px;
+
   box-sizing: border-box;
 }
 
@@ -53,13 +53,14 @@
   color: #F97316;
   border: 1px solid rgba(249,115,22,0.22);
   background: rgba(249,115,22,0.05);
-  padding: 5px 16px;
+  padding: 4px;
   border-radius: 100px;
   margin-bottom: 1.4rem;
 }
 
 .tagDot {
   width: 5px; height: 5px;
+  
   border-radius: 50%;
   background: #F97316;
   box-shadow: 0 0 0 3px rgba(249,115,22,0.18);

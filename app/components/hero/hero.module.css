@@ -5,9 +5,19 @@
 ════════════════════════════════════════ */
 
 /* ── Section ── */
-.hero {
-  min-height: 100vh;
-  padding: var(--nav-h, 64px) var(--rx, clamp(1.5rem, 6vw, 7rem)) 0;
+/* .hero {
+  min-height: 90vh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+} */
+ .hero {
+  min-height: 90vh;
+  padding-top: 10px; /* ← add this (navbar height ~82px + buffer) */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,7 +113,7 @@
   grid-template-columns: 1fr 340px;
   align-items: center;
   gap: 4.5rem;
-  max-width: 1380px;
+ 
   width: 100%;
   margin: 0 auto;
   position: relative;

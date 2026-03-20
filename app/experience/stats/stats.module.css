@@ -1,0 +1,95 @@
+.section { padding: 5rem 0; background: var(--dk); }
+.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+.headingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+}
+.pill {
+  display: inline-block; font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--or); background: rgba(249,115,22,.15);
+  border: 1px solid rgba(249,115,22,.3);
+  padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem;
+}
+.title {
+  font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
+  letter-spacing: -1px; color: #fff; margin-bottom: .4rem;
+}
+.title span { color: var(--or); }
+.sub { font-size: 14px; color: #666; }
+
+/* Decorative code chars */
+.bigNum {
+  font-family: 'Fira Code', monospace; font-size: 72px; font-weight: 600;
+  color: rgba(249,115,22,.08); line-height: 1; flex-shrink: 0;
+  user-select: none;
+}
+
+/* 2×2 grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Each stat card — horizontal layout with icon+num LEFT, label+bar RIGHT */
+.card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 18px;
+  padding: 1.6rem 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  cursor: default;
+  will-change: transform;
+  transition: border-color .25s, background .25s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom, var(--or), var(--or-l));
+  border-radius: 18px 0 0 18px;
+}
+.card:hover { border-color: rgba(249,115,22,.35); background: #1f1f1f; }
+
+/* Left side */
+.cardLeft { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
+.iconWrap { font-size: 32px; line-height: 1; }
+.numWrap { display: flex; align-items: baseline; gap: 2px; }
+.num {
+  font-family: 'Syne', sans-serif; font-size: 38px; font-weight: 800;
+  color: var(--or); line-height: 1;
+}
+.unit { font-size: 16px; font-weight: 700; color: var(--or-d); }
+
+/* Right side */
+.cardRight { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.mainLabel { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; }
+.subLabel { font-size: 12px; color: #555; }
+
+/* Progress bar */
+.barTrack {
+  height: 6px; background: #2a2a2a; border-radius: 3px;
+  overflow: hidden; width: 100%;
+}
+.barFill {
+  height: 100%;
+  background: linear-gradient(to right, var(--or), var(--or-l));
+  border-radius: 3px;
+  will-change: width;
+}
+.barLabel { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--or); font-weight: 500; }
+
+@media (max-width: 620px) {
+  .grid { grid-template-columns: 1fr; }
+  .title { font-size: 28px; }
+  .bigNum { display: none; }
+}

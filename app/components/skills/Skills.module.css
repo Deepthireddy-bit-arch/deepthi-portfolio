@@ -70,9 +70,9 @@
 }
 
 .inner {
-  max-width: 92rem;
+  /* max-width: 92rem; */
   margin: 0 auto;
-  padding: 0 3rem;
+  /* padding: 0 3rem; */
   position: relative;
 }
 
@@ -169,6 +169,7 @@
   max-width: 20rem;
   line-height: 1.75;
   margin: 0;
+  margin-right: 10px;
   text-align: right;
   flex-shrink: 0;
   
@@ -394,7 +395,7 @@
 .bottomBar {
   margin-top: 4rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 211, 179, 0.8);
+ 
   display: flex;
   align-items: center;
   justify-content: space-between;

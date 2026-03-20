@@ -1,0 +1,531 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SkillsSection — WHITE THEME
+   Font stack: "Clash Display" (display) + "Satoshi" (body) + "JetBrains Mono"
+   Load via: https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── CSS custom properties ────────────────────────────────────────────────── */
+.root {
+  /* backgrounds */
+  --w-bg: #ffffff;
+  --w-bg-nav: #f0ede6;
+  --w-bg-card: #ffffff;
+  --w-bg-card-hover: #fdf9f5;
+  --w-bg-pill-inact: transparent;
+
+  /* accent (orange) */
+  --w-accent: #e8631c;
+  --w-accent-light: #f5a06a;
+  --w-accent-dim: rgba(232, 99, 28, 0.10);
+  --w-accent-mid: rgba(232, 99, 28, 0.30);
+
+  /* text */
+  --w-text-1: #111110;
+  --w-text-2: #52504c;
+  --w-text-3: #9b9793;
+
+  /* nav pill active */
+  --w-nav-active-bg: #111110;
+  --w-nav-active-tx: #ffffff;
+
+  /* borders */
+  --w-border: rgba(17, 17, 16, 0.08);
+  --w-border-card: rgba(17, 17, 16, 0.06);
+
+  /* bar */
+  --w-bar-track: rgba(17, 17, 16, 0.06);
+  --w-bar-fill: linear-gradient(90deg, #e8631c 0%, #f5a06a 100%);
+
+  /* ring (SVG) */
+  --w-ring-track: rgba(17, 17, 16, 0.08);
+  --w-ring-fill: #e8631c;
+
+  /* shadows */
+  --w-shadow-card: 0 1px 8px rgba(17, 17, 16, 0.06), 0 4px 24px rgba(17, 17, 16, 0.04);
+  --w-shadow-hover: 0 8px 40px rgba(17, 17, 16, 0.10);
+  --w-shadow-nav: 0 2px 12px rgba(17, 17, 16, 0.18);
+
+  /* radii */
+  --w-r-card: 18px;
+  --w-r-pill: 999px;
+  --w-r-badge: 6px;
+
+
+}
+
+/* ── Section wrapper ──────────────────────────────────────────────────────── */
+.section {
+  position: relative;
+
+  background: var(--w-bg);
+  overflow: hidden;
+
+}
+
+/* subtle warm tint orb */
+.section::before {
+  content: '';
+  position: absolute;
+  width: 900px;
+  height: 900px;
+  top: -200px;
+  right: -200px;
+  background: radial-gradient(circle, rgba(232, 99, 28, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+
+  margin: 0 auto;
+
+}
+
+/* ── Section heading ──────────────────────────────────────────────────────── */
+.heading {
+  margin-bottom: 52px;
+  overflow: hidden;
+}
+
+.headingOverflow {
+  overflow: hidden;
+  display: block;
+}
+
+.headingMain {
+  display: block;
+
+  font-size: clamp(48px, 6.5vw, 84px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--w-text-1);
+  text-transform: uppercase;
+}
+
+.headingAccent {
+  color: var(--w-accent);
+}
+
+.headingSub {
+  display: block;
+  margin-top: 14px;
+
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--w-text-3);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Nav toggle ───────────────────────────────────────────────────────────── */
+/* .nav {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+  background: var(--w-bg-nav);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-r-pill);
+  padding: 5px;
+  margin-bottom: 52px;
+} */
+.nav {
+  position: relative;
+  display: flex;
+  /* change from inline-flex */
+  align-items: stretch;
+  gap: 0;
+  background: var(--w-bg-nav);
+  border: 1px solid var(--w-border);
+  border-radius: var(--w-r-pill);
+  padding: 5px;
+  margin: 0 auto 52px;
+  /* 🔥 THIS centers it */
+  width: fit-content;
+  /* keep content width */
+}
+
+/* sliding background pill — JS controls transform/width */
+.navPill {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: calc(100% - 10px);
+  background: var(--w-nav-active-bg);
+  border-radius: var(--w-r-pill);
+  box-shadow: var(--w-shadow-nav);
+  pointer-events: none;
+  will-change: transform, width;
+  /* width/x set by JS on mount + on change */
+}
+
+.navBtn {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 32px;
+  border-radius: var(--w-r-pill);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  outline: none;
+  min-width: 180px;
+}
+
+.navBtnLabel {
+
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--w-text-2);
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+.navBtnSub {
+
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--w-text-3);
+  letter-spacing: 0.06em;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+/* active state — text goes white when pill covers this btn */
+.navBtnActive .navBtnLabel {
+  color: var(--w-nav-active-tx);
+}
+
+.navBtnActive .navBtnSub {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* inactive hover */
+.navBtn:not(.navBtnActive):hover .navBtnLabel {
+  color: var(--w-text-1);
+}
+
+/* ── Content container ────────────────────────────────────────────────────── */
+.content {
+  min-height: 420px;
+}
+
+/* ── Technical grid ───────────────────────────────────────────────────────── */
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 18px;
+}
+
+/* ── Tech card ────────────────────────────────────────────────────────────── */
+.techCard {
+  background: var(--w-bg-card);
+  border: 1px solid var(--w-border-card);
+  border-radius: var(--w-r-card);
+  padding: 22px 22px 18px;
+  box-shadow: var(--w-shadow-card);
+  cursor: default;
+  perspective: 600px;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
+    background 0.25s ease;
+}
+
+.techCard:hover {
+  box-shadow: var(--w-shadow-hover);
+  border-color: var(--w-accent-mid);
+  background: var(--w-bg-card-hover);
+}
+
+.techCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.techCardLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.techName {
+
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--w-text-1);
+  line-height: 1.1;
+}
+
+.techCategory {
+
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--w-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.techMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.techPct {
+
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--w-accent);
+  line-height: 1;
+}
+
+.techYears {
+
+  font-size: 10px;
+  color: var(--w-text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* bar */
+.barTrack {
+  width: 100%;
+  height: 3px;
+  background: var(--w-bar-track);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--w-bar-fill);
+  border-radius: 2px;
+  will-change: width;
+}
+
+/* level badge */
+.levelBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: var(--w-r-badge);
+  background: var(--w-accent-dim);
+
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--w-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.levelDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--w-accent);
+  flex-shrink: 0;
+}
+
+/* tags */
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 2px 8px;
+  background: var(--w-border);
+  border-radius: 4px;
+
+  font-size: 10px;
+  color: var(--w-text-3);
+  letter-spacing: 0.04em;
+}
+
+/* ── Interpersonal grid ───────────────────────────────────────────────────── */
+.softGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* ── Soft card ────────────────────────────────────────────────────────────── */
+.softCard {
+  position: relative;
+  background: var(--w-bg-card);
+  border: 1px solid var(--w-border-card);
+  border-radius: var(--w-r-card);
+  padding: 24px;
+  box-shadow: var(--w-shadow-card);
+  cursor: default;
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.softCard:hover {
+  box-shadow: var(--w-shadow-hover);
+  border-color: var(--w-accent-mid);
+}
+
+/* accent top-edge line on hover */
+.softCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--w-accent) 0%, var(--w-accent-light) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.softCard:hover::before {
+  transform: scaleX(1);
+}
+
+.softCardHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.softIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--w-accent-dim);
+  border-radius: 12px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* SVG ring */
+.ringWrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.ringTrack {
+  stroke: var(--w-ring-track);
+}
+
+.ringFill {
+  stroke: var(--w-ring-fill);
+  stroke-linecap: round;
+  fill: none;
+  will-change: stroke-dashoffset;
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+.ringLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--w-accent);
+}
+
+.softName {
+
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--w-text-1);
+  margin-bottom: 8px;
+}
+
+.softDesc {
+
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--w-text-2);
+  margin-bottom: 16px;
+}
+
+.pillars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pillar {
+  padding: 4px 10px;
+  background: var(--w-accent-dim);
+  border-radius: var(--w-r-pill);
+
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--w-accent);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .inner {
+    padding: 0 24px;
+  }
+
+  .nav {
+    flex-direction: column;
+    border-radius: 16px;
+    width: 100%;
+  }
+
+  .navBtn {
+    min-width: unset;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .navPill {
+    display: none;
+  }
+
+  .navBtnActive {
+    background: var(--w-nav-active-bg);
+  }
+
+  .techGrid,
+  .softGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .section {
+    padding: 64px 0 80px;
+  }
+
+  .techGrid,
+  .softGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,177 @@
+/* ── SECTION ── */
+.section {
+  padding: 5rem 0;
+  background: #0d0d0d;        /* dark bg matching reference */
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── HEADING ── */
+.heading { text-align: center; margin-bottom: 2rem; }
+.pill {
+  display: inline-block; font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: #F97316; background: rgba(249,115,22,.14); border: 1px solid rgba(249,115,22,.28);
+  padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem;
+}
+.title {
+  font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
+  letter-spacing: -1px; color: #fff; margin-bottom: .4rem;
+}
+.title span { color: #F97316; }
+.sub { font-size: 14px; color: #666; }
+
+/* ── FILTERS ── */
+.filters { display: flex; gap: 8px; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+.filterBtn {
+  font-size: 11px; font-weight: 600; padding: 5px 16px; border-radius: 100px;
+  border: 1px solid #333; background: transparent; color: #888; cursor: pointer;
+  transition: all .2s; letter-spacing: .05em; text-transform: uppercase;
+}
+.filterBtn:hover { border-color: #F97316; color: #F97316; }
+.filterActive { background: #F97316 !important; border-color: #F97316 !important; color: #fff !important; }
+
+/* ── MOSAIC WRAPPER ── */
+.mosaic { display: flex; flex-direction: column; gap: 4px; background: #111; }
+
+/* ROW 1 — 5 equal columns */
+.row1 { display: flex; gap: 4px; }
+.cellR1 { flex: 1; height: 220px; }
+
+/* ROW 2 — 4 uneven columns */
+.row2 { display: flex; gap: 4px; }
+.cellR2 { height: 260px; flex: 1; }   /* default */
+.spanSm { flex: 0.7 !important; }
+.spanMd { flex: 1   !important; }
+.spanLg { flex: 1.45 !important; }
+.spanXs { flex: 0.85 !important; }
+
+/* ── CELL ── */
+.cell {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #1a1a1a;
+  /* NO border-radius — matches reference */
+}
+
+/* Image */
+.img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+  transform-origin: center;
+  transition: filter .4s;
+  filter: brightness(.88);
+  will-change: transform;
+}
+.cell:hover .img { filter: brightness(1.02); }
+
+/* Dimmed state when filtered out */
+.dimmed { opacity: .18 !important; pointer-events: none; }
+
+/* ── PLAY BUTTON (video cell) ── */
+.playBtn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  z-index: 3;
+  transition: transform .25s, background .2s;
+}
+.playBtn::after {
+  content: '';
+  position: absolute; top: 50%; left: 54%;
+  transform: translate(-50%, -50%);
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 18px;
+  border-color: transparent transparent transparent #111;
+}
+.cell:hover .playBtn { transform: translate(-50%, -50%) scale(1.1); background: #fff; }
+
+/* ── SCREEN TEXT OVERLAY (like "stories that sell") ── */
+.screenText {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  pointer-events: none; gap: 0;
+}
+.screenText span {
+  font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800;
+  color: rgba(255,255,255,.2); letter-spacing: -.3px; line-height: 1.4;
+  display: block; text-align: center;
+}
+
+/* ── BOX OVERLAY (like "WE'RE HAVING A BABY") ── */
+.boxOverlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; padding: 1rem;
+}
+.boxCard {
+  background: rgba(0,0,0,.65);
+  border-radius: 8px; padding: 14px 18px;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 2px;
+  backdrop-filter: blur(6px);
+}
+.boxCard span {
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+  color: #fff; letter-spacing: .07em; line-height: 1.5;
+  display: block; text-align: center;
+}
+
+/* ── HOVER OVERLAY ── */
+.hover {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: flex-end; padding: 1rem;
+  transition: background .3s;
+  z-index: 2;
+}
+.cell:hover .hover { background: rgba(0,0,0,.48); }
+
+.hoverLabel {
+  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  color: #fff; letter-spacing: .08em; text-transform: uppercase;
+  background: rgba(249,115,22,.88); padding: 4px 12px; border-radius: 4px;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .3s, transform .3s;
+}
+.cell:hover .hoverLabel { opacity: 1; transform: translateY(0); }
+
+/* ── CATEGORY BADGE ── */
+.badge {
+  position: absolute; top: 10px; left: 10px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.75); background: rgba(0,0,0,.52);
+  padding: 3px 8px; border-radius: 3px;
+  opacity: 0; transition: opacity .3s;
+  backdrop-filter: blur(4px); z-index: 3;
+}
+.cell:hover .badge { opacity: 1; }
+
+/* ── ORANGE BOTTOM BAR (slides in on hover) ── */
+.bottomBar {
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: #F97316;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease; z-index: 3;
+}
+.cell:hover .bottomBar { transform: scaleX(1); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 720px) {
+  .cellR1 { height: 140px; }
+  .cellR2 { height: 170px; }
+  .row1 { flex-wrap: wrap; }
+  .cellR1 { flex: 0 0 calc(50% - 2px) !important; }
+  .title { font-size: 28px; }
+}
+@media (max-width: 460px) {
+  .row2 { flex-wrap: wrap; }
+  .cellR2 { flex: 0 0 calc(50% - 2px) !important; }
+}

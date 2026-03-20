@@ -6,8 +6,8 @@ export const experienceData: ExperienceItem[] = [
     id: "01",
     role: "Frontend Developer",
     company: "Aim Window Info Tech",
-    location: "San Francisco, CA · Remote",
-    startDate: "Mar 2024",
+    location: "Bommanahalli Karnataka",
+    startDate: "Feb 2025",
     endDate: "Present",
     current: true,
     description:
@@ -24,8 +24,8 @@ export const experienceData: ExperienceItem[] = [
   "Built a reusable component library used across 3 internal products",
   "Implemented CI/CD pipeline with automated Lighthouse checks",
 
-//   "Optimized images using Next.js Image component, reducing bandwidth usage by 30%",
-//   "Improved SEO performance through metadata optimization and structured data",
+  "Optimized images using Next.js Image component, reducing bandwidth usage by 30%",
+  "Improved SEO performance through metadata optimization and structured data",
   "Developed responsive UI components supporting mobile, tablet, and desktop devices",
   "Collaborated with backend team to integrate REST APIs and improve data flow",
  

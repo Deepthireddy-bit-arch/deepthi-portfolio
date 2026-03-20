@@ -1,0 +1,91 @@
+// data/projects.data.ts
+
+import type { Project, FilterOption, StatItem } from "../projects/types";
+
+export const PROJECTS: Project[] = [
+  {
+    id: 1,
+    title: "STEM E-Commerce",
+    subtitle: "Full-Stack E-Commerce Platform",
+    desc: "Dual-panel architecture — a seamless customer storefront plus a powerful admin dashboard. Covers product management, order tracking, Stripe payments, and real-time inventory sync.",
+    type: "personal",
+    team: "individual",
+    tags: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
+    year: "2024",
+    isFinal: true,
+    img: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&q=80&auto=format&fit=crop",
+    highlights: ["Customer Panel", "Admin Dashboard", "Stripe Payments", "Live Inventory"],
+    color: "#F05A1A",
+  },
+  {
+    id: 2,
+    title: "Vista",
+    subtitle: "School Management System",
+    desc: "Built collaboratively to streamline student records, attendance, grade management, and parent-teacher communication in one unified digital ecosystem.",
+    type: "personal",
+    team: "team",
+    tags: ["React", "TypeScript", "PostgreSQL", "REST API"],
+    year: "2024",
+    isFinal: true,
+    img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=700&q=80&auto=format&fit=crop",
+    highlights: ["Student Records", "Attendance", "Grade Reports", "Parent Portal"],
+    color: "#FF8040",
+  },
+  {
+    id: 3,
+    title: "MGR Platform",
+    subtitle: "Bug Fixes & Performance Optimization",
+    desc: "Worked with a team to resolve critical production bugs, refactor legacy code, and optimize performance across a large-scale platform — improving stability and UX significantly.",
+    type: "professional",
+    team: "team",
+    tags: ["Debugging", "Code Review", "Performance", "Testing"],
+    year: "2024",
+    isFinal: false,
+    img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=700&q=80&auto=format&fit=crop",
+    highlights: ["Bug Fixes", "Code Refactor", "Performance Boost", "QA Testing"],
+    color: "#E84D0E",
+  },
+  {
+    id: 4,
+    title: "ACU University",
+    subtitle: "Static Website with Animations",
+    desc: "Designed and developed an animation-rich university website solo — clean academic aesthetics combined with GSAP-powered micro-interactions for a polished digital presence.",
+    type: "professional",
+    team: "individual",
+    tags: ["HTML", "CSS", "GSAP", "JavaScript", "Responsive"],
+    year: "2024",
+    isFinal: false,
+    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=700&q=80&auto=format&fit=crop",
+    highlights: ["Scroll Animations", "Fully Responsive", "GSAP Powered", "Cross-browser"],
+    color: "#F07030",
+  },
+  {
+    id: 5,
+    title: "XL SuperSports",
+    subtitle: "Customer-Side UI Design",
+    desc: "Crafted high-fidelity UI designs for a sports retail platform — focusing on immersive product discovery, visual-first layouts, and a frictionless shopping journey.",
+    type: "professional",
+    team: "individual",
+    tags: ["Figma", "UI/UX", "Prototyping", "Design System"],
+    year: "2024",
+    isFinal: false,
+    img: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=700&q=80&auto=format&fit=crop",
+    highlights: ["Hi-Fi Mockups", "Design System", "User Flows", "Prototype"],
+    color: "#FF9050",
+  },
+];
+
+export const FILTER_OPTIONS: FilterOption[] = [
+  { label: "All",          value: "all",          count: 5 },
+  { label: "Professional", value: "professional", count: 3 },
+  { label: "Personal",     value: "personal",     count: 2 },
+  { label: "Individual",   value: "individual",   count: 3 },
+  { label: "Team",         value: "team",         count: 2 },
+];
+
+export const STATS: StatItem[] = [
+  { value: "5",   label: "Total Projects" },
+  { value: "3",   label: "Individual"     },
+  { value: "2",   label: "Team Projects"  },
+  { value: "12+", label: "Technologies"   },
+];

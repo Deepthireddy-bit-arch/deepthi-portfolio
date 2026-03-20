@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Figma", "REST APIs"];
+const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Boostrap", "REST APIs","JavaScript","Redux","JAVA"];
 const ROLES  = [
   "Frontend Developer",
   "React & Next.js Developer",
@@ -48,12 +48,12 @@ export default function Hero() {
       const word = ROLES[ri];
       if (!deleting) {
         if (roleTextRef.current) roleTextRef.current.textContent = word.slice(0, ++ci);
-        if (ci === word.length) { deleting = true; timer = setTimeout(step, 2200); return; }
+        if (ci === word.length) { deleting = true; timer = setTimeout(step, 3000); return; }
       } else {
         if (roleTextRef.current) roleTextRef.current.textContent = word.slice(0, --ci);
         if (ci === 0) { deleting = false; ri = (ri + 1) % ROLES.length; }
       }
-      timer = setTimeout(step, deleting ? 38 : 78);
+      timer = setTimeout(step, deleting ? 100 : 140);
     };
 
     const kickoff = setTimeout(step, 2000);
@@ -183,12 +183,19 @@ export default function Hero() {
           </div>
 
           {/* Description */}
-          <p ref={descRef} className={styles.desc}>
+          {/* <p ref={descRef} className={styles.desc}>
             I build{" "}
             <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
             web experiences — crafting interfaces that feel intuitive, look
             refined, and perform exceptionally with React &amp; Next.js.
-          </p>
+          </p> */}
+          <p ref={descRef} className={styles.desc}>
+  I build <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
+  web experiences — crafting interfaces that feel intuitive, look refined,
+  and perform exceptionally. With a strong focus on performance, scalability,
+  and clean UI architecture, I transform complex ideas into elegant and
+  engaging digital products using React, Next.js, and modern frontend tools.
+</p>
 
           {/* Skill chips */}
           <div ref={chipsRef} className={styles.chips}>
@@ -240,7 +247,7 @@ export default function Hero() {
         <div ref={photoRef} className={styles.photoWrap}>
 
           <div ref={cardTLRef} className={`${styles.floatCard} ${styles.cardTL}`}>
-            <div className={styles.cardNum}>2+</div>
+            <div className={styles.cardNum}>1+</div>
             <div className={styles.cardSub}>Years exp</div>
           </div>
 

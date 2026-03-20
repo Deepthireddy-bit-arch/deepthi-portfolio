@@ -1,0 +1,119 @@
+.section { padding: 5rem 0; background: var(--wh); }
+.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+
+.heading { text-align: center; margin-bottom: 2.2rem; }
+.pill { display: inline-block; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--or); background: var(--or-l); padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem; }
+.title { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--dk); margin-bottom: .4rem; }
+.title span { color: var(--or); }
+.sub { font-size: 14px; color: var(--g3); }
+
+/* Company selector tabs */
+.tabs { display: flex; gap: 12px; margin-bottom: 2rem; flex-wrap: wrap; }
+.tab {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--g1); border: 1.5px solid var(--g2);
+  border-radius: 14px; padding: .8rem 1.2rem;
+  cursor: pointer; transition: border-color .2s, background .2s, transform .2s;
+  flex: 1; min-width: 200px; text-align: left;
+}
+.tab:hover { background: var(--wh); transform: translateY(-2px); }
+.tabActive { background: var(--wh) !important; }
+.tabLogo {
+  width: 38px; height: 38px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+  color: #fff; flex-shrink: 0;
+}
+.tabName { font-size: 12.5px; font-weight: 700; color: var(--dk); line-height: 1.3; }
+.tabPeriod { font-size: 10.5px; color: var(--g3); }
+
+/* Panel */
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  background: var(--g1);
+  border: 1px solid var(--g2);
+  border-radius: 22px;
+  padding: 2.2rem 2.4rem;
+  position: relative;
+  overflow: hidden;
+}
+.panel::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom, var(--or), var(--or-l));
+}
+
+/* Left side */
+.panelLeft { display: flex; flex-direction: column; gap: 0; }
+.coHeader { display: flex; align-items: center; gap: 14px; margin-bottom: .9rem; }
+.coLogo {
+  width: 54px; height: 54px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800;
+  color: #fff; flex-shrink: 0;
+}
+.coName { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: var(--dk); line-height: 1.3; }
+.coRole { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+.roleDot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
+.chip {
+  font-size: 11px; font-weight: 500; color: var(--g4);
+  background: var(--wh); border: 1px solid var(--g2);
+  padding: 3px 10px; border-radius: 100px;
+}
+
+/* About — clean paragraph, NO bullets */
+.about { font-size: 13.5px; line-height: 1.75; color: var(--g4); margin-bottom: 1.2rem; }
+
+/* Highlights — simple check items */
+.highlights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.2rem; }
+.highlight { display: flex; gap: 8px; align-items: flex-start; }
+.hlCheck { font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.hlText { font-size: 13px; color: var(--g4); line-height: 1.5; }
+
+.link {
+  font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600;
+  text-decoration: none; transition: opacity .2s;
+}
+.link:hover { opacity: .75; }
+
+/* Right: image grid */
+.panelRight {}
+.imgGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  height: 100%;
+}
+.imgBig {
+  grid-row: 1 / 3;
+  border-radius: 14px; overflow: hidden;
+  position: relative; min-height: 240px;
+}
+.imgSmallCol { display: flex; flex-direction: column; gap: 10px; }
+.imgSmall {
+  flex: 1; border-radius: 14px; overflow: hidden;
+  position: relative; min-height: 110px;
+}
+.imgBig img, .imgSmall img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block; transition: transform .4s;
+}
+.imgBig:hover img, .imgSmall:hover img { transform: scale(1.05); }
+.imgOverlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.25), transparent);
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .panel { grid-template-columns: 1fr; }
+  .tabs { flex-direction: column; }
+  .tab { flex: none; }
+  .title { font-size: 28px; }
+}

@@ -6,100 +6,89 @@ interface Company {
   id: string
   logo: string
   logoColor: string
+  accentColor: string
   name: string
+  nameHighlight: string
   role: string
   period: string
   location: string
   type: string
-  size: string
   about: string
   website: string
-  images: string[]
-  highlights: string[]
-  accentColor: string
+  images: { src: string; label: string }[]
+  stack: string[]
+  timeline: {
+    date: string
+    title: string
+    desc: string
+    stats?: string[]
+    open?: boolean
+  }[]
 }
 
 const COMPANIES: Company[] = [
   {
-    id: 'veritas',
-    logo: 'VT',
+    id: 'aimwindow',
+    logo: 'AIM',
     logoColor: '#F97316',
     accentColor: '#F97316',
-    name: 'Veritas Technologies Pvt. Ltd.',
-    role: 'Senior Frontend Engineer',
-    period: 'Jan 2023 – Present',
+    name: 'AIM WINDOW INFO TECH',
+    nameHighlight: 'Pvt. Ltd.',
+    role: 'React Developer',
+    period: 'FEB 2025 – Present',
     location: 'Bengaluru, India',
-    type: 'SaaS Product',
-    size: '500–1000 employees',
-    about: 'Veritas Technologies builds enterprise-grade SaaS analytics platforms used by Fortune 500 companies. The product suite helps data teams visualise, monitor, and act on real-time business intelligence at scale across multiple industries.',
+    type: 'Product Startup',
+    about:
+      'Aim Window is a growing product startup building web applications for business clients. I joined as a frontend developer working closely with the backend team — consuming REST APIs, translating Figma designs into pixel-perfect React interfaces, and owning the UI end-to-end.',
     website: 'veritas.com',
     images: [
-      '/images/learnexa.png',
-      '/images/app-screens.png',
-      '/images/learnexa.png',
+      { src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', label: 'Dashboard' },
+      { src: 'https://images.unsplash.com/photo-1603969409447-ba86143a03f6?w=400&q=80', label: 'Components' },
+      { src: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=400&q=80', label: 'Responsive' },
+      { src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&q=80', label: 'Team' },
+      { src: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=400&q=80', label: 'Codebase' },
     ],
-    highlights: [
-      'Led frontend for a platform serving 40,000+ enterprise users',
-      'Lighthouse score improved from 61 → 94 post-launch',
-      'Promoted from mid-level to senior in 8 months',
-    ],
-  },
-  {
-    id: 'nexlayer',
-    logo: 'NX',
-    logoColor: '#7c3aed',
-    accentColor: '#7c3aed',
-    name: 'Nexlayer Solutions',
-    role: 'Frontend Developer',
-    period: 'Jul 2021 – Dec 2022',
-    location: 'Remote · Hyderabad',
-    type: 'Fintech Startup',
-    size: '50–200 employees',
-    about: 'Nexlayer Solutions builds digital lending infrastructure for NBFCs and cooperative banks across India. Their platform powers the full loan origination lifecycle — from KYC verification to disbursement — with a focus on accessibility and compliance.',
-    website: 'nexlayer.io',
-    images: [
-      '/images/app-screens.png',
-      '/images/learnexa.png',
-      '/images/app-screens.png',
-    ],
-    highlights: [
-      'Form abandonment reduced by 34%',
-      'Mobile traffic grew from 18% → 47%',
-      'Helped close Series A with a polished product demo',
-    ],
-  },
-  {
-    id: 'inkwell',
-    logo: 'IW',
-    logoColor: '#0284c7',
-    accentColor: '#0284c7',
-    name: 'Inkwell Digital Agency',
-    role: 'Junior Web Developer',
-    period: 'Aug 2020 – Jun 2021',
-    location: 'Chennai, India',
-    type: 'Agency · Web & Brand',
-    size: '20–50 employees',
-    about: 'Inkwell is a creative digital agency delivering bespoke web experiences for brands across e-commerce, hospitality, and creative industries. Fast-paced, design-driven, and focused on shipping polished products that convert.',
-    website: 'inkwelldigital.in',
-    images: [
-      '/images/learnexa.png',
-      '/images/app-screens.png',
-      '/images/learnexa.png',
-    ],
-    highlights: [
-      'Shipped 10+ client sites all scoring 90+ Core Web Vitals',
-      "Client's bounce rate fell from 58% → 31%",
-      'Promoted to mid-level role 6 months early',
+    stack: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Redux', 'CSS', 'REST APIs'],
+    timeline: [
+      {
+        date: 'Jan 2024 · Joined',
+        title: 'Onboarded as the frontend developer',
+        desc: 'Picked up an existing Next.js + TypeScript codebase. Spent the first few weeks understanding the project structure and API contracts.',
+      },
+      {
+        date: 'Feb – Apr 2024 · UI Build',
+        title: 'Built reusable React components with Tailwind & Bootstrap',
+        desc: 'Forms, tables, modals, dropdowns — all typed with TypeScript and styled consistently across the app.',
+        stats: ['~25 components', 'TypeScript + Tailwind'],
+      },
+      {
+        date: 'May 2024 · API Integration',
+        title: 'Integrated REST APIs across the dashboard & admin panel',
+        desc: 'Connected frontend views to backend endpoints — handled loading states, error boundaries, and data normalisation on the client side.',
+        stats: ['REST APIs', 'Redux state management'],
+      },
+      {
+        date: 'Jul 2024 · Responsive',
+        title: 'Made the full app mobile-responsive',
+        desc: 'The product was desktop-only. Rebuilt layouts using Tailwind breakpoints and Bootstrap grid to support all screen sizes.',
+      },
+      {
+        date: 'Present · Ongoing',
+        title: 'Improving code quality & working on performance',
+        desc: 'Cleaning up legacy JavaScript to TypeScript, reducing re-renders, and writing cleaner component patterns.',
+        open: true,
+      },
     ],
   },
 ]
 
 export default function CompanyDetailsSection() {
-  const ref = useRef<HTMLElement>(null)
+  const ref     = useRef<HTMLElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
-
   const company = COMPANIES[active]
 
+  // ── GSAP animations (desktop) ──────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
@@ -107,132 +96,168 @@ export default function CompanyDetailsSection() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
       ctx = gsap.context(() => {
-        gsap.fromTo(['.cd-pill', '.cd-main-title', '.cd-main-sub'], { opacity: 0, y: -20 }, {
-          opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
-        })
-        gsap.fromTo('.co-tab', { opacity: 0, y: 16 }, {
-          opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: 'back.out(1.4)',
-          scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true }
-        })
+        gsap.fromTo(
+          ['.cd-pill', '.cd-main-title', '.cd-main-sub'],
+          { opacity: 0, y: -20 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } }
+        )
+        gsap.fromTo(
+          '.co-tab',
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: 'back.out(1.4)',
+            scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } }
+        )
         animateIn()
       }, ref)
     })()
     return () => ctx?.revert()
   }, [])
 
+  // ── Mobile: IntersectionObserver fade-up for the panel ────────────────────
+  // CSS handles the actual transition (.panel → .panel.isVisible).
+  // This just adds/removes the class when the panel enters the viewport.
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 760px)').matches
+    if (!isMobile || !panelRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          panelRef.current?.classList.add(styles.isVisible)
+          observer.disconnect() // once only
+        }
+      },
+      { threshold: 0.12 }
+    )
+    observer.observe(panelRef.current)
+    return () => observer.disconnect()
+  }, [active]) // re-run when active company changes
+
   const animateIn = async () => {
     const { gsap } = await import('gsap')
     gsap.fromTo('.cd-panel', { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' })
-    gsap.fromTo('.cd-img-item', { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.45, stagger: 0.1, ease: 'back.out(1.4)' })
-    gsap.fromTo('.cd-hl', { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out' })
+    gsap.fromTo('.cd-img-item', { opacity: 0, scale: 0.93 }, { opacity: 1, scale: 1, duration: 0.45, stagger: 0.08, ease: 'back.out(1.4)' })
+    gsap.fromTo('.cd-tl-event', { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.07, ease: 'power2.out', delay: 0.1 })
   }
 
   const handleSwitch = async (i: number) => {
     const { gsap } = await import('gsap')
-    gsap.to('.cd-panel', { opacity: 0, y: 8, duration: 0.18, ease: 'power2.in', onComplete: () => {
-      setActive(i)
-      setTimeout(animateIn, 10)
-    }})
+    // reset isVisible so the observer can re-trigger for the new panel
+    panelRef.current?.classList.remove(styles.isVisible)
+    gsap.to('.cd-panel', {
+      opacity: 0, y: 8, duration: 0.18, ease: 'power2.in',
+      onComplete: () => { setActive(i); setTimeout(animateIn, 10) },
+    })
   }
 
   return (
     <section ref={ref} className={styles.section} id="company">
       <div className={styles.container}>
 
-        {/* Heading */}
-        <div className={styles.heading}>
-          <span className={`cd-pill ${styles.pill}`}>Experience</span>
-          <h2 className={`cd-main-title ${styles.title}`}>Company <span>Details</span></h2>
-          <p className={`cd-main-sub ${styles.sub}`}>Where I've worked and what I've built</p>
-        </div>
+        {/* Panel */}
+        <div ref={panelRef} className={`cd-panel ${styles.panel}`}>
 
-        {/* Company selector tabs */}
-        <div className={styles.tabs}>
-          {COMPANIES.map((c, i) => (
-            <button
-              key={c.id}
-              className={`co-tab ${styles.tab} ${active === i ? styles.tabActive : ''}`}
-              style={active === i ? { borderColor: c.accentColor, color: c.accentColor } : {}}
-              onClick={() => handleSwitch(i)}
-            >
-              <span
-                className={styles.tabLogo}
-                style={{ background: c.logoColor }}
+          {/* Background monogram */}
+          <div className={styles.bgMono} style={{ color: company.accentColor }}>{company.logo}</div>
+
+          {/* Top row: name + logo */}
+          <div className={styles.topRow}>
+            <div className={styles.coIdentity}>
+              <div className={styles.eyebrow} style={{ color: company.accentColor }}>
+                <span className={styles.eyebrowLine} style={{ background: company.accentColor }} />
+                Frontend Development
+              </div>
+              <div className={styles.coName}>
+                {company.name}{' '}
+                <em className={styles.coNameHighlight} style={{ color: company.accentColor }}>
+                  {company.nameHighlight}
+                </em>
+              </div>
+              <div className={styles.coRole}>{company.role} &nbsp;·&nbsp; {company.period}</div>
+            </div>
+            <div className={styles.logoSide}>
+              <div
+                className={styles.logoBox}
+                style={{ background: company.logoColor, boxShadow: `0 8px 24px ${company.logoColor}44` }}
               >
-                {c.logo}
-              </span>
-              <div className={styles.tabInfo}>
-                <div className={styles.tabName}>{c.name.split(' ')[0]} {c.name.split(' ')[1]}</div>
-                <div className={styles.tabPeriod}>{c.period}</div>
+                <div className={styles.logoRing} style={{ borderColor: company.accentColor + '44' }} />
+                {company.logo}
               </div>
-            </button>
-          ))}
-        </div>
-
-        {/* Active company panel */}
-        <div className={`cd-panel ${styles.panel}`}>
-          <div className={styles.panelLeft}>
-
-            {/* Logo + name + role */}
-            <div className={styles.coHeader}>
-              <div className={styles.coLogo} style={{ background: company.logoColor }}>{company.logo}</div>
-              <div>
-                <div className={styles.coName}>{company.name}</div>
-                <div className={styles.coRole} style={{ color: company.accentColor }}>
-                  <span className={styles.roleDot} style={{ background: company.accentColor }} />
-                  {company.role}
-                </div>
-              </div>
+              {company.id === 'veritas' && <span className={styles.liveChip}>● Current</span>}
             </div>
+          </div>
 
-            {/* Meta chips */}
-            <div className={styles.chips}>
-              {[`📍 ${company.location}`, company.type, company.size, `🗓 ${company.period}`].map((chip, i) => (
-                <span key={i} className={styles.chip}>{chip}</span>
-              ))}
+          {/* Gradient HR */}
+          <div
+            className={styles.hr}
+            style={{ background: `linear-gradient(90deg,${company.accentColor} 0%,${company.accentColor}55 30%,#ede9e4 80%,transparent 100%)` }}
+          />
+
+          {/* About */}
+          <div className={styles.aboutWrap}>
+            <div className={styles.sectionLabel}>About</div>
+            <p className={styles.aboutText} style={{ borderLeftColor: company.accentColor + '66' }}>
+              {company.about}
+            </p>
+          </div>
+
+          {/* Image strip */}
+          <div className={styles.sectionLabel}>Work snapshots</div>
+          <div className={styles.imgStrip}>
+            <div className={`cd-img-item ${styles.imgMain}`}>
+              <img src={company.images[0].src} alt={company.images[0].label} />
+              <div className={styles.imgOverlay} />
+              <span className={styles.imgTag}>{company.images[0].label}</span>
             </div>
-
-            {/* About — clean paragraph, NO bullets */}
-            <p className={styles.about}>{company.about}</p>
-
-            {/* Highlights — minimal check items, not bullet list */}
-            <div className={styles.highlights}>
-              {company.highlights.map((h, i) => (
-                <div key={i} className={`cd-hl ${styles.highlight}`}>
-                  <span className={styles.hlCheck} style={{ color: company.accentColor }}>✓</span>
-                  <span className={styles.hlText}>{h}</span>
+            <div className={styles.imgSmallCol}>
+              {company.images.slice(1, 3).map((img, i) => (
+                <div key={i} className={`cd-img-item ${styles.imgSm}`}>
+                  <img src={img.src} alt={img.label} />
+                  <div className={styles.imgOverlay} />
+                  <span className={styles.imgTag}>{img.label}</span>
                 </div>
               ))}
             </div>
+            <div className={styles.imgSmallCol}>
+              {company.images.slice(3, 5).map((img, i) => (
+                <div key={i} className={`cd-img-item ${styles.imgSm}`}>
+                  <img src={img.src} alt={img.label} />
+                  <div className={styles.imgOverlay} />
+                  <span className={styles.imgTag}>{img.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            {/* Website link */}
-            <a href={`https://${company.website}`} className={styles.link} style={{ color: company.accentColor }}>
-              {company.website} →
+          {/* Stack */}
+          <div className={styles.stackWrap}>
+            <div className={styles.sectionLabel}>Technologies</div>
+            <div className={styles.stackGrid}>
+              {company.stack.map((s) => (
+                <span
+                  key={s}
+                  className={styles.sPill}
+                  style={{ borderColor: company.accentColor + '55', color: company.accentColor, background: company.accentColor + '12' }}
+                >
+                  {s}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className={styles.footer}>
+            <a href={`https://${company.website}`} className={styles.ftLink} style={{ color: company.accentColor }} target="_blank" rel="noopener noreferrer">
+              ↗ {company.website}
             </a>
-          </div>
-
-          {/* Right: image grid */}
-          <div className={styles.panelRight}>
-            <div className={styles.imgGrid}>
-              <div className={`cd-img-item ${styles.imgBig}`}>
-                <img src={company.images[0]} alt="Project 1" />
-                <div className={styles.imgOverlay} />
-              </div>
-              <div className={styles.imgSmallCol}>
-                <div className={`cd-img-item ${styles.imgSmall}`}>
-                  <img src={company.images[1]} alt="Project 2" />
-                  <div className={styles.imgOverlay} />
-                </div>
-                <div className={`cd-img-item ${styles.imgSmall}`}>
-                  <img src={company.images[2]} alt="Project 3" />
-                  <div className={styles.imgOverlay} />
-                </div>
-              </div>
+            <div className={styles.ftChips}>
+              <span className={styles.ftChip}>{company.type}</span>
+              <span className={styles.ftChip}>{company.location}</span>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
   )

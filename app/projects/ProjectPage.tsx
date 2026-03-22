@@ -1,7 +1,8 @@
 // page.tsx → place at: app/projects/page.tsx
 //
 // SETUP (one time):
-// 1. next.config.ts → images: { domains: ["images.unsplash.com"] }
+// 1. next.config.ts → images: { 
+// s: ["images.unsplash.com"] }
 // 2. Replace img URLs in data/projects.data.ts with your own screenshots
 // 3. Google Fonts auto-injected via useEffect — no layout.tsx change needed
 
@@ -21,7 +22,7 @@ const PAGE_CSS = `
   .proj-page {
     min-height: 100vh;
     background: #FFFFFF;
-   
+   margin-bottom:50px;
     
     position: relative;
   }
@@ -346,7 +347,7 @@ export default function ProjectsPage() {
             <h2 className="proj-footer-heading">Have a project in mind?</h2>
             <p className="proj-footer-sub">Open to freelance, full-time &amp; collaboration opportunities.</p>
           </div>
-          <a href="#contact" className="proj-footer-btn">
+          <a href="/contact" className="proj-footer-btn">
             Let&apos;s Talk →
           </a>
         </div>

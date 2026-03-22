@@ -116,8 +116,7 @@ passionsLine:
 
   contact: {
     email: 'doddipallideepthi111@gmail.com',
-    twitter:  'https://twitter.com',
-    github:   'https://github.com',
+    github:   'https://github.com/Deepthireddy-bit-arch',
     linkedin: 'https://www.linkedin.com/in/doddipalli-deepthi-16b031256',
   },
 };

@@ -15,13 +15,11 @@ interface MosaicCell {
 }
 
 const CELLS: MosaicCell[] = [
-  // Row 1 — 5 equal cells
   { row: 1, image: '/images/learnexa.png',    label: 'Watch Demo',    category: 'web',       isVideo: true },
   { row: 1, image: '/images/app-screens.png', label: 'Task App',      category: 'mobile'    },
   { row: 1, image: '/images/learnexa.png',    label: 'Dashboard',     category: 'dashboard', textOverlay: 'stories\nthat sell' },
   { row: 1, image: '/images/app-screens.png', label: 'Loan Portal',   category: 'fintech'   },
   { row: 1, image: '/images/learnexa.png',    label: 'Quiz Platform', category: 'web'       },
-  // Row 2 — 4 cells, uneven widths
   { row: 2, image: '/images/app-screens.png', label: 'IoT UI',        category: 'web',       spanClass: 'spanSm' },
   { row: 2, image: '/images/learnexa.png',    label: 'Mobile App',    category: 'mobile',    spanClass: 'spanMd' },
   { row: 2, image: '/images/app-screens.png', label: 'Happiness App', category: 'mobile',    spanClass: 'spanLg' },
@@ -41,6 +39,7 @@ export default function GallerySection() {
   const ref = useRef<HTMLElement>(null)
   const [filter, setFilter] = useState<FilterKey>('all')
 
+  // ── GSAP animations (desktop) ──────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
@@ -76,6 +75,32 @@ export default function GallerySection() {
     return () => ctx?.revert()
   }, [])
 
+  // ── Mobile: IntersectionObserver adds .isVisible to each cell ─────────────
+  // CSS handles the staggered fade-up via transition-delay on nth-child.
+  // GSAP is not used on mobile — no heavy animation library needed.
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 720px)').matches
+    if (!isMobile) return
+
+    const cells = ref.current?.querySelectorAll<HTMLElement>('.mosaic-cell')
+    if (!cells?.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.isVisible)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    cells.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [filter]) // re-observe when filter changes
+
   const row1 = CELLS.filter(c => c.row === 1)
   const row2 = CELLS.filter(c => c.row === 2)
   const isVisible = (cell: MosaicCell) => filter === 'all' || cell.category === filter
@@ -102,7 +127,6 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Dark mosaic — no border-radius, 4px gaps */}
         <div className={styles.mosaic}>
 
           {/* ROW 1: 5 equal */}
@@ -113,15 +137,12 @@ export default function GallerySection() {
                 className={`mosaic-cell ${styles.cell} ${styles.cellR1} ${!isVisible(cell) ? styles.dimmed : ''}`}
               >
                 <img src={cell.image} alt={cell.label} className={styles.img} />
-
                 {cell.isVideo && <div className={styles.playBtn} />}
-
                 {cell.textOverlay && (
                   <div className={styles.screenText}>
                     {cell.textOverlay.split('\n').map((l, j) => <span key={j}>{l}</span>)}
                   </div>
                 )}
-
                 <div className={styles.hover}>
                   <span className={styles.hoverLabel}>{cell.label}</span>
                 </div>
@@ -136,10 +157,9 @@ export default function GallerySection() {
             {row2.map((cell, i) => (
               <div
                 key={i}
-                className={`mosaic-cell ${styles.cell} ${styles.cellR2} ${cell.spanClass ? styles[cell.spanClass] : ''} ${!isVisible(cell) ? styles.dimmed : ''}`}
+                className={`mosaic-cell ${styles.cell} ${styles.cellR2} ${cell.spanClass ? styles[cell.spanClass as keyof typeof styles] : ''} ${!isVisible(cell) ? styles.dimmed : ''}`}
               >
                 <img src={cell.image} alt={cell.label} className={styles.img} />
-
                 {cell.textOverlay && (
                   <div className={styles.boxOverlay}>
                     <div className={styles.boxCard}>
@@ -147,7 +167,6 @@ export default function GallerySection() {
                     </div>
                   </div>
                 )}
-
                 <div className={styles.hover}>
                   <span className={styles.hoverLabel}>{cell.label}</span>
                 </div>

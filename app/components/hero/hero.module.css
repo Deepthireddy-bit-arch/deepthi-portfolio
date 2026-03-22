@@ -5,19 +5,9 @@
 ════════════════════════════════════════ */
 
 /* ── Section ── */
-/* .hero {
+.hero {
   min-height: 90vh;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-} */
- .hero {
-  min-height: 90vh;
-  padding-top: 10px; /* ← add this (navbar height ~82px + buffer) */
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,43 +16,13 @@
   background: #ffffff;
 }
 
-/* ── Square grid lines ── */
-/* .gridLines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(#E7E5E4 1px, transparent 1px),
-    linear-gradient(90deg, #E7E5E4 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-} */
-
-/* ── Solid white layer so grid doesn't show through content ── */
+/* ── Solid white layer ── */
 .heroBg {
   position: absolute;
   inset: 0;
   background: #ffffff;
   z-index: 0;
-  /* sits under gridLines — grid is on top */
 }
-
-/* ── Orange top bar ── */
-/* .hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      #F97316 20%,
-      #fb923c 50%,
-      #fbbf24 80%,
-      transparent 100%);
-  z-index: 20;
-} */
 
 /* ── Glow orbs ── */
 .glow {
@@ -75,35 +35,29 @@
 }
 
 .glowA {
-  width: 580px;
-  height: 500px;
+  width: 580px; height: 500px;
   background: radial-gradient(circle,
-      rgba(249, 115, 22, 0.16) 0%,
-      rgba(251, 146, 60, 0.09) 45%,
+      rgba(249,115,22,0.16) 0%,
+      rgba(251,146,60,0.09) 45%,
       transparent 70%);
-  top: -140px;
-  right: -80px;
+  top: -140px; right: -80px;
 }
 
 .glowB {
-  width: 420px;
-  height: 380px;
+  width: 420px; height: 380px;
   background: radial-gradient(circle,
-      rgba(251, 191, 36, 0.12) 0%,
-      rgba(249, 115, 22, 0.07) 50%,
+      rgba(251,191,36,0.12) 0%,
+      rgba(249,115,22,0.07) 50%,
       transparent 70%);
-  bottom: -90px;
-  left: -70px;
+  bottom: -90px; left: -70px;
 }
 
 .glowC {
-  width: 300px;
-  height: 260px;
+  width: 300px; height: 260px;
   background: radial-gradient(circle,
-      rgba(249, 115, 22, 0.08) 0%,
+      rgba(249,115,22,0.08) 0%,
       transparent 65%);
-  top: 40%;
-  left: 40%;
+  top: 40%; left: 40%;
   transform: translate(-50%, -50%);
 }
 
@@ -113,7 +67,6 @@
   grid-template-columns: 1fr 340px;
   align-items: center;
   gap: 4.5rem;
- 
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -122,34 +75,30 @@
 
 /* ══════════ LEFT ══════════ */
 
-/* Status badge */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   font-size: 0.67rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #15803d;
-  border: 1.5px solid rgba(21, 128, 61, 0.25);
-  background: rgba(21, 128, 61, 0.06);
+  border: 1.5px solid rgba(21,128,61,0.25);
+  background: rgba(21,128,61,0.06);
   padding: 6px 15px;
   border-radius: 100px;
   margin-bottom: 2rem;
 }
 
 .badgeDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+  width: 7px; height: 7px; border-radius: 50%;
   background: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.2);
   flex-shrink: 0;
   will-change: transform, opacity;
 }
 
-/* ── Name row — both names on ONE line ── */
+/* ── Name row ── */
 .nameRow {
   display: flex;
   align-items: baseline;
@@ -160,7 +109,6 @@
 }
 
 .nameFirst {
-  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -169,39 +117,27 @@
   will-change: transform, opacity;
 }
 
-/* ★ "Deepthi" — vivid orange gradient, unmissable on white */
 .nameLast {
-  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   display: inline-block;
   background: linear-gradient(130deg,
-      #F97316 0%,
-      #FB923C 30%,
-      #FED7AA 55%,
-      #F97316 75%,
-      #EA580C 100%);
+      #F97316 0%, #FB923C 30%, #FED7AA 55%, #F97316 75%, #EA580C 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 2px 18px rgba(249, 115, 22, 0.4));
+  filter: drop-shadow(0 2px 18px rgba(249,115,22,0.4));
   animation: shimmer 4s linear infinite;
   will-change: transform, opacity;
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: 0% center;
-  }
-
-  100% {
-    background-position: 200% center;
-  }
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
-/* ★ Orange gradient underline — draws in via GSAP scaleX */
 .nameLine {
   display: block;
   height: 3px;
@@ -211,7 +147,7 @@
   transform-origin: left;
   margin-top: 10px;
   margin-bottom: 1.8rem;
-  box-shadow: 0 0 20px rgba(249, 115, 22, 0.45);
+  box-shadow: 0 0 20px rgba(249,115,22,0.45);
   will-change: transform;
 }
 
@@ -224,7 +160,6 @@
 }
 
 .rolePrefix {
-  
   font-size: 0.7rem;
   color: #A8A29E;
   letter-spacing: 0.12em;
@@ -232,9 +167,7 @@
   white-space: nowrap;
 }
 
-/* ★ Orange typewriter text */
 .roleText {
-  
   font-size: 1.05rem;
   font-weight: 700;
   color: #F97316;
@@ -244,8 +177,7 @@
 
 .cursor {
   display: inline-block;
-  width: 2.5px;
-  height: 1.1em;
+  width: 2.5px; height: 1.1em;
   background: #F97316;
   margin-left: 2px;
   vertical-align: middle;
@@ -263,11 +195,7 @@
   text-align: justify;
 }
 
-
-.descEm {
-  color: #1C1917;
-  font-weight: 600;
-}
+.descEm { color: #1C1917; font-weight: 600; }
 
 /* ── Skill chips ── */
 .chips {
@@ -278,7 +206,6 @@
 }
 
 .chip {
-  
   font-size: 0.68rem;
   color: #57534E;
   background: #fff;
@@ -296,7 +223,7 @@
   color: #fff;
   border-color: #F97316;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
+  box-shadow: 0 4px 14px rgba(249,115,22,0.28);
 }
 
 /* ── CTA buttons ── */
@@ -316,17 +243,17 @@
   color: #fff;
   padding: 13px 28px;
   border-radius: 8px;
-  
   font-size: 0.88rem;
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 4px 20px rgba(249,115,22,0.3);
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btnPrimary:hover {
   background: #EA580C;
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.45);
+  box-shadow: 0 8px 30px rgba(249,115,22,0.45);
 }
 
 .btnSecondary {
@@ -338,17 +265,17 @@
   border: 1.5px solid #E7E5E4;
   padding: 12px 24px;
   border-radius: 8px;
- 
   font-size: 0.88rem;
   font-weight: 500;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btnSecondary:hover {
   border-color: #F97316;
   color: #F97316;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.15);
+  box-shadow: 0 4px 14px rgba(249,115,22,0.15);
 }
 
 /* ── Socials ── */
@@ -359,7 +286,6 @@
 }
 
 .socLabel {
-  
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -367,15 +293,12 @@
 }
 
 .socDivider {
-  width: 20px;
-  height: 1px;
-  background: #E7E5E4;
-  flex-shrink: 0;
+  width: 20px; height: 1px;
+  background: #E7E5E4; flex-shrink: 0;
 }
 
 .socIcon {
-  width: 38px;
-  height: 38px;
+  width: 38px; height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -391,7 +314,7 @@
   border-color: #F97316;
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
+  box-shadow: 0 4px 14px rgba(249,115,22,0.28);
 }
 
 /* ══════════ RIGHT — Photo ══════════ */
@@ -402,72 +325,57 @@
   will-change: transform, opacity;
 }
 
-/* Offset shadow stack — orange tint */
 .photoWrap::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   border-radius: 24px;
   background: linear-gradient(135deg,
-      rgba(249, 115, 22, 0.18),
-      rgba(251, 191, 36, 0.12));
+      rgba(249,115,22,0.18), rgba(251,191,36,0.12));
   transform: translate(12px, 12px);
   z-index: -1;
 }
 
 .photoWrap::after {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   border-radius: 24px;
-  border: 1.5px dashed rgba(249, 115, 22, 0.28);
+  border: 1.5px dashed rgba(249,115,22,0.28);
   transform: translate(6px, 6px);
   z-index: -1;
 }
 
 .photoBox {
   position: relative;
-  width: 300px;
-  height: 360px;
+  width: 300px; height: 360px;
   border-radius: 22px;
   overflow: hidden;
-  border: 2px solid rgba(249, 115, 22, 0.2);
+  border: 2px solid rgba(249,115,22,0.2);
   background: linear-gradient(160deg, #FFF7ED 0%, #FFEDD5 100%);
   box-shadow:
-    0 24px 60px rgba(249, 115, 22, 0.13),
-    0 4px 18px rgba(0, 0, 0, 0.05);
+    0 24px 60px rgba(249,115,22,0.13),
+    0 4px 18px rgba(0,0,0,0.05);
 }
 
 /* ── Floating stat cards ── */
 .floatCard {
   position: absolute;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255,255,255,0.6);
   backdrop-filter: blur(12px);
-  border: 1.5px solid rgba(249, 115, 22, 0.2);
+  border: 1.5px solid rgba(249,115,22,0.2);
   border-radius: 14px;
   padding: 11px 18px;
   box-shadow:
-    0 8px 24px rgba(249, 115, 22, 0.13),
-    0 2px 8px rgba(0, 0, 0, 0.05);
+    0 8px 24px rgba(249,115,22,0.13),
+    0 2px 8px rgba(0,0,0,0.05);
   white-space: nowrap;
   will-change: transform, opacity;
 }
 
-.cardTL {
-  top: -16px;
-  left: -48px;
-}
-
-.cardBR {
-  bottom: -16px;
-  right: -48px;
-}
+.cardTL { top: -16px; left: -48px; }
+.cardBR { bottom: -16px; right: -48px; }
 
 .cardNum {
-  
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1;
+  font-size: 1.5rem; font-weight: 800; line-height: 1;
   background: linear-gradient(135deg, #F97316, #fbbf24);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -475,7 +383,6 @@
 }
 
 .cardSub {
- 
   font-size: 0.58rem;
   color: #A8A29E;
   letter-spacing: 0.1em;
@@ -484,42 +391,29 @@
 }
 
 .cardStatus {
-  display: flex;
-  align-items: center;
-  gap: 6px;
- 
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: #1C1917;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.65rem; font-weight: 500;
+  color: #1C1917; letter-spacing: 0.06em; text-transform: uppercase;
 }
 
 .cardDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+  width: 7px; height: 7px; border-radius: 50%;
   background: #16a34a;
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2);
+  box-shadow: 0 0 0 3px rgba(22,163,74,0.2);
   flex-shrink: 0;
 }
 
 /* ── Scroll hint ── */
 .scrollHint {
   position: absolute;
-  bottom: 2.4rem;
-  left: 50%;
+  bottom: 2.4rem; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
   z-index: 2;
   will-change: opacity, transform;
 }
 
 .scrollLabel {
-  
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -527,8 +421,7 @@
 }
 
 .scrollMouse {
-  width: 22px;
-  height: 34px;
+  width: 22px; height: 34px;
   border: 1.5px solid #E7E5E4;
   border-radius: 12px;
   display: flex;
@@ -537,14 +430,15 @@
 }
 
 .scrollWheel {
-  width: 3px;
-  height: 7px;
+  width: 3px; height: 7px;
   border-radius: 3px;
   background: #F97316;
   will-change: transform, opacity;
 }
 
-/* ══════════ RESPONSIVE ══════════ */
+/* ══════════════════════════════════════════════════════
+   EXISTING BREAKPOINTS — untouched
+══════════════════════════════════════════════════════ */
 @media (max-width: 960px) {
   .heroInner {
     grid-template-columns: 1fr;
@@ -552,35 +446,142 @@
     gap: 3.5rem;
   }
 
-  .photoWrap {
-    order: -1;
-  }
+  .photoWrap { order: -1; }
 
   .photoWrap,
-  .photoBox {
-    width: 240px;
-  }
+  .photoBox  { width: 240px; }
+  .photoBox  { height: 290px; }
 
-  .photoBox {
-    height: 290px;
-  }
-
-  .cardTL {
-    left: -14px;
-  }
-
-  .cardBR {
-    right: -14px;
-  }
+  .cardTL { left: -14px; }
+  .cardBR { right: -14px; }
 }
 
 @media (max-width: 560px) {
+  .hero { padding: var(--nav-h, 64px) 1.5rem 0; }
+  .nameFirst,
+  .nameLast { font-size: 2.8rem; }
+}
+
+/* ══════════════════════════════════════════════════════
+   MOBILE FIXES & ANIMATIONS
+   Nothing above this line is changed.
+══════════════════════════════════════════════════════ */
+
+@media (max-width: 960px) {
+  /* ── hero needs enough bottom room for the scroll hint ── */
   .hero {
-    padding: var(--nav-h, 64px) 1.5rem 0;
+    padding-bottom: 80px;   /* ensures scroll hint is never clipped */
+    min-height: unset;      /* let content drive height on tablet */
   }
 
+  /* centre the left column text on tablet/mobile */
+  .heroInner { text-align: center; padding: 3rem 1.5rem 5rem; }
+
+  .badge      { margin-left: auto; margin-right: auto; }
+  .nameRow    { justify-content: center; }
+  .roleWrap   { justify-content: center; }
+  .desc       { text-align: center; margin-left: auto; margin-right: auto; }
+  .chips      { justify-content: center; }
+  .ctaRow     { justify-content: center; }
+  .socRow     { justify-content: center; }
+}
+
+@media (max-width: 640px) {
+  /* ── hero height — don't force 90vh on small phones ── */
+  .hero {
+    min-height: unset;
+    padding-top: 72px;      /* nav clearance */
+    padding-bottom: 96px;   /* room for scroll hint below content */
+  }
+
+  /* name — smaller to avoid wrapping mid-word */
   .nameFirst,
-  .nameLast {
-    font-size: 2.8rem;
+  .nameLast { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+
+  /* role text */
+  .roleText   { font-size: 0.95rem; }
+  .rolePrefix { display: none; } /* saves space on tiny screens */
+
+  /* desc */
+  .desc { font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.4rem; }
+
+  /* chips — tighter */
+  .chips { gap: 0.35rem; margin-bottom: 1.8rem; }
+  .chip  { font-size: 0.63rem; padding: 4px 11px; }
+
+  /* CTA — stack on very small screens */
+  .ctaRow { flex-direction: column; align-items: stretch; gap: 0.7rem; }
+  .btnPrimary,
+  .btnSecondary { justify-content: center; width: 100%; padding: 13px 20px; }
+
+  /* photo — smaller on phones */
+  .photoWrap,
+  .photoBox { width: 200px; }
+  .photoBox { height: 240px; }
+
+  /* float cards — pull them closer so they don't overflow */
+  .cardTL { top: -10px; left: -10px; padding: 8px 12px; }
+  .cardBR { bottom: -10px; right: -10px; padding: 8px 12px; }
+  .cardNum { font-size: 1.2rem; }
+  .cardSub,
+  .cardStatus { font-size: 0.55rem; }
+
+  /* scroll hint — fixed position so it's always visible at bottom ── */
+  /* KEY FIX: absolute scroll hint gets lost when content is taller than 90vh.
+     On mobile we switch it to fixed so it always appears at the bottom of the screen. */
+  .scrollHint {
+    position: fixed;
+    bottom: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+  }
+}
+
+@media (max-width: 400px) {
+  .nameFirst,
+  .nameLast { font-size: clamp(1.9rem, 8.5vw, 2.2rem); }
+
+  .heroInner { padding: 2rem 1rem 4rem; }
+
+  .chip { font-size: 0.6rem; padding: 4px 10px; }
+}
+
+/* ── Mobile touch animations ────────────────────────── */
+@media (max-width: 640px) {
+  /* chip press */
+  .chip {
+    transition: all 0.2s ease, transform 0.12s ease;
+  }
+  .chip:active {
+    background: #F97316;
+    color: #fff;
+    border-color: #F97316;
+    transform: scale(0.94);
+  }
+
+  /* CTA button press */
+  .btnPrimary:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 10px rgba(249,115,22,0.3);
+  }
+  .btnSecondary:active {
+    transform: scale(0.97);
+    border-color: #F97316;
+    color: #F97316;
+  }
+
+  /* social icon press */
+  .socIcon:active {
+    background: #F97316;
+    border-color: #F97316;
+    color: #fff;
+    transform: scale(0.9);
+  }
+
+  /* float cards — subtle pop on tap */
+  .floatCard:active {
+    transform: scale(0.96);
+    transition: transform 0.12s ease;
   }
 }

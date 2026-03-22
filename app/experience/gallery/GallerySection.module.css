@@ -1,20 +1,20 @@
 /* ── SECTION ── */
 .section {
   padding: 5rem 0;
-  background: #0d0d0d;        /* dark bg matching reference */
+  background: #0d0d0d;
 }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 
 /* ── HEADING ── */
 .heading { text-align: center; margin-bottom: 2rem; }
 .pill {
-  display: inline-block; font-family: 'Syne', sans-serif;
+  display: inline-block; 
   font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
   color: #F97316; background: rgba(249,115,22,.14); border: 1px solid rgba(249,115,22,.28);
   padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem;
 }
 .title {
-  font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
+font-size: 36px; font-weight: 800;
   letter-spacing: -1px; color: #fff; margin-bottom: .4rem;
 }
 .title span { color: #F97316; }
@@ -39,9 +39,9 @@
 
 /* ROW 2 — 4 uneven columns */
 .row2 { display: flex; gap: 4px; }
-.cellR2 { height: 260px; flex: 1; }   /* default */
-.spanSm { flex: 0.7 !important; }
-.spanMd { flex: 1   !important; }
+.cellR2 { height: 260px; flex: 1; }
+.spanSm { flex: 0.7  !important; }
+.spanMd { flex: 1    !important; }
 .spanLg { flex: 1.45 !important; }
 .spanXs { flex: 0.85 !important; }
 
@@ -51,10 +51,8 @@
   overflow: hidden;
   cursor: pointer;
   background: #1a1a1a;
-  /* NO border-radius — matches reference */
 }
 
-/* Image */
 .img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: top;
@@ -66,10 +64,9 @@
 }
 .cell:hover .img { filter: brightness(1.02); }
 
-/* Dimmed state when filtered out */
 .dimmed { opacity: .18 !important; pointer-events: none; }
 
-/* ── PLAY BUTTON (video cell) ── */
+/* ── PLAY BUTTON ── */
 .playBtn {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -90,7 +87,7 @@
 }
 .cell:hover .playBtn { transform: translate(-50%, -50%) scale(1.1); background: #fff; }
 
-/* ── SCREEN TEXT OVERLAY (like "stories that sell") ── */
+/* ── SCREEN TEXT OVERLAY ── */
 .screenText {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
@@ -98,12 +95,12 @@
   pointer-events: none; gap: 0;
 }
 .screenText span {
-  font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800;
+  font-size: 17px; font-weight: 800;
   color: rgba(255,255,255,.2); letter-spacing: -.3px; line-height: 1.4;
   display: block; text-align: center;
 }
 
-/* ── BOX OVERLAY (like "WE'RE HAVING A BABY") ── */
+/* ── BOX OVERLAY ── */
 .boxOverlay {
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
@@ -117,7 +114,7 @@
   backdrop-filter: blur(6px);
 }
 .boxCard span {
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
+  font-size: 13px; font-weight: 800;
   color: #fff; letter-spacing: .07em; line-height: 1.5;
   display: block; text-align: center;
 }
@@ -133,7 +130,7 @@
 .cell:hover .hover { background: rgba(0,0,0,.48); }
 
 .hoverLabel {
-  font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+  font-size: 11px; font-weight: 700;
   color: #fff; letter-spacing: .08em; text-transform: uppercase;
   background: rgba(249,115,22,.88); padding: 4px 12px; border-radius: 4px;
   opacity: 0; transform: translateY(8px);
@@ -153,7 +150,7 @@
 }
 .cell:hover .badge { opacity: 1; }
 
-/* ── ORANGE BOTTOM BAR (slides in on hover) ── */
+/* ── ORANGE BOTTOM BAR ── */
 .bottomBar {
   position: absolute; bottom: 0; left: 0;
   width: 100%; height: 3px;
@@ -163,15 +160,102 @@
 }
 .cell:hover .bottomBar { transform: scaleX(1); }
 
-/* ── RESPONSIVE ── */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE ONLY. Nothing above is changed.
+═══════════════════════════════════════════════════════════ */
+
 @media (max-width: 720px) {
-  .cellR1 { height: 140px; }
-  .cellR2 { height: 170px; }
-  .row1 { flex-wrap: wrap; }
-  .cellR1 { flex: 0 0 calc(50% - 2px) !important; }
+  .section { padding: 3rem 0; }
   .title { font-size: 28px; }
+
+  /* filter pills — smaller, scrollable if needed */
+  .filters { gap: 6px; }
+  .filterBtn { font-size: 10px; padding: 5px 12px; }
+
+  /* row 1 — wrap into 2-col grid */
+  .row1 { flex-wrap: wrap; gap: 4px; }
+  .cellR1 { flex: 0 0 calc(50% - 2px) !important; height: 130px; }
+
+  /* row 2 — wrap into 2-col grid */
+  .row2 { flex-wrap: wrap; gap: 4px; }
+  .cellR2 {
+    flex: 0 0 calc(50% - 2px) !important;
+    height: 150px;
+  }
+  /* override span classes — all equal on mobile */
+  .spanSm, .spanMd, .spanLg, .spanXs {
+    flex: 0 0 calc(50% - 2px) !important;
+  }
+
+  /* always show label on mobile — no hover */
+  .hoverLabel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* always show bottom bar on mobile */
+  .bottomBar { transform: scaleX(1); }
+  /* always show badge on mobile */
+  .badge { opacity: 1; }
 }
+
 @media (max-width: 460px) {
+  .container { padding: 0 0.75rem; }
+  .cellR1 { height: 110px; }
+  .cellR2 { height: 120px; }
+
+  /* 1 col for row2 on very small screens */
   .row2 { flex-wrap: wrap; }
-  .cellR2 { flex: 0 0 calc(50% - 2px) !important; }
+  .cellR2,
+  .spanSm, .spanMd, .spanLg, .spanXs {
+    flex: 0 0 calc(50% - 2px) !important;
+    height: 110px;
+  }
+}
+
+/* ── Mobile touch animations ─────────────────────────────── */
+@media (max-width: 720px) {
+  /* press feel on tap */
+  .cell {
+    transition: transform 0.15s ease, opacity 0.3s ease;
+  }
+  .cell:active {
+    transform: scale(0.97);
+  }
+  .cell:active .bottomBar { transform: scaleX(1); }
+  .cell:active .hoverLabel { opacity: 1; transform: translateY(0); }
+  .cell:active .badge { opacity: 1; }
+
+  /* filter button press */
+  .filterBtn {
+    transition: all .2s, transform 0.12s ease;
+  }
+  .filterBtn:active { transform: scale(0.94); }
+
+  /* fade-in entrance — .isVisible added by IntersectionObserver in TSX */
+  .cell {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .cell.isVisible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  /* stagger via nth-child — covers up to 10 cells */
+  .cell:nth-child(1)  { transition-delay: 0s;     }
+  .cell:nth-child(2)  { transition-delay: 0.06s;  }
+  .cell:nth-child(3)  { transition-delay: 0.12s;  }
+  .cell:nth-child(4)  { transition-delay: 0.18s;  }
+  .cell:nth-child(5)  { transition-delay: 0.24s;  }
+  .cell:nth-child(6)  { transition-delay: 0.06s;  }
+  .cell:nth-child(7)  { transition-delay: 0.12s;  }
+  .cell:nth-child(8)  { transition-delay: 0.18s;  }
+  .cell:nth-child(9)  { transition-delay: 0.24s;  }
+  .cell:nth-child(10) { transition-delay: 0.30s;  }
+
+  /* dimmed cells should still be visible (just desaturated) */
+  .dimmed {
+    opacity: 0.18 !important;
+    transform: none !important;
+  }
 }

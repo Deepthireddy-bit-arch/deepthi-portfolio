@@ -2,36 +2,64 @@
 import { useEffect, useRef } from 'react'
 import styles from './HeroSection.module.css'
 
-export default function HeroSection() {
-  const ref = useRef<HTMLElement>(null)
+const STATS = [
+  { val: '1+',  label: 'Years of Experience' },
+  { val: '20+', label: 'Reusable Components' },
+  { val: '1',   label: 'End-to-End Dashboard' },
+  { val: '3+',  label: 'Production Releases' },
+]
 
+const STACK = ['React', 'Next.js', 'Tailwind', 'REST APIs']
+
+export default function HeroSection() {
+  const ref     = useRef<HTMLElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
       const { gsap } = await import('gsap')
       ctx = gsap.context(() => {
-        // Staggered entrance
-        gsap.fromTo(
-          ['.hero-pill', '.hero-title', '.hero-sub', '.hero-btns', '.hero-stats'],
-          { opacity: 0, y: -22 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.13, ease: 'power3.out' }
-        )
-        // Orange line expands
-        gsap.fromTo('.hero-line', { scaleX: 0, transformOrigin: 'left' }, {
-          scaleX: 1, duration: 1, ease: 'power3.out', delay: 0.5
+        gsap.fromTo('.hero-card', { opacity: 0, y: -22 }, {
+          opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
         })
-        // Stat cards pop
-        gsap.fromTo('.hero-stat', { opacity: 0, scale: 0.8 }, {
-          opacity: 1, scale: 1, duration: 0.45, stagger: 0.09,
-          ease: 'back.out(1.5)', delay: 0.6
+        gsap.fromTo('.hero-stat', { opacity: 0, scale: 0.85 }, {
+          opacity: 1, scale: 1, duration: 0.4, stagger: 0.09,
+          ease: 'back.out(1.5)', delay: 0.35,
         })
-        // Subtle scroll indicator bounce
         gsap.to('.scroll-ind', {
-          y: 6, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: -1
+          y: 6, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: -1,
         })
       }, ref)
     })()
     return () => ctx?.revert()
+  }, [])
+
+  // ── Mobile: IntersectionObserver for card + stat tiles ───────────────────
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 760px)').matches
+    if (!isMobile || !ref.current) return
+
+    const card   = ref.current.querySelector<HTMLElement>(`.${styles.card}`)
+    const tiles  = ref.current.querySelectorAll<HTMLElement>(`.${styles.statTile}`)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.isVisible)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.12 }
+    )
+
+    if (card)   observer.observe(card)
+    tiles.forEach((t) => observer.observe(t))
+
+    return () => observer.disconnect()
   }, [])
 
   const scrollTo = (id: string) => {
@@ -41,73 +69,87 @@ export default function HeroSection() {
   return (
     <section ref={ref} className={styles.hero}>
       <div className={styles.container}>
-        <div className={styles.content}>
-          {/* Pill */}
-          <span className={`hero-pill ${styles.pill}`}>Frontend Engineer</span>
 
-          {/* Title */}
-          <h1 className={`hero-title ${styles.title}`}>
-            Professional <br />
-            <span>Experience</span>
-          </h1>
+        {/* ── LEFT: profile card ── */}
+        <div ref={cardRef} className={`hero-card ${styles.card}`}>
 
-          {/* Orange accent line */}
-          <div className={`hero-line ${styles.line}`} />
-
-          {/* Sub */}
-          <p className={`hero-sub ${styles.sub}`}>
-            Next.js · TypeScript · React · GSAP · 5+ Years building products people love
-          </p>
-
-          {/* Buttons */}
-          <div className={`hero-btns ${styles.btns}`}>
-            <button className={styles.btnPrimary} onClick={() => scrollTo('projects')}>
-              View Projects →
-            </button>
-            <button className={styles.btnOutline} onClick={() => scrollTo('tools')}>
-              Tech Stack
-            </button>
+          <div className={styles.cardBanner}>
+            <div className={styles.avatar}>D</div>
+            <div className={styles.bannerText}>
+              <div className={styles.bannerName}>Deepthi</div>
+              <div className={styles.bannerRole}>React Developer</div>
+            </div>
+            <div className={styles.statusPill}>
+              <span className={styles.statusDot} />
+              Open to work
+            </div>
           </div>
 
-          {/* Quick stats row */}
-          <div className={`hero-stats ${styles.statsRow}`}>
-            {[
-              { val: '5+',  label: 'Years'     },
-              { val: '20+', label: 'Projects'  },
-              { val: '98',  label: 'Lighthouse'},
-              { val: '3',   label: 'Companies' },
-            ].map((s, i) => (
-              <div key={i} className={`hero-stat ${styles.stat}`}>
-                <div className={styles.statVal}>{s.val}</div>
-                <div className={styles.statLabel}>{s.label}</div>
+          <div className={styles.cardBody}>
+
+            <div className={styles.companyRow}>
+              <div className={styles.companyIcon}>🏢</div>
+              <div>
+                <div className={styles.companyName}>Aim Window Info Tech</div>
+                <div className={styles.companyPeriod}>Feb 2025 – Present</div>
               </div>
-            ))}
+              <span className={styles.companyBadge}>Current</span>
+            </div>
+
+            <p className={styles.quote}>
+              1 year of hands-on frontend experience crafting modern web interfaces,
+              reusable components, and seamless user experiences across projects.
+            </p>
+
+            <div className={styles.statGrid}>
+              {STATS.map((s, i) => (
+                <div key={i} className={`hero-stat ${styles.statTile}`}>
+                  <div className={styles.statVal}>{s.val}</div>
+                  <div className={styles.statLabel}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className={styles.cardFooter}>
+              <a href="https://aimwindow.com" className={styles.footerLink} target="_blank" rel="noopener noreferrer">
+                ↗ aimwindow.com
+              </a>
+              <div className={styles.footerStack}>
+                {STACK.map((s, i) => (
+                  <span key={i} className={styles.stackChip}>{s}</span>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Right: decorative code block */}
+        {/* ── RIGHT: code block ── */}
         <div className={styles.codeBlock}>
           <div className={styles.codeBar}>
             <span style={{ background: '#ff5f57' }} />
             <span style={{ background: '#febc2e' }} />
             <span style={{ background: '#28c840' }} />
-            <div className={styles.codeFilename}>experience.tsx</div>
+            <div className={styles.codeFilename}>about.tsx</div>
           </div>
           <pre className={styles.code}>{`const developer = {
-  name: "Yash Tupkar",
-  role: "Frontend Engineer",
+  name: "Deepthi",
+  role: "React Developer",
+  experience: "1 year",
   stack: [
-    "Next.js",
-    "TypeScript",
     "React",
-    "Tailwind",
-    "GSAP",
+    "JavaScript",
+    "Tailwind CSS",
+    "Next js",
+    "REST APIs",
   ],
-  lighthouse: 98,
-  passion: "Building fast,
-  accessible UIs",
+  currentlyAt: "Aim Window Info Tech",
+  focus: "Clean UIs &
+  responsive dashboards",
+  status: "Open to work",
 }`}</pre>
         </div>
+
       </div>
 
       {/* Scroll indicator */}

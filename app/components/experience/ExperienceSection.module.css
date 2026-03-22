@@ -47,7 +47,7 @@ padding-top:32px;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "JetBrains Mono", monospace;
+ 
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -65,7 +65,7 @@ padding-top:32px;
 }
 
 .title {
-  font-family: "Playfair Display", Georgia, serif;
+
   font-size: clamp(1.9rem, 3.5vw, 2.6rem);
   font-weight: 700;
   color: var(--text-primary);
@@ -111,7 +111,7 @@ padding-top:32px;
    TIMELINE
    ============================================================ */
 
-.timeline { position: relative; }
+/* .timeline { position: relative; }
 
 .timeline::before {
   content: "";
@@ -119,6 +119,26 @@ padding-top:32px;
   left: 11px; top: 8px; bottom: 8px;
   width: 1.5px;
   background: linear-gradient(to bottom, var(--orange), rgba(255,107,0,0.2), transparent);
+} */
+ .timeline {
+  position: relative;
+  height: 100%; /* IMPORTANT */
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 18px; /* half of 36px column */
+  transform: translateX(-50%); /* TRUE CENTER ALIGNMENT */
+  top: 5px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--orange),
+    rgba(255,107,0,0.2),
+    transparent
+  );
 }
 
 .card {
@@ -188,7 +208,7 @@ padding-top:32px;
 }
 
 .role {
-  font-family: "Playfair Display", Georgia, serif;
+ 
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -199,7 +219,7 @@ padding-top:32px;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: "JetBrains Mono", monospace;
+
   font-size: 0.67rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -237,7 +257,7 @@ padding-top:32px;
 }
 
 .company {
-  font-family: "JetBrains Mono", monospace;
+
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--orange);
@@ -262,7 +282,7 @@ padding-top:32px;
   text-transform: uppercase;
   color: var(--text-faint);
   margin-bottom: 0.55rem;
-  font-family: "JetBrains Mono", monospace;
+  
 }
 
 .achievementsList {
@@ -297,7 +317,7 @@ padding-top:32px;
 }
 
 .techBadge {
-  font-family: "JetBrains Mono", monospace;
+  
   font-size: 0.65rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -328,7 +348,7 @@ padding-top:32px;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: "JetBrains Mono", monospace;
+ 
   font-size: 0.67rem;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -449,7 +469,7 @@ padding-top:32px;
   bottom: 0; left: 0; right: 0;
   padding: 0.45rem 0.65rem;
   background: linear-gradient(to top, rgba(10,10,10,0.72) 0%, transparent 100%);
-  font-family: "JetBrains Mono", monospace;
+  
   font-size: 0.58rem;
   font-weight: 500;
   color: rgba(255,255,255,0.92);

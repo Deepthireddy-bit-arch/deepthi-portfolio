@@ -6,6 +6,7 @@ import styles from './stats.module.css'
 export default function StatsSection() {
   const ref = useRef<HTMLElement>(null)
 
+  // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
@@ -13,38 +14,33 @@ export default function StatsSection() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
       ctx = gsap.context(() => {
-        // Heading
         gsap.fromTo(['.st-pill', '.st-title', '.st-sub'], { opacity: 0, y: -20 }, {
           opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
+          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
         })
-        // Bar items stagger up
         gsap.fromTo('.stat-item', { opacity: 0, y: 40 }, {
           opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true }
+          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
         })
-        // Progress bars fill from 0
         document.querySelectorAll<HTMLElement>('.stat-bar-fill').forEach(el => {
           const w = el.dataset.width || '0'
           gsap.fromTo(el, { width: '0%' }, {
             width: w + '%', duration: 1.4, ease: 'power3.out', delay: 0.3,
-            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true }
+            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
           })
         })
-        // Counter animation
         document.querySelectorAll<HTMLElement>('.stat-counter').forEach(el => {
           const target = parseFloat(el.dataset.target || '0')
-          const dec = el.dataset.dec === '1'
+          const dec    = el.dataset.dec === '1'
           gsap.fromTo({ v: 0 }, { v: target }, {
             duration: 1.6, ease: 'power2.out', delay: 0.3,
             onUpdate: function () {
               const v = this.targets()[0].v
               el.textContent = dec ? v.toFixed(1) : Math.round(v).toString()
             },
-            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true }
+            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
           })
         })
-        // Hover lift on each item
         document.querySelectorAll<HTMLElement>('.stat-item').forEach(el => {
           el.addEventListener('mouseenter', () => gsap.to(el, { y: -4, duration: 0.25, ease: 'power2.out' }))
           el.addEventListener('mouseleave', () => gsap.to(el, { y: 0,  duration: 0.3,  ease: 'power2.inOut' }))
@@ -54,7 +50,41 @@ export default function StatsSection() {
     return () => ctx?.revert()
   }, [])
 
-  // Bar widths for visual progress
+  // ── Mobile: IntersectionObserver for cards + bar fills ───────────────────
+  // On mobile GSAP is skipped. CSS transitions handle everything.
+  // Bar widths are set via --bar-w CSS custom property so the CSS transition works.
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 620px)').matches
+    if (!isMobile || !ref.current) return
+
+    const cards = ref.current.querySelectorAll<HTMLElement>('.stat-item')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const card = entry.target as HTMLElement
+            card.classList.add(styles.isVisible)
+
+            // also trigger the bar fill inside this card
+            const bar = card.querySelector<HTMLElement>('.stat-bar-fill')
+            if (bar) {
+              const w = bar.dataset.width || '0'
+              bar.style.setProperty('--bar-w', `${w}%`)
+              bar.classList.add(styles.isVisible)
+            }
+
+            observer.unobserve(card)
+          }
+        })
+      },
+      { threshold: 0.15 }
+    )
+
+    cards.forEach((c) => observer.observe(c))
+    return () => observer.disconnect()
+  }, [])
+
   const barWidths = [98, 38, 100, 82]
 
   return (
@@ -67,15 +97,12 @@ export default function StatsSection() {
             <h2 className={`st-title ${styles.title}`}>Performance <span>Metrics</span></h2>
             <p className={`st-sub ${styles.sub}`}>Real numbers from production deliveries</p>
           </div>
-          {/* Big decorative number */}
           <div className={styles.bigNum}>{'{ }'}</div>
         </div>
 
-        {/* Redesigned: 2x2 large cards with progress bars */}
         <div className={styles.grid}>
           {STATS.map((s, i) => (
             <div key={i} className={`stat-item ${styles.card}`}>
-              {/* Left: icon + number */}
               <div className={styles.cardLeft}>
                 <div className={styles.iconWrap}>{s.icon}</div>
                 <div className={styles.numWrap}>
@@ -90,11 +117,9 @@ export default function StatsSection() {
                 </div>
               </div>
 
-              {/* Right: label + bar */}
               <div className={styles.cardRight}>
                 <div className={styles.mainLabel}>{s.mainLabel}</div>
                 <div className={styles.subLabel}>{s.subLabel}</div>
-                {/* Progress bar */}
                 <div className={styles.barTrack}>
                   <div
                     className={`stat-bar-fill ${styles.barFill}`}

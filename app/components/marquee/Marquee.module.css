@@ -62,6 +62,7 @@
   padding: 14px 0;
   background: var(--bg-soft);
   position: relative;
+  cursor:pointer;
   z-index: 1;
 }
 

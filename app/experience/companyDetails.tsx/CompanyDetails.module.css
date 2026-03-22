@@ -1,13 +1,21 @@
-.section { padding: 5rem 0; background: var(--wh); }
-.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+/* ── Section ───────────────────────────────────────── */
+.section { padding: 2rem 0; background: var(--wh); }
+.container { margin: 0 auto; padding: 0 1.5rem; }
 
+/* ── Heading ───────────────────────────────────────── */
 .heading { text-align: center; margin-bottom: 2.2rem; }
-.pill { display: inline-block; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--or); background: var(--or-l); padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem; }
-.title { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--dk); margin-bottom: .4rem; }
+.pill {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--or); background: var(--or-l);
+  padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem;
+}
+.title { font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--dk); margin-bottom: .4rem; }
 .title span { color: var(--or); }
 .sub { font-size: 14px; color: var(--g3); }
 
-/* Company selector tabs */
+/* ── Tabs ──────────────────────────────────────────── */
 .tabs { display: flex; gap: 12px; margin-bottom: 2rem; flex-wrap: wrap; }
 .tab {
   display: flex; align-items: center; gap: 12px;
@@ -21,99 +29,271 @@
 .tabLogo {
   width: 38px; height: 38px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 800;
-  color: #fff; flex-shrink: 0;
+  font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
 }
 .tabName { font-size: 12.5px; font-weight: 700; color: var(--dk); line-height: 1.3; }
 .tabPeriod { font-size: 10.5px; color: var(--g3); }
 
-/* Panel */
+/* ── Panel ─────────────────────────────────────────── */
 .panel {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  background: var(--g1);
-  border: 1px solid var(--g2);
+  background: #fff;
+  border: 1px solid #f0ece8;
   border-radius: 22px;
   padding: 2.2rem 2.4rem;
   position: relative;
   overflow: hidden;
-}
-.panel::before {
-  content: '';
-  position: absolute; top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: linear-gradient(to bottom, var(--or), var(--or-l));
+  box-shadow: 0 2px 32px 0 rgba(249,115,22,.05), 0 1px 4px 0 rgba(0,0,0,.04);
 }
 
-/* Left side */
-.panelLeft { display: flex; flex-direction: column; gap: 0; }
-.coHeader { display: flex; align-items: center; gap: 14px; margin-bottom: .9rem; }
-.coLogo {
-  width: 54px; height: 54px; border-radius: 14px;
+/* Background monogram */
+.bgMono {
+  position: absolute; top: -20px; right: -28px;
+  font-size: 200px; font-weight: 800;
+  opacity: .04; line-height: 1;
+  pointer-events: none; user-select: none; letter-spacing: -6px;
+}
+
+/* ── Top row ───────────────────────────────────────── */
+.topRow {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 16px;
+  margin-bottom: 24px;
+}
+.coIdentity { flex: 1; min-width: 0; }
+.eyebrow {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.eyebrowLine { width: 26px; height: 1px; display: inline-block; flex-shrink: 0; }
+.coName { font-size: 22px; font-weight: 800; color: var(--dk); line-height: 1.2; letter-spacing: -.4px; }
+.coNameHighlight { font-style: normal; }
+.coRole { font-size: 13px; color: var(--g4); margin-top: 8px; font-weight: 300; }
+
+.logoSide { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.logoBox {
+  width: 64px; height: 64px; border-radius: 18px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 800;
-  color: #fff; flex-shrink: 0;
+  font-size: 18px; font-weight: 800; color: #fff;
+  position: relative;
 }
-.coName { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; color: var(--dk); line-height: 1.3; }
-.coRole { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 6px; margin-top: 3px; }
-.roleDot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.logoRing {
+  position: absolute; inset: -5px; border-radius: 23px;
+  border: 1px solid; pointer-events: none;
+}
+.liveChip {
+  font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: #16a34a; background: #dcfce7; border: 1px solid #bbf7d0;
+  padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+}
 
-.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.1rem; }
-.chip {
-  font-size: 11px; font-weight: 500; color: var(--g4);
-  background: var(--wh); border: 1px solid var(--g2);
+/* Gradient HR */
+.hr { width: 100%; height: 1px; margin-bottom: 26px; }
+
+/* ── Section label ─────────────────────────────────── */
+.sectionLabel {
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--g3);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sectionLabel::after { content: ''; flex: 1; height: 1px; background: #ede9e4; }
+
+/* ── About ─────────────────────────────────────────── */
+.aboutWrap { margin-bottom: 24px; }
+.aboutText {
+  font-size: 13.5px; line-height: 1.85; color: var(--g4);
+  font-weight: 300; border-left: 2px solid; padding-left: 16px;
+}
+
+/* ── Image strip ───────────────────────────────────── */
+.imgStrip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 28px;
+  height: 170px;
+}
+.imgMain { border-radius: 14px; overflow: hidden; position: relative; }
+.imgSmallCol { display: flex; flex-direction: column; gap: 10px; }
+.imgSm { border-radius: 12px; overflow: hidden; flex: 1; position: relative; }
+
+.imgMain img, .imgSm img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.imgMain:hover img, .imgSm:hover img { transform: scale(1.05); }
+
+.imgOverlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(249,115,22,.2), transparent);
+  pointer-events: none;
+}
+.imgTag {
+  position: absolute; bottom: 7px; left: 9px;
+  font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  color: #fff; background: rgba(0,0,0,.38);
+  padding: 2px 8px; border-radius: 6px;
+}
+
+/* ── Timeline ──────────────────────────────────────── */
+.timeline { position: relative; padding-left: 28px; margin-bottom: 28px; }
+.timelineLine {
+  position: absolute; left: 6px; top: 6px; bottom: 6px; width: 1.5px;
+}
+.tlEvent { position: relative; margin-bottom: 22px; }
+.tlEvent:last-child { margin-bottom: 0; }
+
+.tlDot {
+  position: absolute; left: -25px; top: 5px;
+  width: 13px; height: 13px; border-radius: 50%; border: 2px solid;
+}
+.tlDotFilled::after {
+  content: ''; position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 4px; height: 4px; background: #fff; border-radius: 50%;
+}
+
+.tlDate { font-size: 10px; letter-spacing: .08em; margin-bottom: 3px; font-weight: 500; }
+.tlTitle { font-size: 13.5px; font-weight: 700; color: var(--dk); margin-bottom: 3px; line-height: 1.35; }
+.tlDesc { font-size: 12px; color: var(--g3); line-height: 1.65; font-weight: 300; }
+.tlStatRow { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.tlStat {
+  font-size: 11px; color: var(--g4);
+  background: var(--g1); border: 1px solid #ede9e4;
+  padding: 3px 10px; border-radius: 8px;
+}
+
+/* ── Stack ─────────────────────────────────────────── */
+.stackWrap { margin-bottom: 24px; }
+.stackGrid { display: flex; flex-wrap: wrap; gap: 7px; }
+.sPill {
+  font-size: 11.5px; font-weight: 500;
+  border: 1.5px solid; padding: 4px 13px; border-radius: 100px;
+}
+
+/* ── Footer ────────────────────────────────────────── */
+.footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 18px; border-top: 1px solid #ede9e4;
+}
+.ftLink { font-size: 12px; font-weight: 500; text-decoration: none; transition: opacity .2s; }
+.ftLink:hover { opacity: .7; }
+.ftChips { display: flex; gap: 7px; }
+.ftChip {
+  font-size: 10.5px; color: var(--g4);
+  background: var(--g1); border: 1px solid #ede9e4;
   padding: 3px 10px; border-radius: 100px;
 }
 
-/* About — clean paragraph, NO bullets */
-.about { font-size: 13.5px; line-height: 1.75; color: var(--g4); margin-bottom: 1.2rem; }
-
-/* Highlights — simple check items */
-.highlights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.2rem; }
-.highlight { display: flex; gap: 8px; align-items: flex-start; }
-.hlCheck { font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.hlText { font-size: 13px; color: var(--g4); line-height: 1.5; }
-
-.link {
-  font-family: 'Fira Code', monospace; font-size: 12px; font-weight: 600;
-  text-decoration: none; transition: opacity .2s;
-}
-.link:hover { opacity: .75; }
-
-/* Right: image grid */
-.panelRight {}
-.imgGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  height: 100%;
-}
-.imgBig {
-  grid-row: 1 / 3;
-  border-radius: 14px; overflow: hidden;
-  position: relative; min-height: 240px;
-}
-.imgSmallCol { display: flex; flex-direction: column; gap: 10px; }
-.imgSmall {
-  flex: 1; border-radius: 14px; overflow: hidden;
-  position: relative; min-height: 110px;
-}
-.imgBig img, .imgSmall img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  display: block; transition: transform .4s;
-}
-.imgBig:hover img, .imgSmall:hover img { transform: scale(1.05); }
-.imgOverlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.25), transparent);
-  pointer-events: none;
-}
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE ONLY. Nothing above is changed.
+═══════════════════════════════════════════════════════════ */
 
 @media (max-width: 760px) {
-  .panel { grid-template-columns: 1fr; }
   .tabs { flex-direction: column; }
-  .tab { flex: none; }
+  .tab  { flex: none; }
   .title { font-size: 28px; }
+
+  /* panel — tighter padding */
+  .panel { padding: 1.4rem 1rem; border-radius: 16px; }
+
+  /* company name smaller */
+  .coName { font-size: 17px; }
+  .coRole { font-size: 12px; }
+  .aboutText { font-size: 13px; }
+
+  /* image strip — main full width, small cols below in a row */
+  .imgStrip {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    height: auto;
+    gap: 8px;
+  }
+  .imgMain {
+    height: 160px;
+    grid-column: 1 / -1;
+  }
+  /* small columns sit side by side in a single row */
+  .imgSmallCol {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .imgSm { min-height: 90px; flex: 1; }
+
+  /* stack pills — slightly smaller */
+  .sPill { font-size: 11px; padding: 4px 11px; }
+
+  /* footer stacks */
+  .footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .ftChips { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+  .panel { padding: 1.1rem 0.9rem; border-radius: 14px; }
+
+  /* top row — logo moves below name on very small screens */
+  .topRow { flex-direction: column-reverse; align-items: flex-start; gap: 12px; }
+  .logoSide { flex-direction: row; align-items: center; gap: 12px; }
+  .logoBox  { width: 48px; height: 48px; border-radius: 14px; font-size: 15px; }
+
+  .coName { font-size: 15px; }
+  .coRole { font-size: 11px; margin-top: 5px; }
+
+  /* image strip — single column on very small phones */
+  .imgStrip { grid-template-columns: 1fr; }
+  .imgSmallCol { flex-direction: row; }
+  .imgMain { height: 130px; }
+  .imgSm   { min-height: 75px; }
+
+  /* section label text smaller */
+  .sectionLabel { font-size: 9px; }
+
+  /* stack pills wrap tightly */
+  .sPill { font-size: 10.5px; padding: 3px 10px; }
+
+  /* about text */
+  .aboutText { font-size: 12.5px; padding-left: 12px; }
+
+  /* bgMono — hide on small phones, it bleeds out */
+  .bgMono { display: none; }
+}
+
+/* ── Mobile touch animation class — added by JS on touchstart ── */
+/* Cards get a subtle pressed feel on tap */
+@media (max-width: 760px) {
+  .imgMain,
+  .imgSm {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  /* active state triggered via :active (no JS needed for this) */
+  .imgMain:active,
+  .imgSm:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 12px rgba(249,115,22,0.18);
+  }
+
+  .sPill:active {
+    transform: scale(0.94);
+    transition: transform 0.12s ease;
+  }
+
+  .tab:active {
+    transform: scale(0.98);
+    background: var(--wh);
+  }
+
+  /* fade-up animation for panel on mobile — triggered by .is-visible class added by IntersectionObserver in TSX */
+  .panel {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .panel.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

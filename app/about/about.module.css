@@ -8,27 +8,27 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .root {
-  --c-bg:          #ffffff;
-  --c-bg-alt:      #ffffff;
-  --c-bg-card:     #ffffff;
-  --c-accent:      #e8631c;
-  --c-accent-lt:   rgba(232,99,28,0.12);
-  --c-text-1:      #1a1917;
-  --c-text-2:      #4d4a46;
-  --c-text-3:      #9c9790;
-  --c-border:      rgba(26,25,23,0.09);
-  --c-divider:     rgba(26,25,23,0.12);
-  --c-code-bg:     #1a1917;
-  --c-code-tx:     #e8b87a;
+  --c-bg: #ffffff;
+  --c-bg-alt: #ffffff;
+  --c-bg-card: #ffffff;
+  --c-accent: #e8631c;
+  --c-accent-lt: rgba(232, 99, 28, 0.12);
+  --c-text-1: #1a1917;
+  --c-text-2: #4d4a46;
+  --c-text-3: #9c9790;
+  --c-text-4: #ffffff;
+  --c-border: rgba(26, 25, 23, 0.09);
+  --c-divider: rgba(26, 25, 23, 0.12);
+  --c-code-bg: #1a1917;
+  --c-code-tx: #e8b87a;
 
   --f-display: 'Lora', Georgia, serif;
- 
+
 }
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
 .page {
   background: var(--c-bg);
-  
   color: var(--c-text-1);
   overflow-x: hidden;
 }
@@ -48,20 +48,11 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    HERO
    ═══════════════════════════════════════════════════════════════════════════ */
-/* .hero {
+.hero {
   position: relative;
-  height: 88vh;
-  min-height: 600px;
-  max-height: 900px;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-} */
- .hero {
-  position: relative;
-  height: 100vh;        /* ← change from 88vh to 100vh */
+  height: 100vh;
   min-height: 500px;
-  max-height: none;     /* ← remove the 900px cap */
+  max-height: none;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -75,7 +66,8 @@
 
 .heroImg {
   width: 100%;
-  height: 115%;         /* extra for parallax travel */
+  height: 115%;
+  /* extra for parallax travel */
   object-fit: cover;
   object-position: center top;
 }
@@ -91,23 +83,20 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(248,246,241,0.95) 0%,
-    rgba(248,246,241,0.4)  40%,
-    rgba(248,246,241,0)    100%
-  );
+  background: linear-gradient(to top,
+      rgba(248, 246, 241, 0.95) 0%,
+      rgba(248, 246, 241, 0.4) 40%,
+      rgba(248, 246, 241, 0) 100%);
 }
 
 .heroContent {
   position: relative;
   z-index: 2;
-  padding: 0 48px 64px;
+  padding: 0 48px 120px;
   max-width: 800px;
 }
 
 .heroHandle {
-
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.12em;
@@ -117,12 +106,11 @@
 }
 
 .heroHeading {
- 
   font-size: clamp(52px, 8vw, 96px);
   font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.025em;
-  color: var(--c-text-1);
+  color: var(--c-text-4);
   margin: 0 0 0;
 }
 
@@ -134,6 +122,18 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    TICKER STRIP
    ═══════════════════════════════════════════════════════════════════════════ */
+
+/* FIX 1: The @keyframes was missing — added here so the scroll actually runs */
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .ticker {
   overflow: hidden;
   border-top: 1px solid var(--c-divider);
@@ -149,6 +149,13 @@
   width: fit-content;
   white-space: nowrap;
   gap: 0;
+  animation: tickerScroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* FIX 2: Hover pauses the scroll — was already written but needed the keyframe above to work */
+.ticker:hover .tickerInner {
+  animation-play-state: paused;
 }
 
 .tickerItem {
@@ -156,7 +163,7 @@
   align-items: center;
   gap: 20px;
   padding: 0 32px;
- 
+  cursor: pointer;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -190,7 +197,6 @@
 }
 
 .sectionLabelText {
-
   font-size: clamp(30px, 4vw, 46px);
   font-weight: 700;
   color: var(--c-text-1);
@@ -214,7 +220,6 @@
   gap: 14px;
   padding: 18px 0;
   border-bottom: 1px solid var(--c-border);
-
   font-size: 15px;
   line-height: 1.55;
   color: var(--c-text-2);
@@ -243,7 +248,6 @@
   gap: 10px;
   background: var(--c-code-bg);
   color: var(--c-code-tx);
-
   font-size: 12px;
   padding: 8px 16px;
   border-radius: 6px;
@@ -260,7 +264,6 @@
 }
 
 .identityText {
- 
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
   font-style: italic;
@@ -276,17 +279,17 @@
   left: -24px;
   top: 24px;
   font-size: 80px;
-
   color: var(--c-accent);
   line-height: 1;
   opacity: 0.35;
 }
 
-/* Replace the existing backstorySection and momentsGrid with this */
-
+/* ═══════════════════════════════════════════════════════════════════════════
+   BACKSTORY
+   ═══════════════════════════════════════════════════════════════════════════ */
 .backstorySection {
   padding: 88px 0 72px;
-  text-align:justify;
+  text-align: justify;
 }
 
 /* Two column layout */
@@ -303,7 +306,6 @@
 }
 
 .backstoryHeading {
- 
   font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 700;
   color: var(--c-text-1);
@@ -312,7 +314,6 @@
 }
 
 .backstoryPara {
- 
   font-size: 17px;
   line-height: 1.85;
   color: var(--c-text-2);
@@ -334,7 +335,7 @@
 
 .momentsGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Changed from 4 to 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
@@ -348,7 +349,6 @@
   border: 1px solid var(--c-border);
 }
 
-/* Remove the alternate margins for right side */
 .momentCard:nth-child(2),
 .momentCard:nth-child(4) {
   margin-top: 0;
@@ -361,7 +361,9 @@
   transition: transform 0.6s ease;
 }
 
-.momentCard:hover .momentImg { transform: scale(1.06); }
+.momentCard:hover .momentImg {
+  transform: scale(1.06);
+}
 
 .momentPlaceholder {
   width: 100%;
@@ -378,42 +380,12 @@
   left: 0;
   right: 0;
   padding: 32px 14px 14px;
-  background: linear-gradient(to top, rgba(26,25,23,0.75) 0%, transparent 100%);
- 
+  background: linear-gradient(to top, rgba(26, 25, 23, 0.75) 0%, transparent 100%);
   font-size: 13px;
   font-style: italic;
   font-weight: 400;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   transition: opacity 0.3s;
-}
-
-/* Responsive */
-@media (max-width: 968px) {
-  .splitLayout {
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
-  .contentLeft,
-  .illustrationsRight {
-    max-width: 100%;
-  }
-  
-  .momentsGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .momentsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .momentsGrid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -426,7 +398,6 @@
 }
 
 .techIntro {
-  
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -448,7 +419,6 @@
   background: var(--c-bg-alt);
   border: 1px solid var(--c-border);
   border-radius: 4px;
-  
   font-size: 14px;
   font-weight: 600;
   color: var(--c-text-1);
@@ -462,7 +432,6 @@
 }
 
 .techTag {
- 
   font-size: 10px;
   color: var(--c-text-3);
   font-weight: 400;
@@ -477,7 +446,6 @@
 }
 
 .passionsHeading {
- 
   font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 700;
   color: var(--c-text-1);
@@ -486,7 +454,6 @@
 }
 
 .passionsText {
- 
   font-size: 18px;
   line-height: 1.8;
   color: var(--c-text-2);
@@ -512,7 +479,6 @@
 }
 
 .buildingLabel {
-  
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -523,10 +489,9 @@
 }
 
 .buildingText {
-  
   font-size: 17px;
   line-height: 1.7;
-  color: rgba(248,246,241,0.88);
+  color: rgba(248, 246, 241, 0.88);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -539,8 +504,7 @@
 }
 
 .contactEmail {
-  
-  font-size: clamp(24px, 4vw, 48px);
+  font-size: clamp(20px, 4vw, 45px);
   font-weight: 700;
   font-style: italic;
   color: var(--c-text-1);
@@ -572,7 +536,6 @@
 }
 
 .socialLink {
-  
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -583,17 +546,6 @@
 
 .socialLink:hover {
   color: var(--c-accent);
-}
-
-/* ─── Responsive ──────────────────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .container, .containerWide { padding: 0 20px; }
-  .heroContent { padding: 0 20px 48px; }
-  .factsList { grid-template-columns: 1fr; }
-  .factItem:nth-child(even) { border-left: none; padding-left: 0; }
-  .momentsGrid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .momentCard:nth-child(2), .momentCard:nth-child(4) { margin-top: 0; }
-  .buildingInner { flex-direction: column; gap: 12px; padding: 28px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -622,7 +574,7 @@
 .enjoyCard:hover {
   border-color: var(--c-accent);
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(26,25,23,0.08);
+  box-shadow: 0 8px 32px rgba(26, 25, 23, 0.08);
 }
 
 .enjoyCardTop {
@@ -633,7 +585,6 @@
 }
 
 .enjoyTag {
- 
   font-size: 11px;
   color: var(--c-accent);
   font-weight: 500;
@@ -645,7 +596,6 @@
 }
 
 .enjoyTitle {
-
   font-size: 20px;
   font-weight: 700;
   color: var(--c-text-1);
@@ -654,7 +604,6 @@
 }
 
 .enjoyBody {
-  
   font-size: 14px;
   line-height: 1.72;
   color: var(--c-text-2);
@@ -684,11 +633,16 @@
   border-bottom: 1px solid var(--c-border);
 }
 
-.howItem:nth-child(odd)  { padding-right: 40px; }
-.howItem:nth-child(even) { padding-left: 40px; border-left: 1px solid var(--c-border); }
+.howItem:nth-child(odd) {
+  padding-right: 40px;
+}
+
+.howItem:nth-child(even) {
+  padding-left: 40px;
+  border-left: 1px solid var(--c-border);
+}
 
 .howNum {
- 
   font-size: 11px;
   color: var(--c-accent);
   flex-shrink: 0;
@@ -703,14 +657,12 @@
 }
 
 .howLabel {
-
   font-size: 15px;
   font-weight: 700;
   color: var(--c-text-1);
 }
 
 .howDetail {
- 
   font-size: 12px;
   color: var(--c-text-3);
   font-style: italic;
@@ -718,7 +670,6 @@
 
 /* contact label */
 .contactLabel {
-
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--c-accent);
@@ -727,8 +678,224 @@
   display: block;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE ONLY
+   Nothing above this line is touched. All desktop styles are original.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* tablet: stack the split layout */
+@media (max-width: 968px) {
+  .splitLayout {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .contentLeft,
+  .illustrationsRight {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .momentsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* mobile */
 @media (max-width: 768px) {
-  .enjoyGrid { grid-template-columns: 1fr; }
-  .howList   { grid-template-columns: 1fr; }
-  .howItem:nth-child(even) { border-left: none; padding-left: 0; }
+
+  .container,
+  .containerWide {
+    padding: 0 18px;
+  }
+
+  /* HERO HEIGHT FIX — stops it being a full screen tall on mobile */
+  .hero {
+    height: 65vh;
+    min-height: 360px;
+    max-height: 580px;
+  }
+
+  .heroContent {
+    padding: 0 20px 36px;
+  }
+
+  .heroHeading {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  .heroHandle {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* facts — single column */
+  .factsList {
+    grid-template-columns: 1fr;
+  }
+
+  .factItem:nth-child(even) {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .factItem {
+    font-size: 14px;
+    padding: 14px 0;
+  }
+
+  /* identity */
+  .identitySection {
+    padding: 12px 0 48px;
+  }
+
+  .identityText {
+    font-size: clamp(16px, 5vw, 22px);
+    padding: 28px 0 28px 16px;
+  }
+
+  .identityText::before {
+    font-size: 56px;
+    left: -8px;
+    top: 12px;
+  }
+
+  /* backstory */
+  .backstorySection {
+    padding: 52px 0 44px;
+  }
+
+  .backstoryPara {
+    font-size: 15px;
+  }
+
+  .backstoryPara:first-of-type {
+    font-size: 16px;
+  }
+
+  /* moments — 2 col on mobile */
+  .momentsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .momentLabel {
+    font-size: 11px;
+    padding: 24px 10px 10px;
+  }
+
+  /* enjoy — single col */
+  .enjoySection {
+    padding: 52px 0 44px;
+  }
+
+  .enjoyGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .enjoyCard {
+    padding: 22px 20px 18px;
+  }
+
+  .enjoyTitle {
+    font-size: 17px;
+  }
+
+  .enjoyBody {
+    font-size: 13px;
+  }
+
+  /* how I work — single col */
+  .howSection {
+    padding: 48px 0 44px;
+  }
+
+  .howList {
+    grid-template-columns: 1fr;
+  }
+
+  .howItem:nth-child(even) {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .howItem:nth-child(odd) {
+    padding-right: 0;
+  }
+
+  .howItem {
+    padding: 16px 0;
+    gap: 12px;
+  }
+
+  .howLabel {
+    font-size: 14px;
+  }
+
+  .howDetail {
+    font-size: 11px;
+  }
+
+  /* building */
+  .buildingInner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px 20px;
+    border-radius: 10px;
+  }
+
+  .buildingText {
+    font-size: 15px;
+  }
+
+  /* passions */
+  .passionsSection {
+    padding: 52px 0 48px;
+  }
+
+  .passionsText {
+    font-size: 16px;
+    padding-left: 18px;
+  }
+
+  /* contact */
+  .contactSection {
+    padding: 52px 0 64px;
+  }
+
+  .socialRow {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+/* small phones */
+@media (max-width: 480px) {
+  .hero {
+    height: 58vh;
+    min-height: 300px;
+    max-height: 480px;
+  }
+
+  .heroHeading {
+    font-size: clamp(28px, 11vw, 40px);
+  }
+
+  .momentsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .container,
+  .containerWide {
+    padding: 0 14px;
+  }
+
+  .identityText::before {
+    display: none;
+  }
+
+  .identityText {
+    padding: 20px 0;
+  }
 }

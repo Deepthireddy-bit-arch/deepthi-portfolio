@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import styles from "../hero/hero.module.css";   // ← adjust path if needed
+import styles from "../hero/hero.module.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Boostrap", "REST APIs","JavaScript","Redux","JAVA"];
+const SKILLS = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Bootstrap", "REST APIs", "JavaScript", "Redux", "JAVA"];
 const ROLES  = [
   "Frontend Developer",
   "React & Next.js Developer",
@@ -39,6 +39,23 @@ export default function Hero() {
   const glowBRef       = useRef<HTMLDivElement>(null);
   const glowCRef       = useRef<HTMLDivElement>(null);
 
+  // ── Hide scroll hint once the user scrolls past the hero ────────────────
+  // On mobile the hint is position:fixed — we hide it once user starts scrolling
+  // so it doesn't float over subsequent sections.
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   /* ── Typewriter ── */
   useEffect(() => {
     let ri = 0, ci = 0, deleting = false;
@@ -64,7 +81,6 @@ export default function Hero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      /* ── Initial hidden states ── */
       gsap.set(
         [badgeRef.current, roleWrapRef.current, descRef.current,
          ctaRef.current, socRef.current, scrollHintRef.current],
@@ -80,7 +96,6 @@ export default function Hero() {
       const chips = chipsRef.current?.querySelectorAll("span");
       if (chips) gsap.set(chips, { opacity: 0, y: 8 });
 
-      /* ── Master entrance timeline ── */
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
       tl
@@ -100,43 +115,46 @@ export default function Hero() {
         .to(cardBRRef.current,     { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(2)" }, "-=0.45")
         .to(scrollHintRef.current, { opacity: 1, y: 0, duration: 0.5 }, "-=0.2");
 
-      /* ── Float loops ── */
+      /* Float loops */
       gsap.to(photoRef.current,  { y: -12, duration: 3,   ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.5 });
       gsap.to(cardTLRef.current, { y:  -7, duration: 2.4, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1.8 });
       gsap.to(cardBRRef.current, { y:   7, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1, delay: 2.2 });
 
-      /* ── Badge dot pulse ── */
+      /* Badge dot pulse */
       gsap.to(badgeDotRef.current, {
         scale: 1.8, opacity: 0.3, duration: 1.1,
         ease: "power1.inOut", yoyo: true, repeat: -1,
       });
 
-      /* ── Cursor blink ── */
+      /* Cursor blink */
       gsap.to(cursorRef.current, {
         opacity: 0, duration: 0.5, ease: "steps(1)", yoyo: true, repeat: -1,
       });
 
-      /* ── Glow breathe ── */
+      /* Glow breathe */
       gsap.to(glowARef.current, { scale: 1.1,  opacity: 0.85, duration: 6,   ease: "sine.inOut", yoyo: true, repeat: -1 });
       gsap.to(glowBRef.current, { scale: 1.15, opacity: 0.75, duration: 8,   ease: "sine.inOut", yoyo: true, repeat: -1, delay: 1 });
       gsap.to(glowCRef.current, { scale: 1.2,  opacity: 0.65, duration: 5,   ease: "sine.inOut", yoyo: true, repeat: -1, delay: 0.5 });
 
-      /* ── Scroll wheel drop ── */
+      /* Scroll wheel drop */
       gsap.to(scrollWheelRef.current, {
         y: 8, opacity: 0, duration: 1.1, ease: "power2.in",
         repeat: -1, repeatDelay: 0.5, delay: 2,
       });
 
-      /* ── Scroll parallax ── */
-      gsap.to(photoRef.current, {
-        yPercent: -10, ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
+      /* Scroll parallax — only on desktop */
+      const isMobile = window.matchMedia('(max-width: 640px)').matches;
+      if (!isMobile) {
+        gsap.to(photoRef.current, {
+          yPercent: -10, ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        });
+      }
 
     }, sectionRef);
 
@@ -148,7 +166,6 @@ export default function Hero() {
 
       {/* Background layers */}
       <div className={styles.heroBg} />
-      <div className={styles.gridLines} />
 
       {/* Glow orbs */}
       <div ref={glowARef} className={`${styles.glow} ${styles.glowA}`} />
@@ -160,71 +177,57 @@ export default function Hero() {
         {/* ══ LEFT ══ */}
         <div>
 
-          {/* Status badge */}
           <div ref={badgeRef} className={styles.badge}>
             <span ref={badgeDotRef} className={styles.badgeDot} />
             Available for work
           </div>
 
-          {/* Name — single row */}
           <div className={styles.nameRow}>
             <span ref={nameFirstRef} className={styles.nameFirst}>Doddipalli</span>
             <span ref={nameLastRef}  className={styles.nameLast}>Deepthi</span>
           </div>
 
-          {/* Gradient underline */}
           <span ref={nameLineRef} className={styles.nameLine} />
 
-          {/* Typewriter */}
           <div ref={roleWrapRef} className={styles.roleWrap}>
             <span className={styles.rolePrefix}>Role</span>
             <span ref={roleTextRef} className={styles.roleText} />
             <span ref={cursorRef}   className={styles.cursor} />
           </div>
 
-          {/* Description */}
-          {/* <p ref={descRef} className={styles.desc}>
-            I build{" "}
-            <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
-            web experiences — crafting interfaces that feel intuitive, look
-            refined, and perform exceptionally with React &amp; Next.js.
-          </p> */}
           <p ref={descRef} className={styles.desc}>
-  I build <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
-  web experiences — crafting interfaces that feel intuitive, look refined,
-  and perform exceptionally. With a strong focus on performance, scalability,
-  and clean UI architecture, I transform complex ideas into elegant and
-  engaging digital products using React, Next.js, and modern frontend tools.
-</p>
+            I build <span className={styles.descEm}>fast, accessible &amp; pixel-perfect</span>{" "}
+            web experiences — crafting interfaces that feel intuitive, look refined,
+            and perform exceptionally. With a strong focus on performance, scalability,
+            and clean UI architecture, I transform complex ideas into elegant and
+            engaging digital products using React, Next.js, and modern frontend tools.
+          </p>
 
-          {/* Skill chips */}
           <div ref={chipsRef} className={styles.chips}>
             {SKILLS.map((s) => (
               <span key={s} className={styles.chip}>{s}</span>
             ))}
           </div>
 
-          {/* CTA */}
           <div ref={ctaRef} className={styles.ctaRow}>
-            <a href="#projects" className={styles.btnPrimary}>View Projects →</a>
-            <a href="/resume.pdf" target="_blank" rel="noopener" className={styles.btnSecondary}>
+            <a href="/projects" className={styles.btnPrimary}>View Projects →</a>
+            <a href="/assets/resume.pdf" target="_blank" rel="noopener" className={styles.btnSecondary}>
               Download CV ↓
             </a>
           </div>
 
-          {/* Socials */}
           <div ref={socRef} className={styles.socRow}>
             <span className={styles.socLabel}>Find me</span>
             <div className={styles.socDivider} />
 
-            <a href="https://github.com/" target="_blank" rel="noopener"
+            <a href="https://github.com/Deepthireddy-bit-arch" target="_blank" rel="noopener"
                className={styles.socIcon} aria-label="GitHub">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.6.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 4.7 18 5 18 5c.7 1.6.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/>
               </svg>
             </a>
 
-            <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener"
+            <a href="https://www.linkedin.com/in/doddipalli-deepthi-16b031256" target="_blank" rel="noopener"
                className={styles.socIcon} aria-label="LinkedIn">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5A5 5 0 0 1 22 14v7zM2 9h4v12H2z"/>
@@ -232,7 +235,7 @@ export default function Hero() {
               </svg>
             </a>
 
-            <a href="mailto:deepthi@example.com"
+            <a href="mailto:doddipallideepthi111@gmail.com"
                className={styles.socIcon} aria-label="Email">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -271,8 +274,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <div ref={scrollHintRef} className={styles.scrollHint}>
+      {/* Scroll hint — hidden once user scrolls on mobile */}
+      <div
+        ref={scrollHintRef}
+        className={styles.scrollHint}
+        style={{ opacity: scrolled ? 0 : undefined, pointerEvents: scrolled ? 'none' : undefined, transition: 'opacity 0.3s ease' }}
+      >
         <span className={styles.scrollLabel}>Scroll</span>
         <div className={styles.scrollMouse}>
           <div ref={scrollWheelRef} className={styles.scrollWheel} />

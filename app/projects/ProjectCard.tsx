@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     >
       {/* ── Image ── */}
       <div style={{ position: "relative", height: 210, overflow: "hidden", background: "#111", flexShrink: 0 }}>
-        <Image
+        {/* <Image
           src={project.img?.includes('unsplash') ? '/placeholder.jpg' : project.img || "/placeholder.jpg"}
           alt={project.title}
           fill
@@ -40,7 +40,25 @@ export default function ProjectCard({ project }: { project: Project }) {
             filter: hovered ? "brightness(0.7) saturate(1.15)" : "brightness(0.85) saturate(1.05)",
             transition: "transform 0.65s ease, filter 0.65s ease",
           }}
-        />
+        /> */}
+        <div style={{ position: "relative", width: "100%", height: "250px" }}>
+  <Image
+    src={project.img || "/placeholder.jpg"}
+    alt={project.title}
+    fill
+    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+    quality={75} // ✅ optimized quality
+    priority={false} // only true for above-the-fold images
+    style={{
+      objectFit: "cover", // ✅ important for proper cropping
+      transform: hovered ? "scale(1.08)" : "scale(1)",
+      filter: hovered
+        ? "brightness(0.7) saturate(1.15)"
+        : "brightness(0.85) saturate(1.05)",
+      transition: "transform 0.65s ease, filter 0.65s ease",
+    }}
+  />
+</div>
         {/* Gradient overlay */}
         <div style={{
           position: "absolute", inset: 0,

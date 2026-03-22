@@ -40,21 +40,23 @@ import MarueeSection from "./components/marquee/MarueeSection";
 import Navbar from "./components/nav/Navbar";
 import Projects from "./components/projects/Projects";
 import Skills from "./components/skills/Skills";
+import FooterSection from "./footer/footerPage";
 
 export default function Home() {
   return (
     <>
-     <Navbar/>
-        <main className="section-container">
+     {/* <Navbar/> */}
+         <main className="section-container">
         <Hero />
         <About />
         <Projects />
         <Skills />
         <MarueeSection />
         <ExperienceSection />
-        <ContactSection />
+        <ContactSection /> 
+        <FooterSection/>
       </main>
-     
+    
     </>
   );
 }

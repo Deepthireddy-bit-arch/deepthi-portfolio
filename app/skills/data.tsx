@@ -10,7 +10,7 @@ export const NAV_TABS: NavTab[] = [
   {
     id: 'interpersonal',
     label: 'Interpersonal Skills',
-    sublabel: 'Team · Leadership · Collaboration',
+    sublabel: 'Team · Collaboration',
   },
 ];
 

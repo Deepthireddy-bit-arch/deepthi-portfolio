@@ -6,6 +6,7 @@ import styles from './ToolsSection.module.css'
 export default function ToolsSection() {
   const ref = useRef<HTMLElement>(null)
 
+  // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
@@ -13,44 +14,65 @@ export default function ToolsSection() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
       gsap.registerPlugin(ScrollTrigger)
       ctx = gsap.context(() => {
-        // Section heading
         gsap.fromTo('.tools-heading', { opacity: 0, y: -24 }, {
           opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
+          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
         })
-        // Grid slides up
         gsap.fromTo('.tools-grid-wrap', { opacity: 0, y: 40 }, {
           opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.15,
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true }
+          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
         })
-        // Each cell pops in
         gsap.fromTo('.tool-cell', { opacity: 0, scale: 0.6, y: 20 }, {
           opacity: 1, scale: 1, y: 0, duration: 0.4,
           stagger: { amount: 0.9, from: 'start' },
           ease: 'back.out(1.7)', delay: 0.2,
-          scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true }
+          scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
         })
-        // Watermark float
         gsap.to('.tools-wm', {
-          y: -14, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1
+          y: -14, duration: 3.2, ease: 'sine.inOut', yoyo: true, repeat: -1,
         })
-        // Hover scale each cell
         document.querySelectorAll<HTMLElement>('.tool-cell').forEach(el => {
-          el.addEventListener('mouseenter', () =>
-            gsap.to(el, { scale: 1.12, duration: 0.22, ease: 'power2.out' }))
-          el.addEventListener('mouseleave', () =>
-            gsap.to(el, { scale: 1, duration: 0.28, ease: 'power2.inOut' }))
+          el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.12, duration: 0.22, ease: 'power2.out' }))
+          el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1,    duration: 0.28, ease: 'power2.inOut' }))
         })
       }, ref)
     })()
     return () => ctx?.revert()
   }, [])
 
+  // ── Mobile: IntersectionObserver for gridWrap + each cell ────────────────
+  // CSS handles staggered pop-in via nth-child transition-delay.
+  // GSAP scale hover is not used on mobile — :active CSS handles tap feedback.
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 600px)').matches
+    if (!isMobile || !ref.current) return
+
+    const wrap  = ref.current.querySelector<HTMLElement>(`.${styles.gridWrap}`)
+    const cells = ref.current.querySelectorAll<HTMLElement>('.tool-cell')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.isVisible)
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (wrap)  observer.observe(wrap)
+    cells.forEach((c) => observer.observe(c))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
     <section ref={ref} className={styles.section} id="tools">
       <div className={styles.container}>
+
         <div className={`tools-heading ${styles.heading}`}>
-          <span className={styles.pill}>Stack</span>
           <h2 className={styles.title}>Tools & <span>Technologies</span></h2>
           <p className={styles.sub}>The code weapons I bring to every battle</p>
         </div>
@@ -63,10 +85,7 @@ export default function ToolsSection() {
                 key={tool.name}
                 className={`tool-cell ${styles.cell} ${tool.primary ? styles.primary : ''}`}
               >
-                <div
-                  className={styles.icon}
-                  style={{ background: tool.bg, color: tool.color }}
-                >
+                <div className={styles.icon} style={{ background: tool.bg, color: tool.color }}>
                   {tool.label}
                 </div>
                 <span className={styles.label}>{tool.name}</span>
@@ -74,6 +93,7 @@ export default function ToolsSection() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )

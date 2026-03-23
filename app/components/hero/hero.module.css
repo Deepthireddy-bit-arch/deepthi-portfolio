@@ -1,23 +1,6 @@
-/* ════════════════════════════════════════
-   hero.module.css
-   Pure white · Orange accent · Clean
-   Class names match Hero.tsx exactly
-════════════════════════════════════════ */
-
-/* ── Section ── */
-/* .hero {
+.hero {
   min-height: 90vh;
-  
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-} */
- .hero {
-  min-height: 90vh;
-  padding-top: 10px; /* ← add this (navbar height ~82px + buffer) */
+  padding-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,45 +9,13 @@
   background: #ffffff;
 }
 
-/* ── Square grid lines ── */
-/* .gridLines {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(#E7E5E4 1px, transparent 1px),
-    linear-gradient(90deg, #E7E5E4 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
-} */
-
-/* ── Solid white layer so grid doesn't show through content ── */
 .heroBg {
   position: absolute;
   inset: 0;
   background: #ffffff;
   z-index: 0;
-  /* sits under gridLines — grid is on top */
 }
 
-/* ── Orange top bar ── */
-/* .hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      #F97316 20%,
-      #fb923c 50%,
-      #fbbf24 80%,
-      transparent 100%);
-  z-index: 20;
-} */
-
-/* ── Glow orbs ── */
 .glow {
   position: absolute;
   border-radius: 50%;
@@ -107,27 +58,21 @@
   transform: translate(-50%, -50%);
 }
 
-/* ── Two-column layout ── */
 .heroInner {
   display: grid;
   grid-template-columns: 1fr 340px;
   align-items: center;
   gap: 4.5rem;
- 
   width: 100%;
   margin: 0 auto;
   position: relative;
   z-index: 2;
 }
 
-/* ══════════ LEFT ══════════ */
-
-/* Status badge */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   font-size: 0.67rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -149,7 +94,6 @@
   will-change: transform, opacity;
 }
 
-/* ── Name row — both names on ONE line ── */
 .nameRow {
   display: flex;
   align-items: baseline;
@@ -160,7 +104,6 @@
 }
 
 .nameFirst {
-  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -169,19 +112,13 @@
   will-change: transform, opacity;
 }
 
-/* ★ "Deepthi" — vivid orange gradient, unmissable on white */
 .nameLast {
-  
   font-size: clamp(3.6rem, 6.2vw, 6rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   display: inline-block;
   background: linear-gradient(130deg,
-      #F97316 0%,
-      #FB923C 30%,
-      #FED7AA 55%,
-      #F97316 75%,
-      #EA580C 100%);
+      #F97316 0%, #FB923C 30%, #FED7AA 55%, #F97316 75%, #EA580C 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -201,7 +138,6 @@
   }
 }
 
-/* ★ Orange gradient underline — draws in via GSAP scaleX */
 .nameLine {
   display: block;
   height: 3px;
@@ -215,7 +151,6 @@
   will-change: transform;
 }
 
-/* ── Typewriter role ── */
 .roleWrap {
   display: flex;
   align-items: center;
@@ -224,7 +159,6 @@
 }
 
 .rolePrefix {
-  
   font-size: 0.7rem;
   color: #A8A29E;
   letter-spacing: 0.12em;
@@ -232,9 +166,7 @@
   white-space: nowrap;
 }
 
-/* ★ Orange typewriter text */
 .roleText {
-  
   font-size: 1.05rem;
   font-weight: 700;
   color: #F97316;
@@ -253,7 +185,6 @@
   will-change: opacity;
 }
 
-/* ── Description ── */
 .desc {
   font-size: 0.97rem;
   line-height: 1.9;
@@ -263,13 +194,11 @@
   text-align: justify;
 }
 
-
 .descEm {
   color: #1C1917;
   font-weight: 600;
 }
 
-/* ── Skill chips ── */
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -278,7 +207,6 @@
 }
 
 .chip {
-  
   font-size: 0.68rem;
   color: #57534E;
   background: #fff;
@@ -299,7 +227,6 @@
   box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
 }
 
-/* ── CTA buttons ── */
 .ctaRow {
   display: flex;
   align-items: center;
@@ -316,11 +243,11 @@
   color: #fff;
   padding: 13px 28px;
   border-radius: 8px;
-  
   font-size: 0.88rem;
   font-weight: 700;
   box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btnPrimary:hover {
@@ -338,10 +265,10 @@
   border: 1.5px solid #E7E5E4;
   padding: 12px 24px;
   border-radius: 8px;
- 
   font-size: 0.88rem;
   font-weight: 500;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .btnSecondary:hover {
@@ -351,7 +278,6 @@
   box-shadow: 0 4px 14px rgba(249, 115, 22, 0.15);
 }
 
-/* ── Socials ── */
 .socRow {
   display: flex;
   align-items: center;
@@ -359,7 +285,6 @@
 }
 
 .socLabel {
-  
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -394,7 +319,6 @@
   box-shadow: 0 4px 14px rgba(249, 115, 22, 0.28);
 }
 
-/* ══════════ RIGHT — Photo ══════════ */
 .photoWrap {
   position: relative;
   width: 300px;
@@ -402,15 +326,13 @@
   will-change: transform, opacity;
 }
 
-/* Offset shadow stack — orange tint */
 .photoWrap::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 24px;
   background: linear-gradient(135deg,
-      rgba(249, 115, 22, 0.18),
-      rgba(251, 191, 36, 0.12));
+      rgba(249, 115, 22, 0.18), rgba(251, 191, 36, 0.12));
   transform: translate(12px, 12px);
   z-index: -1;
 }
@@ -438,7 +360,6 @@
     0 4px 18px rgba(0, 0, 0, 0.05);
 }
 
-/* ── Floating stat cards ── */
 .floatCard {
   position: absolute;
   background: rgba(255, 255, 255, 0.6);
@@ -464,7 +385,6 @@
 }
 
 .cardNum {
-  
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1;
@@ -475,7 +395,6 @@
 }
 
 .cardSub {
- 
   font-size: 0.58rem;
   color: #A8A29E;
   letter-spacing: 0.1em;
@@ -487,7 +406,6 @@
   display: flex;
   align-items: center;
   gap: 6px;
- 
   font-size: 0.65rem;
   font-weight: 500;
   color: #1C1917;
@@ -504,7 +422,6 @@
   flex-shrink: 0;
 }
 
-/* ── Scroll hint ── */
 .scrollHint {
   position: absolute;
   bottom: 2.4rem;
@@ -519,7 +436,6 @@
 }
 
 .scrollLabel {
-  
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -544,7 +460,6 @@
   will-change: transform, opacity;
 }
 
-/* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 960px) {
   .heroInner {
     grid-template-columns: 1fr;
@@ -582,5 +497,197 @@
   .nameFirst,
   .nameLast {
     font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 960px) {
+
+  .hero {
+    padding-bottom: 80px;
+    min-height: unset;
+  }
+
+
+  .heroInner {
+    text-align: center;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  .badge {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .nameRow {
+    justify-content: center;
+  }
+
+  .roleWrap {
+    justify-content: center;
+  }
+
+  .desc {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .chips {
+    justify-content: center;
+  }
+
+  .ctaRow {
+    justify-content: center;
+  }
+
+  .socRow {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .hero {
+    min-height: unset;
+    padding-top: 72px;
+    padding-bottom: 96px;
+  }
+
+  .nameFirst,
+  .nameLast {
+    font-size: clamp(2.2rem, 9vw, 2.8rem);
+  }
+
+
+  .roleText {
+    font-size: 0.95rem;
+  }
+
+  .rolePrefix {
+    display: none;
+  }
+
+
+  .desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin-bottom: 1.4rem;
+  }
+
+
+  .chips {
+    gap: 0.35rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .chip {
+    font-size: 0.63rem;
+    padding: 4px 11px;
+  }
+
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    justify-content: center;
+    width: 100%;
+    padding: 13px 20px;
+  }
+
+  .photoWrap,
+  .photoBox {
+    width: 200px;
+  }
+
+  .photoBox {
+    height: 240px;
+  }
+
+  .cardTL {
+    top: -10px;
+    left: -10px;
+    padding: 8px 12px;
+  }
+
+  .cardBR {
+    bottom: -10px;
+    right: -10px;
+    padding: 8px 12px;
+  }
+
+  .cardNum {
+    font-size: 1.2rem;
+  }
+
+  .cardSub,
+  .cardStatus {
+    font-size: 0.55rem;
+  }
+
+  .scrollHint {
+    position: fixed;
+    bottom: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+  }
+}
+
+@media (max-width: 400px) {
+
+  .nameFirst,
+  .nameLast {
+    font-size: clamp(1.9rem, 8.5vw, 2.2rem);
+  }
+
+  .heroInner {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .chip {
+    font-size: 0.6rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .chip {
+    transition: all 0.2s ease, transform 0.12s ease;
+  }
+
+  .chip:active {
+    background: #F97316;
+    color: #fff;
+    border-color: #F97316;
+    transform: scale(0.94);
+  }
+
+  .btnPrimary:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 10px rgba(249, 115, 22, 0.3);
+  }
+
+  .btnSecondary:active {
+    transform: scale(0.97);
+    border-color: #F97316;
+    color: #F97316;
+  }
+
+  .socIcon:active {
+    background: #F97316;
+    border-color: #F97316;
+    color: #fff;
+    transform: scale(0.9);
+  }
+
+  .floatCard:active {
+    transform: scale(0.96);
+    transition: transform 0.12s ease;
   }
 }

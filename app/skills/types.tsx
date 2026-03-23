@@ -1,4 +1,4 @@
-// ─── Skill Types ─────────────────────────────────────────────────────────────
+
 
 export type SkillTab = 'technical' | 'interpersonal';
 
@@ -6,35 +6,34 @@ export type TechLevel = 'expert' | 'advanced' | 'intermediate' | 'learning';
 
 export type ThemeVariant = 'white' | 'orange';
 
-// ─── Technical skill ─────────────────────────────────────────────────────────
+
 export interface TechnicalSkill {
   id: string;
   name: string;
-  category: string;        // e.g. "Frontend", "Backend", "Tooling"
+  category: string;
   level: TechLevel;
-  percentage: number;      // 0-100
+  percentage: number;
   yearsExp: number;
   tags?: string[];
 }
 
-// ─── Interpersonal / soft skill ──────────────────────────────────────────────
+
 export interface InterpersonalSkill {
   id: string;
-  name: string;            // e.g. "Team Leadership"
-  description: string;     // short blurb shown on card
-  icon: string;            // emoji or short text icon
-  pillars: string[];       // e.g. ["Communication", "Trust-building"]
-  strength: number;        // 0-100 — used for the radial ring
+  name: string;
+  description: string;
+  icon: string;
+  pillars: string[];
+  strength: number;
 }
 
-// ─── Nav tab descriptor ───────────────────────────────────────────────────────
+
 export interface NavTab {
   id: SkillTab;
   label: string;
   sublabel: string;
 }
 
-// ─── Component props ──────────────────────────────────────────────────────────
 export interface SkillsSectionProps {
   theme?: ThemeVariant;
   defaultTab?: SkillTab;

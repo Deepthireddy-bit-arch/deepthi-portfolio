@@ -7,26 +7,30 @@ export interface Tool {
   primary?: boolean
 }
 
-export const TOOLS: Tool[] = [
-  { name: 'React',       bg: '#20232a', color: '#61DAFB', label: '⚛',  primary: true },
-  { name: 'Node.js',     bg: '#339933', color: '#fff',    label: '⬡',  primary: true },
-  { name: 'MongoDB',     bg: '#00684a', color: '#fff',    label: '🍃',  primary: true },
-  { name: 'Express',     bg: '#1a1a2e', color: '#bbb',    label: 'ex'  },
-  { name: 'JavaScript',  bg: '#f7df1e', color: '#000',    label: 'JS'  },
-  { name: 'Next.js',     bg: '#fff',    color: '#000',    label: 'N',  primary: true },
-  { name: 'C++',         bg: '#00599c', color: '#fff',    label: 'C++' },
-  { name: 'Tailwind',    bg: '#06b6d4', color: '#fff',    label: '〰', primary: true },
-  { name: 'Redux',       bg: '#764abc', color: '#fff',    label: '⊛'  },
-  { name: 'AWS',         bg: '#232f3e', color: '#ff9900', label: 'AWS' },
-  { name: 'GCP',         bg: '#4285f4', color: '#fff',    label: '☁'  },
-  { name: 'Docker',      bg: '#2496ed', color: '#fff',    label: '🐳'  },
-  { name: 'GitHub',      bg: '#24292e', color: '#fff',    label: '⑂'  },
-  { name: 'PostgreSQL',  bg: '#336791', color: '#fff',    label: 'PG'  },
-  { name: 'Figma',       bg: '#f24e1e', color: '#fff',    label: '✦'  },
-  { name: 'TypeScript',  bg: '#3178c6', color: '#fff',    label: 'TS', primary: true },
-]
 
-// ── Projects (Image 2 exact layout) ────
+export const TOOLS: Tool[] = [
+  { name: 'React', bg: '#20232a', color: '#61DAFB', label: '⚛', primary: true },
+  { name: 'Next.js', bg: '#000', color: '#fff', label: 'N', primary: true },
+  { name: 'TypeScript', bg: '#3178c6', color: '#fff', label: 'TS', primary: true },
+  { name: 'JavaScript', bg: '#f7df1e', color: '#000', label: 'JS', primary: true },
+
+  { name: 'HTML5', bg: '#e34f26', color: '#fff', label: 'H' },
+  { name: 'CSS3', bg: '#1572b6', color: '#fff', label: 'C' },
+  { name: 'Tailwind', bg: '#06b6d4', color: '#fff', label: '〰', primary: true },
+  { name: 'Bootstrap', bg: '#7952b3', color: '#fff', label: 'B' },
+
+  { name: 'Redux', bg: '#764abc', color: '#fff', label: '⊛' },
+
+  { name: 'Java', bg: '#f89820', color: '#fff', label: 'J' },
+
+  { name: 'GitHub', bg: '#24292e', color: '#fff', label: 'GH' },
+  { name: 'Figma', bg: '#f24e1e', color: '#fff', label: '✦' },
+  { name: 'Framer Motion', bg: '#000', color: '#fff', label: 'FM' },
+  { name: 'React Query', bg: '#ff4154', color: '#fff', label: 'RQ' },
+  { name: 'Axios', bg: '#5a29e4', color: '#fff', label: 'AX' },
+  { name: 'Git', bg: '#f05032', color: '#fff', label: 'G' },
+];
+
 export interface Project {
   companyLogo: string
   companyLogoColor: string
@@ -49,7 +53,7 @@ export const PROJECTS: Project[] = [
     companyName: 'Konig Tronics',
     title: 'Built a Multi-Event Management Platform',
     tags: [
-      { label: 'React',      icon: '⚛' },
+      { label: 'React', icon: '⚛' },
       { label: 'JavaScript', icon: '🟨' },
     ],
     desc: 'Created UI for managing college fests with multi-event support',
@@ -65,7 +69,7 @@ export const PROJECTS: Project[] = [
     companyName: 'IIDT · Blackbuck Engineers',
     title: 'Developed a Netflix Homepage Clone',
     tags: [
-      { label: 'React',      icon: '⚛' },
+      { label: 'React', icon: '⚛' },
       { label: 'JavaScript', icon: '🟨' },
     ],
     desc: 'Created interactive components matching Netflix\'s design system',
@@ -81,9 +85,9 @@ export const PROJECTS: Project[] = [
     companyName: 'Deepthi Portfolio',
     title: 'Created My Dev Portfolio Website',
     tags: [
-      { label: 'Next.js',  icon: '▲' },
+      { label: 'Next.js', icon: '▲' },
       { label: 'Tailwind', icon: '〰' },
-      { label: 'GSAP',     icon: '⚡' },
+      { label: 'GSAP', icon: '⚡' },
     ],
     desc: 'Created Portfolio built with Next.js + TS + GSAP animations system',
     resultIcon: '✅',
@@ -98,7 +102,7 @@ export const PROJECTS: Project[] = [
     companyName: 'Konig Tronics',
     title: 'Built Responsive Pages for IoT Gadgets',
     tags: [
-      { label: 'Java',        icon: '☕' },
+      { label: 'Java', icon: '☕' },
       { label: 'Spring Boot', icon: '🌱' },
     ],
     desc: 'Developing interfaces for a smart home IoT dashboard optimized responsiveness',
@@ -109,7 +113,6 @@ export const PROJECTS: Project[] = [
   },
 ]
 
-// ── Stats (Image 3 exact) ───────────────
 export interface Stat {
   icon: string
   value: string
@@ -121,13 +124,12 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { icon: '🔭', value: '98',  unit: '',   subLabel: 'Lighthouse Score',   mainLabel: 'Lighthouse Score',   targetNum: 98  },
-  { icon: '🚀', value: '38',  unit: '%',  subLabel: 'Faster',             mainLabel: 'Page Speed Improved',targetNum: 38  },
-  { icon: '✅', value: '100', unit: '',   subLabel: 'Accessibility',       mainLabel: 'Accessibility',      targetNum: 100 },
-  { icon: '⏱', value: '1.2', unit: 's',  subLabel: 'Load Time',          mainLabel: 'Load Time',          targetNum: 1.2, isDecimal: true },
+  { icon: '🔭', value: '98', unit: '', subLabel: 'Lighthouse Score', mainLabel: 'Lighthouse Score', targetNum: 98 },
+  { icon: '🚀', value: '38', unit: '%', subLabel: 'Faster', mainLabel: 'Page Speed Improved', targetNum: 38 },
+  { icon: '✅', value: '100', unit: '', subLabel: 'Accessibility', mainLabel: 'Accessibility', targetNum: 100 },
+  { icon: '⏱', value: '1.2', unit: 's', subLabel: 'Load Time', mainLabel: 'Load Time', targetNum: 1.2, isDecimal: true },
 ]
 
-// ── Contributions ───────────────────────
 export interface Contribution {
   tag: string
   tagColor: string
@@ -143,7 +145,6 @@ export const CONTRIBUTIONS: Contribution[] = [
   { tag: 'lead', tagColor: '#F97316', title: 'Mentored 3 junior engineers weekly', desc: 'Code reviews, pair programming and Storybook documentation workshops every sprint.' },
 ]
 
-// ── Gallery ─────────────────────────────
 export interface GalleryItem {
   image: string
   title: string
@@ -151,10 +152,10 @@ export interface GalleryItem {
 }
 
 export const GALLERY: GalleryItem[] = [
-  { image: '/images/learnexa.png',   title: 'Learnexa — AI Quiz Platform',     category: 'Web App'     },
-  { image: '/images/app-screens.png',title: 'Increasing Happiness App',         category: 'Mobile'      },
-  { image: '/images/learnexa.png',   title: 'Analytics Dashboard',              category: 'Dashboard'   },
-  { image: '/images/app-screens.png',title: 'E-Commerce Storefront',            category: 'Web App'     },
-  { image: '/images/learnexa.png',   title: 'NBFC Loan Portal',                 category: 'Fintech'     },
-  { image: '/images/app-screens.png',title: 'IoT Smart Home UI',                category: 'IoT'         },
+  { image: '/images/learnexa.png', title: 'Learnexa — AI Quiz Platform', category: 'Web App' },
+  { image: '/images/app-screens.png', title: 'Increasing Happiness App', category: 'Mobile' },
+  { image: '/images/learnexa.png', title: 'Analytics Dashboard', category: 'Dashboard' },
+  { image: '/images/app-screens.png', title: 'E-Commerce Storefront', category: 'Web App' },
+  { image: '/images/learnexa.png', title: 'NBFC Loan Portal', category: 'Fintech' },
+  { image: '/images/app-screens.png', title: 'IoT Smart Home UI', category: 'IoT' },
 ]

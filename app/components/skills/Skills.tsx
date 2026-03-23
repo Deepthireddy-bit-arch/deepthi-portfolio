@@ -15,40 +15,47 @@ interface SkillCategory {
 }
 
 const skillCategories: SkillCategory[] = [
-  { title: "Languages",     icon: "{ }", skills: ["Java", "JavaScript", "TypeScript"] },
-  { title: "Frontend",      icon: "◻",   skills: ["React.js", "Next.js", "HTML5", "CSS3"] },
-  { title: "Styling",       icon: "◈",   skills: ["Tailwind CSS", "Bootstrap", "Responsive Design"] },
-  { title: "Tools & Others",icon: "⌘",   skills: ["Git", "GitHub", "REST APIs"] },
+  { title: "Languages", icon: "{ }", skills: ["Java", "JavaScript", "TypeScript"] },
+  { title: "Frontend", icon: "◻", skills: ["React.js", "Next.js", "HTML5", "CSS3"] },
+  { title: "Styling", icon: "◈", skills: ["Tailwind CSS", "Bootstrap", "Responsive Design"] },
+  { title: "Tools & Others", icon: "⌘", skills: ["Git", "GitHub", "REST APIs"] },
 ];
 
 const stats = [
-  { value: 1,   suffix: "+", label: "Years Experience" },
-  { value: 3,   suffix: "+", label: "Projects Shipped" },
-  { value: 2,   suffix: "",  label: "Internships" },
-  { value: 80,  suffix: "%", label: "B.Tech Score" },
+  { value: 1, suffix: "+", label: "Years Experience" },
+  { value: 3, suffix: "+", label: "Projects Shipped" },
+  { value: 2, suffix: "", label: "Internships" },
+  { value: 80, suffix: "%", label: "B.Tech Score" },
 ];
 
 export default function Skills() {
-  const sectionRef  = useRef<HTMLElement>(null);
-  const tagRef      = useRef<HTMLSpanElement>(null);
-  const headingRef  = useRef<HTMLHeadingElement>(null);
-  const subtextRef  = useRef<HTMLParagraphElement>(null);
-  const statsRef    = useRef<HTMLDivElement>(null);
-  const cardsRef    = useRef<HTMLDivElement>(null);
-  const bottomRef   = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const tagRef = useRef<HTMLSpanElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subtextRef = useRef<HTMLParagraphElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      /* ── 1. Tag line grows in ── */
+
+    
       const tagLine = tagRef.current?.querySelector(`.${styles.tagLine}`);
-      gsap.fromTo(tagLine,
-        { scaleX: 0, opacity: 0 },
-        {
-          scaleX: 1, opacity: 1, duration: 0.7, ease: "power3.out",
-          scrollTrigger: { trigger: tagRef.current, start: "top 88%", once: true },
-        }
-      );
+if (tagLine instanceof HTMLElement) {
+  gsap.fromTo(
+    tagLine,
+    { scaleX: 0, opacity: 0 },
+    {
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.7,
+      ease: "power3.out",
+      scrollTrigger: { trigger: tagRef.current, start: "top 88%", once: true },
+    }
+  );
+}
       gsap.fromTo(tagRef.current,
         { opacity: 0, x: -16 },
         {
@@ -57,7 +64,7 @@ export default function Skills() {
         }
       );
 
-      /* ── 2. Heading — word by word stagger ── */
+
       if (headingRef.current) {
         const words = headingRef.current.querySelectorAll(`.${styles.wordInner}`);
         gsap.fromTo(words,
@@ -70,7 +77,7 @@ export default function Skills() {
         );
       }
 
-      /* ── 3. Subtext fades in from right ── */
+
       gsap.fromTo(subtextRef.current,
         { opacity: 0, x: 30 },
         {
@@ -79,7 +86,7 @@ export default function Skills() {
         }
       );
 
-      /* ── 4. Stats — slide up + number count-up ── */
+
       if (statsRef.current) {
         const cells = Array.from(statsRef.current.children) as HTMLElement[];
 
@@ -89,12 +96,12 @@ export default function Skills() {
           duration: 0.65, stagger: 0.1, ease: "power3.out",
           scrollTrigger: { trigger: statsRef.current, start: "top 82%", once: true },
           onStart() {
-            // Sweep shimmer across stats grid
+
             statsRef.current?.classList.add(styles.swept);
           },
         });
 
-        // Count-up for each stat number
+
         cells.forEach((cell, i) => {
           const numEl = cell.querySelector(`.${styles.statValue}`) as HTMLElement;
           if (!numEl) return;
@@ -115,7 +122,7 @@ export default function Skills() {
         });
       }
 
-      /* ── 5. Cards — stagger up with slight rotation ── */
+
       if (cardsRef.current) {
         const cards = Array.from(cardsRef.current.children) as HTMLElement[];
         gsap.set(cards, { opacity: 0, y: 55, rotateX: 8 });
@@ -125,7 +132,7 @@ export default function Skills() {
           scrollTrigger: { trigger: cardsRef.current, start: "top 80%", once: true },
         });
 
-        // Skill items inside each card stagger in after card appears
+
         cards.forEach((card, ci) => {
           const items = card.querySelectorAll(`.${styles.skillItem}`);
           gsap.fromTo(items,
@@ -140,7 +147,7 @@ export default function Skills() {
         });
       }
 
-      /* ── 6. Bottom bar slides up ── */
+
       gsap.fromTo(bottomRef.current,
         { opacity: 0, y: 20 },
         {
@@ -163,24 +170,24 @@ export default function Skills() {
 
       <div className={styles.inner}>
 
-        {/* ── Tag ── */}
-        <div className={styles.tag}>
-            <span className={styles.tagDot} />
-            Skills
-          </div>
 
-        {/* ── Heading block ── */}
+        <div className={styles.tag}>
+          <span className={styles.tagDot} />
+          Skills
+        </div>
+
+
         <div className={styles.headingBlock}>
           <div className={styles.headingRow}>
             <h2 ref={headingRef} className={styles.heading}>
-              {/* Each word wrapped for per-word stagger */}
+
               <span className={styles.word}>
                 <span className={styles.wordInner}>What</span>
               </span>
               <span className={styles.word}>
                 <span className={styles.wordInner}>I</span>
               </span>
-             
+
               <span className={styles.word}>
                 <span className={`${styles.wordInner} ${styles.shimmer}`}>Work</span>
               </span>
@@ -196,23 +203,16 @@ export default function Skills() {
           </div>
         </div>
 
-       
 
-        {/* ── Cards ── */}
+
+
         <div ref={cardsRef} className={styles.cardsGrid}>
           {skillCategories.map((category) => (
             <SkillCard key={category.title} category={category} />
           ))}
         </div>
 
-        {/* ── Bottom bar ── */}
-        {/* <div ref={bottomRef} className={styles.bottomBar}>
-          <p className={styles.learningNote}>Currently learning — React Native, Node.js</p>
-          <div className={styles.statusBadge}>
-            <span className={styles.statusDot} />
-            <span className={styles.statusText}>Open to opportunities</span>
-          </div>
-        </div> */}
+
 
       </div>
     </section>

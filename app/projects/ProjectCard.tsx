@@ -1,12 +1,18 @@
-// components/ProjectCard.tsx
-// Uses 100% inline styles — no CSS file, no Tailwind needed.
+
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import type { Project } from "../projects/types";
 
-export default function ProjectCard({ project }: { project: Project }) {
+
+export default function ProjectCard({
+  project,
+
+}: {
+  project: Project;
+
+}) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -14,6 +20,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       className="proj-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+
       style={{
         background: "#fff",
         border: `1px solid ${hovered ? "rgba(240,90,26,0.35)" : "#ECEAE6"}`,
@@ -27,27 +34,34 @@ export default function ProjectCard({ project }: { project: Project }) {
         transition: "transform 0.45s cubic-bezier(.34,1.56,.64,1), box-shadow 0.4s, border-color 0.3s",
       }}
     >
-      {/* ── Image ── */}
+
       <div style={{ position: "relative", height: 210, overflow: "hidden", background: "#111", flexShrink: 0 }}>
-        <Image
-          src={project.img?.includes('unsplash') ? '/placeholder.jpg' : project.img || "/placeholder.jpg"}
-          alt={project.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 400px"
-          style={{
-            objectFit: "cover",
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            filter: hovered ? "brightness(0.7) saturate(1.15)" : "brightness(0.85) saturate(1.05)",
-            transition: "transform 0.65s ease, filter 0.65s ease",
-          }}
-        />
-        {/* Gradient overlay */}
+
+        <div style={{ position: "relative", width: "100%", height: "250px" }}>
+          <Image
+            src={project.img || "/placeholder.jpg"}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+            quality={75}
+            priority={false}
+            style={{
+              objectFit: "cover",
+              transform: hovered ? "scale(1.08)" : "scale(1)",
+              filter: hovered
+                ? "brightness(0.7) saturate(1.15)"
+                : "brightness(0.85) saturate(1.05)",
+              transition: "transform 0.65s ease, filter 0.65s ease",
+            }}
+          />
+        </div>
+
         <div style={{
           position: "absolute", inset: 0,
           background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)",
         }} />
 
-        {/* Type badge */}
+
         <div style={{ position: "absolute", top: 12, left: 12, zIndex: 2 }}>
           {project.isFinal ? (
             <span style={{
@@ -70,18 +84,18 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* Year */}
+
         <span style={{
           position: "absolute", top: 12, right: 12, zIndex: 2,
           padding: "4px 10px", borderRadius: 100, fontSize: 10, fontWeight: 700,
-          fontFamily: "monospace", color: "#fff", letterSpacing: ".04em",
+           color: "#fff", letterSpacing: ".04em",
           background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
         }}>{project.year}</span>
 
-        {/* Title + subtitle over image */}
+
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2, padding: "16px 18px 14px" }}>
           <h3 style={{
-            fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800,
+             fontSize: 19, fontWeight: 800,
             color: "#fff", lineHeight: 1.1, margin: 0,
             textShadow: "0 2px 10px rgba(0,0,0,0.5)",
           }}>{project.title}</h3>
@@ -91,10 +105,10 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* ── Body ── */}
+
       <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "16px 18px 12px", flex: 1 }}>
 
-        {/* Badges row */}
+
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
           <span style={{
             padding: "3px 10px", borderRadius: 100, fontSize: 10, fontWeight: 700,
@@ -113,14 +127,14 @@ export default function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        {/* Description */}
+
         <p style={{
           fontSize: 13.5, color: "#6B6866", lineHeight: 1.65, margin: 0,
           display: "-webkit-box", WebkitLineClamp: 3,
           WebkitBoxOrient: "vertical", overflow: "hidden",
         }}>{project.desc}</p>
 
-        {/* Highlights */}
+
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6px 8px" }}>
           {project.highlights.map((h) => (
             <div key={h} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "#555" }}>
@@ -130,7 +144,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        {/* Tags */}
+
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto", paddingTop: 4 }}>
           {project.tags.map((t) => (
             <span key={t} style={{
@@ -143,23 +157,6 @@ export default function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* ── CTA strip ── */}
-      <div style={{
-        display: "flex", justifyContent: "space-between", alignItems: "center",
-        padding: "11px 18px",
-        borderTop: `1px solid ${hovered ? "transparent" : "#ECEAE6"}`,
-        background: hovered ? "linear-gradient(135deg,#F05A1A,#FF8040)" : "transparent",
-        transition: "background 0.3s, border-color 0.3s",
-      }}>
-        <span style={{ fontSize: 13, fontWeight: 700, color: hovered ? "#fff" : "#aaa", transition: "color 0.3s" }}>
-          View Project
-        </span>
-        <span style={{
-          fontSize: 16, color: hovered ? "#fff" : "#F05A1A",
-          transform: hovered ? "translateX(5px)" : "translateX(0)",
-          transition: "color 0.3s, transform 0.3s", display: "inline-block",
-        }}>→</span>
-      </div>
     </div>
   );
 }

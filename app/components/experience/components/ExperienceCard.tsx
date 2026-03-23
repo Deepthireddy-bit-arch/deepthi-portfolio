@@ -21,17 +21,16 @@ const CheckIcon = () => (
 );
 
 function aspectClass(aspect: GalleryImage["aspect"]) {
-  if (aspect === "portrait")  return styles.galleryItemPortrait;
+  if (aspect === "portrait") return styles.galleryItemPortrait;
   if (aspect === "landscape") return styles.galleryItemLandscape;
   return styles.galleryItemSquare;
 }
 
 function Gallery({ images }: { images: GalleryImage[] }) {
-  // Split into two columns: odd indices → col1 (scrolls up), even → col2 (scrolls down)
+
   const col1 = images.filter((_, i) => i % 2 === 0);
   const col2 = images.filter((_, i) => i % 2 !== 0);
 
-  // Triple each so animation always has content to show regardless of count
   const loop1 = [...col1, ...col1, ...col1];
   const loop2 = [...col2, ...col2, ...col2];
 
@@ -40,15 +39,12 @@ function Gallery({ images }: { images: GalleryImage[] }) {
       <p className={styles.galleryLabel}>Project Snapshots</p>
 
       <div className={styles.galleryScroller}>
-
-        {/* ── Column 1: scrolls bottom → top ── */}
         <div className={`${styles.galleryTrack} ${styles.galleryTrackUp}`}>
           {loop1.map((img, idx) => (
             <div
               key={`c1-${img.id}-${idx}`}
               className={`${styles.galleryItem} ${aspectClass(img.aspect)}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img.src}
                 alt={img.alt}
@@ -59,15 +55,12 @@ function Gallery({ images }: { images: GalleryImage[] }) {
             </div>
           ))}
         </div>
-
-        {/* ── Column 2: scrolls top → bottom ── */}
         <div className={`${styles.galleryTrack} ${styles.galleryTrackDown}`}>
           {loop2.map((img, idx) => (
             <div
               key={`c2-${img.id}-${idx}`}
               className={`${styles.galleryItem} ${aspectClass(img.aspect)}`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={img.src}
                 alt={img.alt}
@@ -87,17 +80,13 @@ function Gallery({ images }: { images: GalleryImage[] }) {
 export default function ExperienceCard({ item }: Props) {
   return (
     <div className={styles.experienceRow}>
-          {/* ── RIGHT: Infinite scroll gallery ── */}
+
       <div className={styles.galleryCol}>
         <Gallery images={item.gallery} />
       </div>
-
-      {/* ── LEFT: Timeline card ── */}
       <div className={styles.timelineCol}>
         <div className={styles.timeline}>
           <article className={styles.card}>
-
-            {/* Dot */}
             <div className={styles.dot}>
               <div
                 className={`${styles.dotOuter} ${item.current ? styles.dotCurrent : ""}`}
@@ -108,10 +97,8 @@ export default function ExperienceCard({ item }: Props) {
                 />
               </div>
             </div>
-
-            {/* Body */}
             <div className={styles.body}>
-              {/* Role + date */}
+
               <div className={styles.meta}>
                 <h3 className={styles.role}>{item.role}</h3>
                 <span className={`${styles.dateBadge} ${item.current ? styles.dateBadgeCurrent : ""}`}>
@@ -120,17 +107,17 @@ export default function ExperienceCard({ item }: Props) {
                 </span>
               </div>
 
-              {/* Company */}
+
               <div className={styles.companyRow}>
                 <span className={styles.company}>{item.company}</span>
                 <span className={styles.separator} aria-hidden="true">·</span>
                 <span className={styles.location}>{item.location}</span>
               </div>
 
-              {/* Description */}
+
               <p className={styles.description}>{item.description}</p>
 
-              {/* Achievements */}
+
               <p className={styles.achievementsTitle}>Key Achievements</p>
               <ul className={styles.achievementsList}>
                 {item.achievements.map((a, i) => (
@@ -141,7 +128,7 @@ export default function ExperienceCard({ item }: Props) {
                 ))}
               </ul>
 
-              {/* Tech stack */}
+
               <div className={styles.techRow} aria-label="Technologies used">
                 {item.technologies.map((t) => (
                   <span key={t.name} className={styles.techBadge}>{t.name}</span>
@@ -152,7 +139,7 @@ export default function ExperienceCard({ item }: Props) {
         </div>
       </div>
 
-    
+
 
     </div>
   );

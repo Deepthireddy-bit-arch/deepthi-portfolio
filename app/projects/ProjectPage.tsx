@@ -1,27 +1,21 @@
-// page.tsx → place at: app/projects/page.tsx
-//
-// SETUP (one time):
-// 1. next.config.ts → images: { domains: ["images.unsplash.com"] }
-// 2. Replace img URLs in data/projects.data.ts with your own screenshots
-// 3. Google Fonts auto-injected via useEffect — no layout.tsx change needed
+
 
 "use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { PROJECTS, FILTER_OPTIONS, STATS } from "../projects/data";
-import type { FilterType }                  from "../projects/types";
-import { useProjectAnimations }             from "../projects/animations";
-import ProjectCard                          from "../projects/ProjectCard";
+import type { FilterType } from "../projects/types";
+import { useProjectAnimations } from "../projects/animations";
+import ProjectCard from "../projects/ProjectCard";
 
-// ─── All styles as a string — injected into <head> at runtime ────────────────
 const PAGE_CSS = `
 
 
   .proj-page {
     min-height: 100vh;
     background: #FFFFFF;
-   
+   margin-bottom:50px;
     
     position: relative;
   }
@@ -258,101 +252,62 @@ const PAGE_CSS = `
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<FilterType>("all");
   const { gsapReady, initAnimations, reanimateCards } = useProjectAnimations();
-
-  // Inject CSS + Google Fonts into <head> once on mount
-  // useEffect(() => {
-  //   const styleId = "proj-styles";
-  //   if (document.getElementById(styleId)) return;
-  //   const tag = document.createElement("style");
-  //   tag.id = styleId;
-  //   tag.textContent = PAGE_CSS;
-  //   document.head.appendChild(tag);
-
-  //   return () => { document.getElementById(styleId)?.remove(); };
-  // }, []);
-
   const filtered = PROJECTS.filter((p) => {
-    if (filter === "all")          return true;
-    if (filter === "professional") return p.type === "professional";
-    if (filter === "personal")     return p.type === "personal";
-    if (filter === "individual")   return p.team === "individual";
-    if (filter === "team")         return p.team === "team";
-    return true;
+  if (filter === "all") return true;
+  if (filter === "professional") return p.type === "professional";
+  if (filter === "academic") return p.type === "academic";
+  if (filter === "internship") return p.type === "internship";
+  if (filter === "individual") return p.team === "individual";
+  if (filter === "team") return p.team === "team";
+  return true;
   });
 
   useEffect(() => { if (gsapReady) initAnimations(); }, [gsapReady, initAnimations]);
-  useEffect(() => { if (gsapReady) reanimateCards();  }, [filter, gsapReady, reanimateCards]);
+  useEffect(() => { if (gsapReady) reanimateCards(); }, [filter, gsapReady, reanimateCards]);
 
   return (
-          <>
-                <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} /> 
-    <main className="proj-page">
-      <div className="proj-blob proj-blob-1" />
-      <div className="proj-blob proj-blob-2" />
+    <>
+      <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
+      <main className="proj-page">
+        <div className="proj-blob proj-blob-1" />
+        <div className="proj-blob proj-blob-2" />
 
-      <div className="proj-wrap">
+        <div className="proj-wrap">
 
-        {/* ── HEADER ── */}
-        {/* <header className="proj-header">
-          <div className="proj-eyebrow">
-            <div className="proj-eyebrow-line" />
-            <span className="proj-eyebrow-text">Portfolio</span>
+
+          <div className="proj-filters">
+            <span className="proj-filter-label">Filter:</span>
+            {FILTER_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                className={`proj-filter-btn${filter === opt.value ? " active" : ""}`}
+                onClick={() => setFilter(opt.value)}
+              >
+                {opt.label}
+                <span className="proj-filter-count">{opt.count}</span>
+              </button>
+            ))}
           </div>
-          <h1 className="proj-title">
-            My <span className="proj-title-accent">Projects</span>
-          </h1>
-          <p className="proj-desc">
-            A curated mix of professional work and personal builds — full-stack
-            platforms, team collabs, design systems, and university projects.
-            Each one shaped how I think and ship.
-          </p>
-        </header> */}
 
-        {/* ── STATS ── */}
-        {/* <div className="proj-stats">
-          {STATS.map(({ value, label }) => (
-            <div key={label} className="proj-stat">
-              <span className="proj-stat-value">{value}</span>
-              <span className="proj-stat-label">{label}</span>
+          <div className="proj-grid">
+            {filtered.map((p) => (
+              <ProjectCard key={p.id} project={p} />
+            ))}
+          </div>
+
+
+          <div className="proj-footer" id="proj-footer">
+            <div>
+              <h2 className="proj-footer-heading">Have a project in mind?</h2>
+              <p className="proj-footer-sub">Open to freelance, full-time &amp; collaboration opportunities.</p>
             </div>
-          ))}
-        </div> */}
-
-        {/* ── FILTERS ── */}
-        <div className="proj-filters">
-          <span className="proj-filter-label">Filter:</span>
-          {FILTER_OPTIONS.map((opt) => (
-            <button
-              key={opt.value}
-              className={`proj-filter-btn${filter === opt.value ? " active" : ""}`}
-              onClick={() => setFilter(opt.value)}
-            >
-              {opt.label}
-              <span className="proj-filter-count">{opt.count}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* ── PROJECT GRID ── */}
-        <div className="proj-grid">
-          {filtered.map((p) => (
-            <ProjectCard key={p.id} project={p} />
-          ))}
-        </div>
-
-        {/* ── FOOTER CTA ── */}
-        <div className="proj-footer" id="proj-footer">
-          <div>
-            <h2 className="proj-footer-heading">Have a project in mind?</h2>
-            <p className="proj-footer-sub">Open to freelance, full-time &amp; collaboration opportunities.</p>
+            <a href="/contact" className="proj-footer-btn">
+              Let&apos;s Talk →
+            </a>
           </div>
-          <a href="#contact" className="proj-footer-btn">
-            Let&apos;s Talk →
-          </a>
-        </div>
 
-      </div>
-    </main>
+        </div>
+      </main>
     </>
   );
 }

@@ -1,68 +1,48 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   SkillsSection — WHITE THEME
-   Font stack: "Clash Display" (display) + "Satoshi" (body) + "JetBrains Mono"
-   Load via: https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── CSS custom properties ────────────────────────────────────────────────── */
 .root {
-  /* backgrounds */
   --w-bg: #ffffff;
   --w-bg-nav: #f0ede6;
   --w-bg-card: #ffffff;
   --w-bg-card-hover: #fdf9f5;
   --w-bg-pill-inact: transparent;
 
-  /* accent (orange) */
   --w-accent: #e8631c;
   --w-accent-light: #f5a06a;
   --w-accent-dim: rgba(232, 99, 28, 0.10);
   --w-accent-mid: rgba(232, 99, 28, 0.30);
 
-  /* text */
   --w-text-1: #111110;
   --w-text-2: #52504c;
   --w-text-3: #9b9793;
 
-  /* nav pill active */
   --w-nav-active-bg: #111110;
   --w-nav-active-tx: #ffffff;
 
-  /* borders */
   --w-border: rgba(17, 17, 16, 0.08);
   --w-border-card: rgba(17, 17, 16, 0.06);
 
-  /* bar */
   --w-bar-track: rgba(17, 17, 16, 0.06);
   --w-bar-fill: linear-gradient(90deg, #e8631c 0%, #f5a06a 100%);
 
-  /* ring (SVG) */
   --w-ring-track: rgba(17, 17, 16, 0.08);
   --w-ring-fill: #e8631c;
 
-  /* shadows */
   --w-shadow-card: 0 1px 8px rgba(17, 17, 16, 0.06), 0 4px 24px rgba(17, 17, 16, 0.04);
   --w-shadow-hover: 0 8px 40px rgba(17, 17, 16, 0.10);
   --w-shadow-nav: 0 2px 12px rgba(17, 17, 16, 0.18);
 
-  /* radii */
   --w-r-card: 18px;
   --w-r-pill: 999px;
   --w-r-badge: 6px;
-
-
 }
 
-/* ── Section wrapper ──────────────────────────────────────────────────────── */
+
 .section {
   position: relative;
-
+  margin-bottom: 40px;
   background: var(--w-bg);
   overflow: hidden;
-
 }
 
-/* subtle warm tint orb */
 .section::before {
   content: '';
   position: absolute;
@@ -78,12 +58,9 @@
 .inner {
   position: relative;
   z-index: 1;
-
   margin: 0 auto;
-
 }
 
-/* ── Section heading ──────────────────────────────────────────────────────── */
 .heading {
   margin-bottom: 52px;
   overflow: hidden;
@@ -96,7 +73,6 @@
 
 .headingMain {
   display: block;
-
   font-size: clamp(48px, 6.5vw, 84px);
   font-weight: 700;
   line-height: 0.92;
@@ -112,7 +88,6 @@
 .headingSub {
   display: block;
   margin-top: 14px;
-
   font-size: 15px;
   font-weight: 500;
   color: var(--w-text-3);
@@ -120,22 +95,10 @@
   text-transform: uppercase;
 }
 
-/* ── Nav toggle ───────────────────────────────────────────────────────────── */
-/* .nav {
-  position: relative;
-  display: inline-flex;
-  align-items: stretch;
-  gap: 0;
-  background: var(--w-bg-nav);
-  border: 1px solid var(--w-border);
-  border-radius: var(--w-r-pill);
-  padding: 5px;
-  margin-bottom: 52px;
-} */
+
 .nav {
   position: relative;
   display: flex;
-  /* change from inline-flex */
   align-items: stretch;
   gap: 0;
   background: var(--w-bg-nav);
@@ -143,12 +106,9 @@
   border-radius: var(--w-r-pill);
   padding: 5px;
   margin: 0 auto 52px;
-  /* 🔥 THIS centers it */
   width: fit-content;
-  /* keep content width */
 }
 
-/* sliding background pill — JS controls transform/width */
 .navPill {
   position: absolute;
   top: 5px;
@@ -159,7 +119,6 @@
   box-shadow: var(--w-shadow-nav);
   pointer-events: none;
   will-change: transform, width;
-  /* width/x set by JS on mount + on change */
 }
 
 .navBtn {
@@ -180,7 +139,6 @@
 }
 
 .navBtnLabel {
-
   font-size: 15px;
   font-weight: 700;
   color: var(--w-text-2);
@@ -189,7 +147,6 @@
 }
 
 .navBtnSub {
-
   font-size: 11px;
   font-weight: 500;
   color: var(--w-text-3);
@@ -198,7 +155,6 @@
   white-space: nowrap;
 }
 
-/* active state — text goes white when pill covers this btn */
 .navBtnActive .navBtnLabel {
   color: var(--w-nav-active-tx);
 }
@@ -207,24 +163,20 @@
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* inactive hover */
 .navBtn:not(.navBtnActive):hover .navBtnLabel {
   color: var(--w-text-1);
 }
 
-/* ── Content container ────────────────────────────────────────────────────── */
 .content {
   min-height: 420px;
 }
 
-/* ── Technical grid ───────────────────────────────────────────────────────── */
 .techGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 18px;
 }
 
-/* ── Tech card ────────────────────────────────────────────────────────────── */
 .techCard {
   background: var(--w-bg-card);
   border: 1px solid var(--w-border-card);
@@ -259,7 +211,6 @@
 }
 
 .techName {
-
   font-size: 16px;
   font-weight: 700;
   color: var(--w-text-1);
@@ -267,7 +218,6 @@
 }
 
 .techCategory {
-
   font-size: 11px;
   font-weight: 500;
   color: var(--w-text-3);
@@ -283,7 +233,6 @@
 }
 
 .techPct {
-
   font-size: 22px;
   font-weight: 400;
   color: var(--w-accent);
@@ -291,14 +240,13 @@
 }
 
 .techYears {
-
   font-size: 10px;
   color: var(--w-text-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-/* bar */
+
 .barTrack {
   width: 100%;
   height: 3px;
@@ -310,12 +258,19 @@
 
 .barFill {
   height: 100%;
+  width: 0%;
   background: var(--w-bar-fill);
   border-radius: 2px;
+  transition: width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: width;
 }
 
-/* level badge */
+
+.barFillAnimated {
+  width: var(--bar-pct);
+}
+
+
 .levelBadge {
   display: inline-flex;
   align-items: center;
@@ -323,7 +278,6 @@
   padding: 3px 9px;
   border-radius: var(--w-r-badge);
   background: var(--w-accent-dim);
-
   font-size: 10px;
   font-weight: 700;
   color: var(--w-accent);
@@ -339,7 +293,7 @@
   flex-shrink: 0;
 }
 
-/* tags */
+
 .tagRow {
   display: flex;
   flex-wrap: wrap;
@@ -351,20 +305,17 @@
   padding: 2px 8px;
   background: var(--w-border);
   border-radius: 4px;
-
   font-size: 10px;
   color: var(--w-text-3);
   letter-spacing: 0.04em;
 }
 
-/* ── Interpersonal grid ───────────────────────────────────────────────────── */
 .softGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
-/* ── Soft card ────────────────────────────────────────────────────────────── */
 .softCard {
   position: relative;
   background: var(--w-bg-card);
@@ -384,7 +335,6 @@
   border-color: var(--w-accent-mid);
 }
 
-/* accent top-edge line on hover */
 .softCard::before {
   content: '';
   position: absolute;
@@ -421,7 +371,6 @@
   flex-shrink: 0;
 }
 
-/* SVG ring */
 .ringWrap {
   position: relative;
   width: 56px;
@@ -448,14 +397,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 11px;
   font-weight: 400;
   color: var(--w-accent);
 }
 
 .softName {
-
   font-size: 17px;
   font-weight: 700;
   color: var(--w-text-1);
@@ -463,7 +410,6 @@
 }
 
 .softDesc {
-
   font-size: 13px;
   line-height: 1.65;
   color: var(--w-text-2);
@@ -480,37 +426,17 @@
   padding: 4px 10px;
   background: var(--w-accent-dim);
   border-radius: var(--w-r-pill);
-
   font-size: 11px;
   font-weight: 600;
   color: var(--w-accent);
   letter-spacing: 0.04em;
 }
 
-/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+
 @media (max-width: 900px) {
   .inner {
     padding: 0 24px;
-  }
-
-  .nav {
-    flex-direction: column;
-    border-radius: 16px;
-    width: 100%;
-  }
-
-  .navBtn {
-    min-width: unset;
-    width: 100%;
-    border-radius: 12px;
-  }
-
-  .navPill {
-    display: none;
-  }
-
-  .navBtnActive {
-    background: var(--w-nav-active-bg);
   }
 
   .techGrid,
@@ -519,13 +445,88 @@
   }
 }
 
-@media (max-width: 560px) {
-  .section {
-    padding: 64px 0 80px;
+@media (max-width: 640px) {
+
+  .nav {
+    flex-direction: column;
+    border-radius: 16px;
+    width: 100%;
+    padding: 6px;
+    gap: 2px;
   }
+
+
+  .navPill {
+    display: none;
+  }
+
+
+  .navBtn {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    min-width: unset;
+    width: 100%;
+    border-radius: 11px;
+    padding: 13px 16px;
+  }
+
+
+  .navBtnActive {
+    background: var(--w-nav-active-bg);
+  }
+
+  .navBtnLabel {
+    font-size: 14px;
+  }
+
+  .navBtnSub {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
 
   .techGrid,
   .softGrid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+
+  .techCard {
+    padding: 18px 18px 14px;
+  }
+
+  .techName {
+    font-size: 15px;
+  }
+
+  .techPct {
+    font-size: 20px;
+  }
+
+  .softCard {
+    padding: 20px;
+  }
+
+  .softName {
+    font-size: 16px;
+  }
+
+
+  .nav {
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 400px) {
+  .inner {
+    padding: 0 16px;
+  }
+
+  .techCard,
+  .softCard {
+    border-radius: 14px;
   }
 }

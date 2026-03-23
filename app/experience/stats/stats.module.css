@@ -1,5 +1,13 @@
-.section { padding: 5rem 0; background: var(--dk); }
-.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+.section {
+  padding: 5rem 0;
+  background: var(--dk);
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 
 .headingRow {
   display: flex;
@@ -8,35 +16,55 @@
   margin-bottom: 2.5rem;
   gap: 1rem;
 }
-.pill {
-  display: inline-block; font-family: 'Syne', sans-serif;
-  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--or); background: rgba(249,115,22,.15);
-  border: 1px solid rgba(249,115,22,.3);
-  padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem;
-}
-.title {
-  font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
-  letter-spacing: -1px; color: #fff; margin-bottom: .4rem;
-}
-.title span { color: var(--or); }
-.sub { font-size: 14px; color: #666; }
 
-/* Decorative code chars */
+.pill {
+  display: inline-block;
+  ;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--or);
+  background: rgba(249, 115, 22, .15);
+  border: 1px solid rgba(249, 115, 22, .3);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: .6rem;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #fff;
+  margin-bottom: .4rem;
+}
+
+.title span {
+  color: var(--or);
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+}
+
 .bigNum {
-  font-family: 'Fira Code', monospace; font-size: 72px; font-weight: 600;
-  color: rgba(249,115,22,.08); line-height: 1; flex-shrink: 0;
+  font-size: 72px;
+  font-weight: 600;
+  color: rgba(249, 115, 22, .08);
+  line-height: 1;
+  flex-shrink: 0;
   user-select: none;
 }
 
-/* 2×2 grid */
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 
-/* Each stat card — horizontal layout with icon+num LEFT, label+bar RIGHT */
 .card {
   background: #1a1a1a;
   border: 1px solid #2a2a2a;
@@ -51,45 +79,229 @@
   position: relative;
   overflow: hidden;
 }
+
 .card::before {
   content: '';
-  position: absolute; top: 0; left: 0;
-  width: 4px; height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
   background: linear-gradient(to bottom, var(--or), var(--or-l));
   border-radius: 18px 0 0 18px;
 }
-.card:hover { border-color: rgba(249,115,22,.35); background: #1f1f1f; }
 
-/* Left side */
-.cardLeft { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
-.iconWrap { font-size: 32px; line-height: 1; }
-.numWrap { display: flex; align-items: baseline; gap: 2px; }
+.card:hover {
+  border-color: rgba(249, 115, 22, .35);
+  background: #1f1f1f;
+}
+
+.cardLeft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.iconWrap {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.numWrap {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
 .num {
-  font-family: 'Syne', sans-serif; font-size: 38px; font-weight: 800;
-  color: var(--or); line-height: 1;
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--or);
+  line-height: 1;
 }
-.unit { font-size: 16px; font-weight: 700; color: var(--or-d); }
 
-/* Right side */
-.cardRight { flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.mainLabel { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; }
-.subLabel { font-size: 12px; color: #555; }
+.unit {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--or-d);
+}
 
-/* Progress bar */
+.cardRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mainLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.subLabel {
+  font-size: 12px;
+  color: #555;
+}
+
 .barTrack {
-  height: 6px; background: #2a2a2a; border-radius: 3px;
-  overflow: hidden; width: 100%;
+  height: 6px;
+  background: #2a2a2a;
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
 }
+
 .barFill {
   height: 100%;
   background: linear-gradient(to right, var(--or), var(--or-l));
   border-radius: 3px;
   will-change: width;
 }
-.barLabel { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--or); font-weight: 500; }
+
+.barLabel {
+  font-size: 11px;
+  color: var(--or);
+  font-weight: 500;
+}
 
 @media (max-width: 620px) {
-  .grid { grid-template-columns: 1fr; }
-  .title { font-size: 28px; }
-  .bigNum { display: none; }
+  .title {
+    font-size: 28px;
+  }
+
+  .bigNum {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .headingRow {
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+
+  .card {
+    padding: 1.2rem 1.2rem;
+    gap: 1.2rem;
+    border-radius: 14px;
+  }
+
+  .card::before {
+    border-radius: 14px 0 0 14px;
+  }
+
+
+  .num {
+    font-size: 30px;
+  }
+
+  .unit {
+    font-size: 13px;
+  }
+
+  .iconWrap {
+    font-size: 26px;
+  }
+
+  .mainLabel {
+    font-size: 13px;
+  }
+
+  .subLabel {
+    font-size: 11px;
+  }
+
+  .barLabel {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .cardLeft {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .num {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 620px) {
+
+  .card {
+    transition: border-color .25s, background .25s, transform 0.15s ease;
+  }
+
+  .card:active {
+    transform: scale(0.97);
+    border-color: rgba(249, 115, 22, .5);
+  }
+
+  .barFill {
+    width: 0% !important;
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .barFill.isVisible {
+    width: var(--bar-w) !important;
+  }
+
+
+  .card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease,
+      border-color .25s,
+      background .25s;
+  }
+
+  .card.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card:nth-child(1) {
+    transition-delay: 0s;
+  }
+
+  .card:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+
+  .card:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  .card:nth-child(4) {
+    transition-delay: 0.3s;
+  }
 }

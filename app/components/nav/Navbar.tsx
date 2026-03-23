@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Projects", href: "/projects" },
   { label: "Skills", href: "/skills" },
   { label: "Experience", href: "/experience" },
-   { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 
         // .nav-root {
         //   position: fixed;
@@ -49,7 +49,7 @@ export default function Navbar() {
         //   left: 0;
         //   right: 0;
         //   z-index: 1000;
-        //   font-family: 'Poppins', sans-serif;
+       
         //   padding: 0 1.5rem;
         //   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         // }
@@ -60,7 +60,7 @@ export default function Navbar() {
   right: 0;
   width: 100%;
   z-index: 1000;
-  font-family: 'Poppins', sans-serif;
+
   padding: 0;          /* ← remove the 0 1.5rem, move it to nav-inner */
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -329,13 +329,13 @@ export default function Navbar() {
         ref={menuRef}
       >
         <div className="nav-inner">
-          {/* Logo */}
+         
           <Link href="/" className="nav-logo">
             <span className="nav-logo-first">Doddipalli </span>
             <span className="nav-logo-last">Deepthi</span>
           </Link>
 
-          {/* Desktop Links */}
+        
           <ul className="nav-links" role="list">
             {navLinks.map(({ label, href }) => (
               <li key={label} className="nav-link-item">
@@ -349,15 +349,12 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* Resume Button */}
-          <a href="/resume.pdf" className="nav-resume" target="_blank" rel="noopener noreferrer">
-            <svg width="12" height="13" viewBox="0 0 12 13" fill="none">
-              <path d="M6 1v7.5M6 8.5l-2.5-2.5M6 8.5L8.5 6M1.5 10.5h9" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+        
+          <a href="/resume" className="nav-resume" rel="noopener noreferrer">
+           
             Resume
           </a>
 
-          {/* Hamburger */}
           <button
             className={`nav-hamburger${menuOpen ? " open" : ""}`}
             onClick={() => setMenuOpen((v) => !v)}
@@ -369,7 +366,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Dropdown */}
         {menuOpen && (
           <div className="nav-mobile">
             <ul className="nav-mobile-links">
@@ -388,7 +384,7 @@ export default function Navbar() {
             </ul>
             <div className="nav-mobile-divider" />
             <a
-              href="/resume.pdf"
+              href="/assets/resume.pdf"
               className="nav-mobile-resume"
               target="_blank"
               rel="noopener noreferrer"

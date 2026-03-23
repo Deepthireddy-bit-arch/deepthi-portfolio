@@ -2,7 +2,6 @@
 
 import React from 'react';
 
-// ─── All icons are inline SVGs — no CDN, always works ────────────────────────
 const ICONS: Record<string, React.ReactNode> = {
   React: (
     <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,7 +88,7 @@ Redux: (
       <path d="M8 12v16c0 2.76 5.37 5 12 5s12-2.24 12-5V12" stroke="#336791" strokeWidth="2" fill="none"/>
       <ellipse cx="20" cy="12" rx="12" ry="5" fill="#336791" opacity="0.6"/>
       <path d="M8 20c0 2.76 5.37 5 12 5s12-2.24 12-5" stroke="#336791" strokeWidth="1.5" fill="none" opacity="0.5"/>
-      <text x="20" y="24" textAnchor="middle" fontSize="8" fill="white" fontWeight="bold" fontFamily="sans-serif">PG</text>
+      <text x="20" y="24" textAnchor="middle" fontSize="8" fill="white" fontWeight="bold" >PG</text>
     </svg>
   ),
   MongoDB: (
@@ -222,7 +221,7 @@ function TechCard({ name }: { name: string }) {
         letterSpacing: '0.01em',
         textAlign: 'center',
         whiteSpace: 'nowrap',
-        fontFamily: 'var(--font-display, sans-serif)',
+        
       }}>
         {name}
       </span>
@@ -303,7 +302,6 @@ export default function TechMarquee() {
         }
       `}</style>
 
-      {/* Heading */}
       <div style={{
         maxWidth: '1380px',
         margin: '0 auto 40px',
@@ -316,7 +314,7 @@ export default function TechMarquee() {
           textTransform: 'uppercase',
           color: '#ff6b00',
           marginBottom: '8px',
-          fontFamily: 'var(--font-display, sans-serif)',
+         
         }}>
           // technologies i reach for
         </p>
@@ -326,18 +324,17 @@ export default function TechMarquee() {
           color: '#1a1a2e',
           margin: 0,
           lineHeight: 1.2,
-          fontFamily: 'var(--font-display, sans-serif)',
+         
         }}>
           My Tech Stack
         </h2>
       </div>
 
-      {/* Row 1 — left scroll */}
       <div className="tm-fade-edges" style={{ position: 'relative', marginBottom: '14px' }}>
         <MarqueeRow items={ROW_ONE} direction="left" speed={30} />
       </div>
 
-      {/* Row 2 — right scroll */}
+    
       <div className="tm-fade-edges" style={{ position: 'relative' }}>
         <MarqueeRow items={ROW_TWO} direction="right" speed={26} />
       </div>

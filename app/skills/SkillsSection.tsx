@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
@@ -10,78 +11,57 @@ import {
 } from '../skills/data';
 import { useSkillsAnimation } from '../skills/animations';
 
-// ── Dynamic style import based on theme ─────────────────────────────────────
-// In your app: pass theme="white" or theme="orange" as a prop.
-// The styles object is forwarded down so all sub-components share one import.
-
 interface Props {
   theme?: ThemeVariant;
 }
 
 export default function SkillsSection({ theme = 'white' }: Props) {
-  // ── Lazy load the correct CSS module ──────────────────────────────────────
   const [styles, setStyles] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (theme === 'orange') {
-      import('../skills/Skills.module.css').then((m) =>
-        setStyles(m.default)
-      );
-    } else {
-      import('../skills/Skills.module.css').then((m) =>
-        setStyles(m.default)
-      );
-    }
+    import('../skills/Skills.module.css').then((m) => setStyles(m.default));
   }, [theme]);
 
-  // ── State ──────────────────────────────────────────────────────────────────
-  // Default active = "technical"
   const [activeTab, setActiveTab] = useState<SkillTab>('technical');
-  const [renderTab, setRenderTab] = useState<SkillTab>('technical'); // what's rendered
+  const [renderTab, setRenderTab] = useState<SkillTab>('technical');
 
-  // ── Refs ───────────────────────────────────────────────────────────────────
-  const sectionRef   = useRef<HTMLElement>(null);
-  const headingRef   = useRef<HTMLDivElement>(null);
-  const navRef       = useRef<HTMLDivElement>(null);
-  const pillRef      = useRef<HTMLDivElement>(null);
-  const contentRef   = useRef<HTMLDivElement>(null);
-  const techBtnRef   = useRef<HTMLButtonElement>(null);
-  const softBtnRef   = useRef<HTMLButtonElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const techBtnRef = useRef<HTMLButtonElement>(null);
+  const softBtnRef = useRef<HTMLButtonElement>(null);
 
   const { animateNavSwitch, animateCardsOut, animateCardsIn, animateHeading } =
     useSkillsAnimation();
 
-  // ── Animate heading on mount ───────────────────────────────────────────────
   useEffect(() => {
     if (headingRef.current && Object.keys(styles).length) {
       setTimeout(() => animateHeading(headingRef.current), 100);
     }
   }, [styles, animateHeading]);
 
-  // ── Position pill on mount ─────────────────────────────────────────────────
+
   useEffect(() => {
     const activeBtn =
       activeTab === 'technical' ? techBtnRef.current : softBtnRef.current;
     if (!activeBtn || !pillRef.current) return;
-
-    const btnRect    = activeBtn.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
     const parentRect = activeBtn.parentElement!.getBoundingClientRect();
     pillRef.current.style.width = `${btnRect.width}px`;
-    pillRef.current.style.left  = `${btnRect.left - parentRect.left + 5}px`;
-  }, [styles]); // run after styles load
+    pillRef.current.style.left = `${btnRect.left - parentRect.left + 5}px`;
+  }, [styles]);
 
-  // ── Tab switch ─────────────────────────────────────────────────────────────
   const handleTabChange = useCallback(
     (tab: SkillTab) => {
       if (tab === activeTab) return;
 
       const fromBtn = activeTab === 'technical' ? techBtnRef.current : softBtnRef.current;
-      const toBtn   = tab      === 'technical' ? techBtnRef.current : softBtnRef.current;
+      const toBtn = tab === 'technical' ? techBtnRef.current : softBtnRef.current;
 
-      // 1. Slide pill
       animateNavSwitch(fromBtn, toBtn, pillRef.current);
 
-      // 2. Animate old cards out → swap content → animate new cards in
       animateCardsOut(contentRef.current, () => {
         setRenderTab(tab);
         setActiveTab(tab);
@@ -91,43 +71,25 @@ export default function SkillsSection({ theme = 'white' }: Props) {
     [activeTab, animateNavSwitch, animateCardsOut, animateCardsIn]
   );
 
-  // ── Animate cards in whenever renderTab changes ────────────────────────────
   useEffect(() => {
     if (contentRef.current) {
       setTimeout(() => animateCardsIn(contentRef.current), 50);
     }
-  }, [renderTab]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [renderTab]);
 
-  if (!Object.keys(styles).length) return null; // wait for CSS
+  if (!Object.keys(styles).length) return null;
 
   return (
     <section ref={sectionRef} className={`${styles.section} ${styles.root}`}>
       <div className={styles.inner}>
 
-        {/* ── Heading ────────────────────────────────────────────────────── */}
-        {/* <div ref={headingRef} className={styles.heading}>
-          <span className={styles.headingOverflow}>
-            <span className={styles.headingMain} data-word>
-              My&nbsp;
-              <span className={styles.headingAccent}>Skills</span>
-            </span>
-          </span>
-          <span className={styles.headingOverflow}>
-            <span className={styles.headingSub} data-word>
-              Technical expertise · Interpersonal strengths
-            </span>
-          </span>
-        </div> */}
-
-        {/* ── Nav ────────────────────────────────────────────────────────── */}
+      
         <nav ref={navRef} className={styles.nav} aria-label="Skills categories">
-          {/* Sliding pill — positioned/sized by JS */}
           <div ref={pillRef} className={styles.navPill} aria-hidden="true" />
 
           {NAV_TABS.map((tab) => {
             const isActive = tab.id === activeTab;
-            const btnRef   = tab.id === 'technical' ? techBtnRef : softBtnRef;
-
+            const btnRef = tab.id === 'technical' ? techBtnRef : softBtnRef;
             return (
               <button
                 key={tab.id}
@@ -146,7 +108,7 @@ export default function SkillsSection({ theme = 'white' }: Props) {
           })}
         </nav>
 
-        {/* ── Content ────────────────────────────────────────────────────── */}
+     
         <div ref={contentRef} className={styles.content}>
           {renderTab === 'technical' ? (
             <TechGrid skills={TECHNICAL_SKILLS} styles={styles} />
@@ -160,9 +122,7 @@ export default function SkillsSection({ theme = 'white' }: Props) {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TechGrid
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 function TechGrid({
   skills,
   styles,
@@ -179,7 +139,6 @@ function TechGrid({
   );
 }
 
-/* ── TechCard ───────────────────────────────────────────────────────────── */
 function TechCard({
   skill,
   index,
@@ -190,8 +149,9 @@ function TechCard({
   styles: Record<string, string>;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const barRef  = useRef<HTMLDivElement>(null);
-  const { animateBar, bindCardTilt } = useSkillsAnimation();
+  const barRef = useRef<HTMLDivElement>(null);
+  const { bindCardTilt } = useSkillsAnimation();
+
 
   useEffect(() => {
     const cleanup = bindCardTilt(cardRef.current);
@@ -199,10 +159,13 @@ function TechCard({
   }, [bindCardTilt]);
 
   useEffect(() => {
-    if (barRef.current) {
-      animateBar(barRef.current, skill.percentage, index * 0.05);
-    }
-  }, [skill.percentage, index, animateBar]);
+    if (!barRef.current) return;
+
+    const id = setTimeout(() => {
+      barRef.current?.classList.add(styles.barFillAnimated);
+    }, index * 50 + 80);
+    return () => clearTimeout(id);
+  }, [index, styles.barFillAnimated]);
 
   const { label } = LEVEL_CONFIG[skill.level];
 
@@ -219,18 +182,20 @@ function TechCard({
         </div>
       </div>
 
-      {/* Progress bar */}
+
       <div className={styles.barTrack}>
-        <div ref={barRef} className={styles.barFill} style={{ width: 0 }} />
+        <div
+          ref={barRef}
+          className={styles.barFill}
+          style={{ '--bar-pct': `${skill.percentage}%` } as React.CSSProperties}
+        />
       </div>
 
-      {/* Footer */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span className={styles.levelBadge}>
           <span className={styles.levelDot} />
           {label}
         </span>
-
         {skill.tags && (
           <div className={styles.tagRow}>
             {skill.tags.slice(0, 2).map((t) => (
@@ -243,9 +208,6 @@ function TechCard({
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SoftGrid
-   ═══════════════════════════════════════════════════════════════════════════ */
 function SoftGrid({
   skills,
   styles,
@@ -262,7 +224,6 @@ function SoftGrid({
   );
 }
 
-/* ── SoftCard ───────────────────────────────────────────────────────────── */
 function SoftCard({
   skill,
   index,
@@ -275,10 +236,10 @@ function SoftCard({
   const ringRef = useRef<SVGCircleElement>(null);
   const { animateRing } = useSkillsAnimation();
 
-  const r            = 24;
-  const size         = 56;
-  const cx           = size / 2;
-  const cy           = size / 2;
+  const r = 24;
+  const size = 56;
+  const cx = size / 2;
+  const cy = size / 2;
 
   useEffect(() => {
     if (ringRef.current) {
@@ -289,30 +250,11 @@ function SoftCard({
   return (
     <div className={styles.softCard} data-skill-card>
       <div className={styles.softCardHead}>
-        {/* Icon */}
         <div className={styles.softIcon}>{skill.icon}</div>
-
-        {/* Radial ring */}
         <div className={styles.ringWrap}>
           <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
-            {/* Track ring */}
-            <circle
-              cx={cx}
-              cy={cy}
-              r={r}
-              fill="none"
-              strokeWidth="3"
-              className={styles.ringTrack}
-            />
-            {/* Fill ring — animated by GSAP */}
-            <circle
-              ref={ringRef}
-              cx={cx}
-              cy={cy}
-              r={r}
-              strokeWidth="3"
-              className={styles.ringFill}
-            />
+            <circle cx={cx} cy={cy} r={r} fill="none" strokeWidth="3" className={styles.ringTrack} />
+            <circle ref={ringRef} cx={cx} cy={cy} r={r} strokeWidth="3" className={styles.ringFill} />
           </svg>
           <span className={styles.ringLabel}>{skill.strength}</span>
         </div>

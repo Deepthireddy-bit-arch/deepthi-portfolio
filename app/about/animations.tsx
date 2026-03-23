@@ -7,12 +7,10 @@ export function useAboutAnimations(ready: boolean) {
     let killed = false;
 
     (async () => {
-      const { gsap }         = await import('gsap');
+      const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
       if (killed) return;
-
-      // ── 1. Hero image parallax ──────────────────────────────────────────
       const heroImg = document.querySelector<HTMLElement>('[data-hero-img]');
       if (heroImg) {
         gsap.to(heroImg, {
@@ -21,16 +19,12 @@ export function useAboutAnimations(ready: boolean) {
           scrollTrigger: { trigger: heroImg, start: 'top top', end: 'bottom top', scrub: true },
         });
       }
-
-      // ── 2. Hero text fade-up on load ────────────────────────────────────
       const heroTexts = document.querySelectorAll('[data-hero-text]');
       gsap.fromTo(
         heroTexts,
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
       );
-
-      // ── 3. Section headings — slide up on scroll ────────────────────────
       document.querySelectorAll<HTMLElement>('[data-reveal-heading]').forEach((el) => {
         gsap.fromTo(
           el,
@@ -41,8 +35,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       });
-
-      // ── 4. Fact items — stagger in ─────────────────────────────────────
       const facts = document.querySelectorAll('[data-fact-item]');
       if (facts.length) {
         gsap.fromTo(
@@ -54,8 +46,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       }
-
-      // ── 5. Backstory paragraphs — line by line reveal ──────────────────
       document.querySelectorAll<HTMLElement>('[data-story-para]').forEach((el, i) => {
         gsap.fromTo(
           el,
@@ -66,8 +56,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       });
-
-      // ── 6. Life moment cards — scale up ────────────────────────────────
       document.querySelectorAll<HTMLElement>('[data-moment-card]').forEach((el, i) => {
         gsap.fromTo(
           el,
@@ -79,8 +67,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       });
-
-      // ── 7. Tech stack items — appear with stagger ───────────────────────
       const techItems = document.querySelectorAll('[data-tech-item]');
       if (techItems.length) {
         gsap.fromTo(
@@ -92,8 +78,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       }
-
-      // ── 8. Passions block — wipe from left ──────────────────────────────
       const passionsText = document.querySelector('[data-passions-text]');
       if (passionsText) {
         gsap.fromTo(
@@ -105,8 +89,6 @@ export function useAboutAnimations(ready: boolean) {
           }
         );
       }
-
-      // ── 9. Horizontal scroll ticker (continuous) ────────────────────────
       const ticker = document.querySelector<HTMLElement>('[data-ticker-inner]');
       if (ticker) {
         gsap.to(ticker, {
@@ -116,8 +98,6 @@ export function useAboutAnimations(ready: boolean) {
           repeat: -1,
         });
       }
-
-      // ── 10. Currently-building line draw ───────────────────────────────
       const buildingLine = document.querySelector<SVGLineElement>('[data-building-line]');
       if (buildingLine) {
         const len = buildingLine.getTotalLength?.() ?? 300;
@@ -134,7 +114,7 @@ export function useAboutAnimations(ready: boolean) {
 
     return () => {
       killed = true;
-      // ScrollTrigger.getAll().forEach(st => st.kill());
+
     };
   }, [ready]);
 }

@@ -1,29 +1,61 @@
-.section { padding: 5rem 0; background: var(--bg); }
-.container { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
-.heading { text-align: center; margin-bottom: 2.5rem; }
-.pill { display: inline-block; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--or); background: var(--or-l); padding: 4px 14px; border-radius: 100px; margin-bottom: .6rem; }
-.title { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--dk); margin-bottom: .4rem; }
-.title span { color: var(--or); }
-.sub { font-size: 14px; color: var(--g3); }
+.section {
+  padding: 2rem 0;
+  background: var(--bg);
+}
 
-/* Layout: phones LEFT (wider), cards RIGHT */
+.container {
+  padding: 0 1.5rem;
+}
+.heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.pill {
+  display: inline-block;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--or);
+  background: var(--or-l);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: .6rem;
+}
+
+.title {
+
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--dk);
+  margin-bottom: .4rem;
+}
+
+.title span { color: var(--or); }
+
+.sub {
+  font-size: 14px;
+  color: var(--g3);
+}
 .layout {
   display: grid;
-  grid-template-columns: 480px 1fr;   /* WIDER phones column */
+  grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
   align-items: flex-start;
   margin-bottom: 1.8rem;
 }
-
-/* ── PHONE PANELS — wider & taller ── */
 .phones {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   align-items: flex-start;
+  width: 100%;
 }
 
 .phone {
-  flex: 1;                             /* equal width inside the wider column */
   border-radius: 22px;
   overflow: hidden;
   border: 1.5px solid var(--g2);
@@ -31,8 +63,13 @@
   box-shadow: 0 10px 36px rgba(0,0,0,.1);
   position: relative;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
   will-change: transform;
-  min-height: 280px;
+}
+
+.phones > .phone:nth-child(2) {
+  margin-top: 32px;
 }
 
 .phoneTopBar {
@@ -42,28 +79,53 @@
   flex-shrink: 0;
 }
 
-.phone img {
-  width: 100%; height: 260px;
-  object-fit: cover; object-position: top;
+.phoneImgWrap {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+}
+
+.phoneImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
   transition: transform .4s ease;
 }
-.phone:hover img { transform: scale(1.04); }
+
+.phone:hover .phoneImgWrap img {
+  transform: scale(1.04);
+}
 
 .phoneOverlay {
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   background: rgba(249,115,22,.74);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity .25s; border-radius: 22px;
-}
-.phone:hover .phoneOverlay { opacity: 1; }
-.phoneOverlay span {
-  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
-  color: #fff; letter-spacing: .07em;
-  border: 1.5px solid rgba(255,255,255,.6); padding: 6px 14px; border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .25s;
+  border-radius: 22px;
 }
 
-/* ── CONTRIBUTION CARDS — no bullets ── */
+.phone:hover .phoneOverlay { opacity: 1; }
+
+.phoneOverlay span {
+  
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .07em;
+  border: 1.5px solid rgba(255,255,255,.6);
+  padding: 6px 14px;
+  border-radius: 100px;
+}
 .cards {
   display: flex;
   flex-direction: column;
@@ -84,45 +146,157 @@
   position: relative;
   overflow: hidden;
 }
+
 .card:hover {
   border-color: var(--or-l);
   box-shadow: 0 4px 20px rgba(249,115,22,.08);
 }
 
-/* Tag chip */
 .tag {
-  font-family: 'Fira Code', monospace; font-size: 11px; font-weight: 600;
-  padding: 3px 10px; border-radius: 6px; border: 1px solid transparent;
-  white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-/* Text block — NO list, NO bullets */
 .cardText { flex: 1; }
-.cardTitle { font-size: 13.5px; font-weight: 700; color: var(--dk); margin-bottom: 4px; line-height: 1.4; }
-.cardDesc  { font-size: 12px; color: var(--g3); line-height: 1.6; }
 
-/* Orange right-edge accent */
+.cardTitle {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--dk);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.cardDesc {
+  font-size: 12px;
+  color: var(--g3);
+  line-height: 1.6;
+}
+
 .cardAccent {
-  position: absolute; top: 0; right: 0;
+  position: absolute;
+  top: 0; right: 0;
   width: 3px; height: 100%;
   background: linear-gradient(to bottom, var(--or), var(--or-l));
-  opacity: 0; transition: opacity .25s;
+  opacity: 0;
+  transition: opacity .25s;
 }
+
 .card:hover .cardAccent { opacity: 1; }
 
-/* Banner */
 .banner {
   background: linear-gradient(135deg, #FFF7ED, #FFFBF5);
-  border: 1.5px solid var(--or-l); border-radius: 14px;
-  padding: 1.1rem 1.3rem; display: flex; gap: 12px; align-items: center;
+  border: 1.5px solid var(--or-l);
+  border-radius: 14px;
+  padding: 1.1rem 1.3rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
+
 .bannerIcon { font-size: 22px; flex-shrink: 0; }
-.bannerText { font-size: 13.5px; line-height: 1.65; color: #7C4A10; }
-.bannerText strong { font-weight: 700; color: var(--or-d); }
+
+.bannerText {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #7C4A10;
+}
+
+.bannerText strong {
+  font-weight: 700;
+  color: var(--or-d);
+}
 
 @media (max-width: 820px) {
-  .layout { grid-template-columns: 1fr; }
-  .phones { justify-content: center; }
-  .phone img { height: 200px; }
   .title { font-size: 28px; }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .phones {
+    max-width: 340px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .phones > .phone:nth-child(2) { margin-top: 0; }
+
+  
+  .card { padding: 0.9rem 1rem; border-radius: 12px; }
+  .cardTitle { font-size: 13px; }
+  .cardDesc  { font-size: 11.5px; }
+  .tag       { font-size: 10.5px; padding: 3px 9px; }
+}
+
+@media (max-width: 540px) {
+  .container { padding: 0 1rem; }
+
+  .phones {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 260px;
+    gap: 8px;
+  }
+  .phones > .phone:nth-child(3) { display: none; }
+
+  .cardTitle { font-size: 12.5px; }
+  .cardDesc  { font-size: 11px; }
+}
+@media (max-width: 820px) {
+  
+  .phone {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .phone:active {
+    transform: scale(0.96);
+    box-shadow: 0 4px 16px rgba(249,115,22,0.2);
+  }
+  .phone:active .phoneOverlay { opacity: 1; }
+
+ 
+  .card {
+    transition: border-color .2s, box-shadow .2s, transform 0.15s ease;
+  }
+  .card:active {
+    transform: scale(0.98) translateX(3px);
+    border-color: var(--or-l);
+    box-shadow: 0 4px 20px rgba(249,115,22,.10);
+  }
+  .card:active .cardAccent { opacity: 1; }
+
+  .card {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.4s ease, transform 0.4s ease, border-color .2s, box-shadow .2s;
+  }
+  .card.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+ 
+  .card:nth-child(1) { transition-delay: 0s;    }
+  .card:nth-child(2) { transition-delay: 0.08s; }
+  .card:nth-child(3) { transition-delay: 0.16s; }
+  .card:nth-child(4) { transition-delay: 0.24s; }
+
+ 
+  .phone {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.45s ease, transform 0.45s ease, box-shadow 0.15s ease;
+  }
+  .phone.isVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .phone:nth-child(1) { transition-delay: 0s;    }
+  .phone:nth-child(2) { transition-delay: 0.1s;  }
+  .phone:nth-child(3) { transition-delay: 0.2s;  }
 }

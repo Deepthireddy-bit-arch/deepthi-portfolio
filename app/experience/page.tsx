@@ -11,14 +11,17 @@ import ToolsSection from "./tools/ToolsSection";
 export default function Page() {
   return (
     <>
-      <HeroSection />
-      <CompanyDetailsSection />
-      <ToolsSection />
-      <ProjectsSection />
-      <StatsSection />
-      <ContributionsSection />
-      <GallerySection />
-      <FooterSection />
+      <main className="section-container">
+        <HeroSection />
+        <CompanyDetailsSection />
+        <ToolsSection />
+        <ProjectsSection />
+        <ContributionsSection />
+        <GallerySection />
+        <FooterSection />
+
+      </main>
+
     </>
   )
 }

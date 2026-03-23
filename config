@@ -1,0 +1,9 @@
+Host github-bitarch
+  HostName github.com
+  User git
+  IdentityFile C:/Users/Deepthi/.ssh/id_ed25519
+
+Host github-web
+  HostName github.com
+  User git
+  IdentityFile C:/Users/Deepthi/.ssh/id_ed25519_personal

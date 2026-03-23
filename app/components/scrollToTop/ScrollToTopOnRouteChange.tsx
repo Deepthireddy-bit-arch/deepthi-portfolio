@@ -9,7 +9,7 @@ export default function ScrollToTopOnRouteChange() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // or "auto" if you want instant
+      behavior: "smooth",
     });
   }, [pathname]);
 

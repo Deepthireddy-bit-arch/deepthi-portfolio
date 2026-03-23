@@ -15,69 +15,67 @@ interface MosaicCell {
 }
 
 const CELLS: MosaicCell[] = [
-  { row: 1, image: '/images/learnexa.png',    label: 'Watch Demo',    category: 'web',       isVideo: true },
-  { row: 1, image: '/images/app-screens.png', label: 'Task App',      category: 'mobile'    },
-  { row: 1, image: '/images/learnexa.png',    label: 'Dashboard',     category: 'dashboard', textOverlay: 'stories\nthat sell' },
-  { row: 1, image: '/images/app-screens.png', label: 'Loan Portal',   category: 'fintech'   },
-  { row: 1, image: '/images/learnexa.png',    label: 'Quiz Platform', category: 'web'       },
-  { row: 2, image: '/images/app-screens.png', label: 'IoT UI',        category: 'web',       spanClass: 'spanSm' },
-  { row: 2, image: '/images/learnexa.png',    label: 'Mobile App',    category: 'mobile',    spanClass: 'spanMd' },
-  { row: 2, image: '/images/app-screens.png', label: 'Happiness App', category: 'mobile',    spanClass: 'spanLg' },
-  { row: 2, image: '/images/learnexa.png',    label: 'Announcement',  category: 'web',       spanClass: 'spanXs',
-    textOverlay: "WE'RE\nHAVING A\nBABY" },
+  { row: 1, image: '/assets/images/galleryimagefive.jpeg', label: 'Super Sports', category: 'web' },
+  { row: 1, image: '/assets/images/galleryimagethree.png', label: 'MGR', category: 'mobile' },
+  { row: 1, image: 'assets/images/galleryimagesix.png', label: 'CollegeFest', category: 'dashboard', textOverlay: 'CollegeFest' },
+
+  { row: 1, image: '/assets/images/galleryimagefour.png', label: 'MGR', category: 'web' },
+  { row: 2, image: '/assets/images/gallerytwo.png', label: 'Netflix Clone', category: 'web', spanClass: 'spanXxs' },
+
+  { row: 2, image: '/assets/images/galleryone.png', label: 'LMS GURU', category: 'web', spanClass: 'spanXxs' },
+
 ]
 
 const FILTERS: { key: FilterKey; label: string }[] = [
-  { key: 'all',       label: 'All'       },
-  { key: 'web',       label: 'Web App'   },
-  { key: 'mobile',    label: 'Mobile'    },
+  { key: 'all', label: 'All' },
+  { key: 'web', label: 'Web App' },
+  { key: 'mobile', label: 'Mobile' },
   { key: 'dashboard', label: 'Dashboard' },
-  { key: 'fintech',   label: 'Fintech'   },
+
 ]
 
 export default function GallerySection() {
   const ref = useRef<HTMLElement>(null)
   const [filter, setFilter] = useState<FilterKey>('all')
 
-  // ── GSAP animations (desktop) ──────────────────────────────────────────────
+
   useEffect(() => {
     let ctx: any
-    ;(async () => {
-      const { gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          ['.g-pill', '.g-title', '.g-sub'],
-          { opacity: 0, y: -18 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-            scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } }
-        )
-        gsap.fromTo('.g-filter', { opacity: 0, scale: 0.85 }, {
-          opacity: 1, scale: 1, duration: 0.4, stagger: 0.07,
-          ease: 'back.out(1.4)', delay: 0.2,
-          scrollTrigger: { trigger: ref.current, start: 'top 83%', once: true },
-        })
-        gsap.fromTo('.mosaic-cell', { opacity: 0, scale: 0.93 }, {
-          opacity: 1, scale: 1, duration: 0.55,
-          stagger: { amount: 0.7, from: 'start' },
-          ease: 'power3.out', delay: 0.15,
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
-        })
-        document.querySelectorAll<HTMLElement>('.mosaic-cell').forEach(el => {
-          const img = el.querySelector<HTMLImageElement>('img')
-          if (!img) return
-          el.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.07, duration: 0.45, ease: 'power2.out' }))
-          el.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.inOut' }))
-        })
-      }, ref)
-    })()
+      ; (async () => {
+        const { gsap } = await import('gsap')
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+        gsap.registerPlugin(ScrollTrigger)
+        ctx = gsap.context(() => {
+          gsap.fromTo(
+            ['.g-pill', '.g-title', '.g-sub'],
+            { opacity: 0, y: -18 },
+            {
+              opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+              scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
+            }
+          )
+          gsap.fromTo('.g-filter', { opacity: 0, scale: 0.85 }, {
+            opacity: 1, scale: 1, duration: 0.4, stagger: 0.07,
+            ease: 'back.out(1.4)', delay: 0.2,
+            scrollTrigger: { trigger: ref.current, start: 'top 83%', once: true },
+          })
+          gsap.fromTo('.mosaic-cell', { opacity: 0, scale: 0.93 }, {
+            opacity: 1, scale: 1, duration: 0.55,
+            stagger: { amount: 0.7, from: 'start' },
+            ease: 'power3.out', delay: 0.15,
+            scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
+          })
+          document.querySelectorAll<HTMLElement>('.mosaic-cell').forEach(el => {
+            const img = el.querySelector<HTMLImageElement>('img')
+            if (!img) return
+            el.addEventListener('mouseenter', () => gsap.to(img, { scale: 1.07, duration: 0.45, ease: 'power2.out' }))
+            el.addEventListener('mouseleave', () => gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.inOut' }))
+          })
+        }, ref)
+      })()
     return () => ctx?.revert()
   }, [])
 
-  // ── Mobile: IntersectionObserver adds .isVisible to each cell ─────────────
-  // CSS handles the staggered fade-up via transition-delay on nth-child.
-  // GSAP is not used on mobile — no heavy animation library needed.
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 720px)').matches
     if (!isMobile) return
@@ -99,7 +97,7 @@ export default function GallerySection() {
 
     cells.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [filter]) // re-observe when filter changes
+  }, [filter])
 
   const row1 = CELLS.filter(c => c.row === 1)
   const row2 = CELLS.filter(c => c.row === 2)
@@ -129,7 +127,7 @@ export default function GallerySection() {
 
         <div className={styles.mosaic}>
 
-          {/* ROW 1: 5 equal */}
+
           <div className={styles.row1}>
             {row1.map((cell, i) => (
               <div
@@ -152,7 +150,7 @@ export default function GallerySection() {
             ))}
           </div>
 
-          {/* ROW 2: 4 cells uneven */}
+
           <div className={styles.row2}>
             {row2.map((cell, i) => (
               <div

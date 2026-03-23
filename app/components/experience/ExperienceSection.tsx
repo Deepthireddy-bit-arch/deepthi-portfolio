@@ -14,7 +14,7 @@ export default function ExperienceSection({ className }: ExperienceSectionProps)
       aria-labelledby="experience-title"
     >
       <div className={styles.container}>
-        {/* Header */}
+
         <header className={styles.header}>
           <p className={styles.eyebrow}>Work History</p>
           <h2 id="experience-title" className={styles.title}>
@@ -22,7 +22,6 @@ export default function ExperienceSection({ className }: ExperienceSectionProps)
           </h2>
         </header>
 
-        {/* Experience rows — each splits into timeline + gallery */}
         {experienceData.map((item) => (
           <ExperienceCard key={item.id} item={item} />
         ))}

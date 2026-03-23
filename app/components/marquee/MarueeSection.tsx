@@ -11,17 +11,16 @@ const MARQUEE_ITEMS = [
 
 
 
-/* ─── Component ─── */
 export default function MarueeSection() {
-  const footerRef   = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
   return (
     <footer ref={footerRef} className={styles.footer}>
       <div className={styles.slash} aria-hidden />
 
-      {/* ── Scrolling marquee ── */}
+
       <div className={styles.marqueeWrap} aria-hidden>
         <div className={styles.marqueeTrack}>
-          {/* doubled for seamless loop */}
+
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
             <span key={i} className={styles.marqueeItem}>
               {item}
@@ -31,7 +30,7 @@ export default function MarueeSection() {
         </div>
       </div>
 
-     
+
     </footer>
   );
 }

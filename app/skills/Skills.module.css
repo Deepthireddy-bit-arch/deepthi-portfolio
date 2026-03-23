@@ -1,10 +1,3 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   SkillsSection — WHITE THEME
-   Font stack: "Clash Display" (display) + "Satoshi" (body) + "JetBrains Mono"
-   Load via: https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── CSS custom properties ────────────────────────────────────────────────── */
 .root {
   --w-bg: #ffffff;
   --w-bg-nav: #f0ede6;
@@ -42,7 +35,7 @@
   --w-r-badge: 6px;
 }
 
-/* ── Section wrapper ──────────────────────────────────────────────────────── */
+
 .section {
   position: relative;
   margin-bottom: 40px;
@@ -68,7 +61,6 @@
   margin: 0 auto;
 }
 
-/* ── Section heading ──────────────────────────────────────────────────────── */
 .heading {
   margin-bottom: 52px;
   overflow: hidden;
@@ -103,7 +95,7 @@
   text-transform: uppercase;
 }
 
-/* ── Nav toggle ───────────────────────────────────────────────────────────── */
+
 .nav {
   position: relative;
   display: flex;
@@ -175,19 +167,16 @@
   color: var(--w-text-1);
 }
 
-/* ── Content container ────────────────────────────────────────────────────── */
 .content {
   min-height: 420px;
 }
 
-/* ── Technical grid ───────────────────────────────────────────────────────── */
 .techGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 18px;
 }
 
-/* ── Tech card ────────────────────────────────────────────────────────────── */
 .techCard {
   background: var(--w-bg-card);
   border: 1px solid var(--w-border-card);
@@ -257,24 +246,7 @@
   letter-spacing: 0.08em;
 }
 
-/* ── Progress bar ─────────────────────────────────────────────────────────── */
-/*
-  FIX: We no longer use GSAP to animate `width` directly.
-  Instead:
-    1. .barFill starts at width: 0
-    2. JS adds .barFillAnimated after a paint frame
-    3. .barFillAnimated sets width: var(--bar-pct) — triggering the CSS transition
 
-  In your TSX, set the custom property inline:
-    <div
-      ref={barRef}
-      className={`${styles.barFill}`}
-      style={{ '--bar-pct': `${skill.percentage}%` } as React.CSSProperties}
-    />
-
-  Then in useEffect:
-    setTimeout(() => barRef.current?.classList.add(styles.barFillAnimated), index * 50 + 80);
-*/
 .barTrack {
   width: 100%;
   height: 3px;
@@ -286,19 +258,19 @@
 
 .barFill {
   height: 100%;
-  width: 0%;                                         /* starts empty */
+  width: 0%;
   background: var(--w-bar-fill);
   border-radius: 2px;
   transition: width 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: width;
 }
 
-/* JS adds this class to trigger the transition */
+
 .barFillAnimated {
-  width: var(--bar-pct);                             /* reads the inline custom property */
+  width: var(--bar-pct);
 }
 
-/* ── Level badge ──────────────────────────────────────────────────────────── */
+
 .levelBadge {
   display: inline-flex;
   align-items: center;
@@ -321,7 +293,7 @@
   flex-shrink: 0;
 }
 
-/* ── Tags ─────────────────────────────────────────────────────────────────── */
+
 .tagRow {
   display: flex;
   flex-wrap: wrap;
@@ -338,14 +310,12 @@
   letter-spacing: 0.04em;
 }
 
-/* ── Interpersonal grid ───────────────────────────────────────────────────── */
 .softGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
-/* ── Soft card ────────────────────────────────────────────────────────────── */
 .softCard {
   position: relative;
   background: var(--w-bg-card);
@@ -462,9 +432,7 @@
   letter-spacing: 0.04em;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE — MOBILE
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 @media (max-width: 900px) {
   .inner {
@@ -477,9 +445,8 @@
   }
 }
 
-/* ── Mobile: 640px and below ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  /* Nav becomes a vertical card-style switcher */
+
   .nav {
     flex-direction: column;
     border-radius: 16px;
@@ -488,12 +455,12 @@
     gap: 2px;
   }
 
-  /* Hide the sliding pill on mobile — active btn gets its own bg */
+
   .navPill {
     display: none;
   }
 
-  /* Full-width horizontal button layout for mobile */
+
   .navBtn {
     flex-direction: row;
     justify-content: flex-start;
@@ -505,7 +472,7 @@
     padding: 13px 16px;
   }
 
-  /* Active state uses the dark background directly on the button */
+
   .navBtnActive {
     background: var(--w-nav-active-bg);
   }
@@ -519,14 +486,14 @@
     letter-spacing: 0.04em;
   }
 
-  /* Single column cards */
+
   .techGrid,
   .softGrid {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  /* Slightly tighter card padding on mobile */
+
   .techCard {
     padding: 18px 18px 14px;
   }
@@ -547,7 +514,7 @@
     font-size: 16px;
   }
 
-  /* Nav margin */
+
   .nav {
     margin-bottom: 36px;
   }

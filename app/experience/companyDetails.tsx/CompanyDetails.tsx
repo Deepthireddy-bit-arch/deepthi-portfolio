@@ -42,11 +42,11 @@ const COMPANIES: Company[] = [
       'Aim Window is a growing product startup building web applications for business clients. I joined as a frontend developer working closely with the backend team — consuming REST APIs, translating Figma designs into pixel-perfect React interfaces, and owning the UI end-to-end.',
     website: 'veritas.com',
     images: [
-      { src: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600&q=80', label: 'Dashboard' },
-      { src: 'https://images.unsplash.com/photo-1603969409447-ba86143a03f6?w=400&q=80', label: 'Components' },
-      { src: 'https://images.unsplash.com/photo-1542744094-24638eff58bb?w=400&q=80', label: 'Responsive' },
-      { src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&q=80', label: 'Team' },
-      { src: 'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?w=400&q=80', label: 'Codebase' },
+      { src: '/assets/images/snapshot1.svg', label: 'Dashboard' },
+      { src: '/assets/images/aimsnapshottwo.png', label: 'Team Leads' },
+      { src: '/assets/images/aimsnapshotthree.png', label: 'Responsive' },
+      { src: '/assets/images/aimsnapshotsix.png', label: 'Team' },
+      { src: '/assets/images/aimsnapshotfour.png', label: 'Codebase' },
     ],
     stack: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Redux', 'CSS', 'REST APIs'],
     timeline: [
@@ -83,40 +83,38 @@ const COMPANIES: Company[] = [
 ]
 
 export default function CompanyDetailsSection() {
-  const ref     = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
   const company = COMPANIES[active]
-
-  // ── GSAP animations (desktop) ──────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
-    ;(async () => {
-      const { gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          ['.cd-pill', '.cd-main-title', '.cd-main-sub'],
-          { opacity: 0, y: -20 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-            scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true } }
-        )
-        gsap.fromTo(
-          '.co-tab',
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: 'back.out(1.4)',
-            scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true } }
-        )
-        animateIn()
-      }, ref)
-    })()
+      ; (async () => {
+        const { gsap } = await import('gsap')
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+        gsap.registerPlugin(ScrollTrigger)
+        ctx = gsap.context(() => {
+          gsap.fromTo(
+            ['.cd-pill', '.cd-main-title', '.cd-main-sub'],
+            { opacity: 0, y: -20 },
+            {
+              opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+              scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true }
+            }
+          )
+          gsap.fromTo(
+            '.co-tab',
+            { opacity: 0, y: 16 },
+            {
+              opacity: 1, y: 0, duration: 0.4, stagger: 0.09, ease: 'back.out(1.4)',
+              scrollTrigger: { trigger: ref.current, start: 'top 82%', once: true }
+            }
+          )
+          animateIn()
+        }, ref)
+      })()
     return () => ctx?.revert()
   }, [])
-
-  // ── Mobile: IntersectionObserver fade-up for the panel ────────────────────
-  // CSS handles the actual transition (.panel → .panel.isVisible).
-  // This just adds/removes the class when the panel enters the viewport.
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 760px)').matches
     if (!isMobile || !panelRef.current) return
@@ -125,14 +123,14 @@ export default function CompanyDetailsSection() {
       ([entry]) => {
         if (entry.isIntersecting) {
           panelRef.current?.classList.add(styles.isVisible)
-          observer.disconnect() // once only
+          observer.disconnect()
         }
       },
       { threshold: 0.12 }
     )
     observer.observe(panelRef.current)
     return () => observer.disconnect()
-  }, [active]) // re-run when active company changes
+  }, [active])
 
   const animateIn = async () => {
     const { gsap } = await import('gsap')
@@ -143,7 +141,7 @@ export default function CompanyDetailsSection() {
 
   const handleSwitch = async (i: number) => {
     const { gsap } = await import('gsap')
-    // reset isVisible so the observer can re-trigger for the new panel
+
     panelRef.current?.classList.remove(styles.isVisible)
     gsap.to('.cd-panel', {
       opacity: 0, y: 8, duration: 0.18, ease: 'power2.in',
@@ -155,13 +153,13 @@ export default function CompanyDetailsSection() {
     <section ref={ref} className={styles.section} id="company">
       <div className={styles.container}>
 
-        {/* Panel */}
+
         <div ref={panelRef} className={`cd-panel ${styles.panel}`}>
 
-          {/* Background monogram */}
+
           <div className={styles.bgMono} style={{ color: company.accentColor }}>{company.logo}</div>
 
-          {/* Top row: name + logo */}
+
           <div className={styles.topRow}>
             <div className={styles.coIdentity}>
               <div className={styles.eyebrow} style={{ color: company.accentColor }}>
@@ -188,13 +186,12 @@ export default function CompanyDetailsSection() {
             </div>
           </div>
 
-          {/* Gradient HR */}
           <div
             className={styles.hr}
             style={{ background: `linear-gradient(90deg,${company.accentColor} 0%,${company.accentColor}55 30%,#ede9e4 80%,transparent 100%)` }}
           />
 
-          {/* About */}
+
           <div className={styles.aboutWrap}>
             <div className={styles.sectionLabel}>About</div>
             <p className={styles.aboutText} style={{ borderLeftColor: company.accentColor + '66' }}>
@@ -202,7 +199,7 @@ export default function CompanyDetailsSection() {
             </p>
           </div>
 
-          {/* Image strip */}
+
           <div className={styles.sectionLabel}>Work snapshots</div>
           <div className={styles.imgStrip}>
             <div className={`cd-img-item ${styles.imgMain}`}>
@@ -230,7 +227,7 @@ export default function CompanyDetailsSection() {
             </div>
           </div>
 
-          {/* Stack */}
+
           <div className={styles.stackWrap}>
             <div className={styles.sectionLabel}>Technologies</div>
             <div className={styles.stackGrid}>
@@ -246,7 +243,6 @@ export default function CompanyDetailsSection() {
             </div>
           </div>
 
-          {/* Footer */}
           <div className={styles.footer}>
             <a href={`https://${company.website}`} className={styles.ftLink} style={{ color: company.accentColor }} target="_blank" rel="noopener noreferrer">
               ↗ {company.website}

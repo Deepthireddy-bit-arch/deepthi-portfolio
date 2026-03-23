@@ -1,4 +1,4 @@
-// types/projects.types.ts
+
 
 export type ProjectType = "professional" | "personal";
 export type TeamType    = "individual" | "team";

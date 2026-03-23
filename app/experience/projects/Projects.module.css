@@ -1,12 +1,34 @@
-.section { padding: 2rem 0;  }
-.container { width: 100%; padding: 0 1.5rem; }
+.section {
+  padding: 2rem 0;
+}
 
-.heading { text-align: center; margin-bottom: 2.5rem; }
-.title { font-size: 36px; font-weight: 800; letter-spacing: -1px; color: var(--dk); margin-bottom: .4rem; }
-.title span { color: var(--or); }
-.sub { font-size: 14px; color: var(--g3); }
+.container {
+  width: 100%;
+  padding: 0 1.5rem;
+}
 
-/* 6 cards in one single row */
+.heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--dk);
+  margin-bottom: .4rem;
+}
+
+.title span {
+  color: var(--or);
+}
+
+.sub {
+  font-size: 14px;
+  color: var(--g3);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -17,14 +39,17 @@
   background: var(--wh);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .07);
   cursor: pointer;
   will-change: transform;
   transition: box-shadow .25s;
   display: flex;
   flex-direction: column;
 }
-.card:hover { box-shadow: 0 12px 40px rgba(249,115,22,.13); }
+
+.card:hover {
+  box-shadow: 0 12px 40px rgba(249, 115, 22, .13);
+}
 
 .imgWrap {
   width: 100%;
@@ -34,52 +59,116 @@
   background: #ddd;
   flex-shrink: 0;
 }
+
 .img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
   display: block;
   transition: transform .45s ease;
 }
-.card:hover .img { transform: scale(1.05); }
+
+.card:hover .img {
+  transform: scale(1.05);
+}
 
 .imgOverlay {
-  position: absolute; inset: 0;
-  background: rgba(249,115,22,.72);
-  display: flex; align-items: center; justify-content: center;
+  position: absolute;
+  inset: 0;
+  background: rgba(249, 115, 22, .72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   transition: opacity .28s;
 }
-.card:hover .imgOverlay { opacity: 1; }
-.overlayLabel {
-  font-size: 13px; font-weight: 700;
-  color: #fff; letter-spacing: .08em;
+
+.card:hover .imgOverlay {
+  opacity: 1;
 }
 
-.body { padding: 1rem 1rem 1.2rem; display: flex; flex-direction: column; gap: 0; flex: 1; }
+.overlayLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .08em;
+}
 
-.authorRow { display: flex; align-items: center; gap: 8px; margin-bottom: .7rem; }
+.body {
+  padding: 1rem 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.authorRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: .7rem;
+}
+
 .avatar {
-  width: 30px; height: 30px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 9px; font-weight: 700;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
   flex-shrink: 0;
 }
+
 .authorMeta {}
-.authorName { font-size: 11px; font-weight: 600; color: var(--dk); line-height: 1.3; }
-.authorDate { font-size: 10px; color: var(--g3); }
+
+.authorName {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--dk);
+  line-height: 1.3;
+}
+
+.authorDate {
+  font-size: 10px;
+  color: var(--g3);
+}
 
 .cardTitle {
-  font-size: 13px; font-weight: 800;
-  color: var(--dk); line-height: 1.4;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--dk);
+  line-height: 1.4;
   margin-bottom: .55rem;
 }
 
 .excerpt {
-  font-size: 11px; line-height: 1.6;
-  color: var(--g4); flex: 1;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--g4);
+  flex: 1;
 }
 
-/* Responsive breakpoints */
-@media (max-width: 1200px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 720px)  { .grid { grid-template-columns: repeat(2, 1fr); } .title { font-size: 28px; } }
-@media (max-width: 480px)  { .grid { grid-template-columns: 1fr; } }
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

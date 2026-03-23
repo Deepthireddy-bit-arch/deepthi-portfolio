@@ -12,27 +12,22 @@ export const experienceData: ExperienceItem[] = [
     current: true,
     description:
       "Building scalable web applications for SaaS clients. Collaborating cross-functionally with designers and backend engineers to deliver pixel-perfect, performant interfaces.",
-    // achievements: [
-    //   "Reduced page load time by 38% via lazy loading & code splitting",
-    //   "Led migration from CRA to Next.js 14, improving Core Web Vitals",
-    //   "Built a reusable component library used across 3 internal products",
-    //   "Implemented CI/CD pipeline with automated Lighthouse checks",
-    // ],
+
     achievements: [
-  "Reduced page load time by 38% via lazy loading & code splitting",
-//   "Led migration from CRA to Next.js 14, improving Core Web Vitals",
-  "Built a reusable component library used across 3 internal products",
-  "Implemented CI/CD pipeline with automated Lighthouse checks",
+      "Reduced page load time by 38% via lazy loading & code splitting",
 
-  "Optimized images using Next.js Image component, reducing bandwidth usage by 30%",
-  "Improved SEO performance through metadata optimization and structured data",
-  "Developed responsive UI components supporting mobile, tablet, and desktop devices",
-  "Collaborated with backend team to integrate REST APIs and improve data flow",
- 
-  "Implemented state management using Redux/Zustand for scalable application structure",
+      "Built a reusable component library used across 3 internal products",
+      "Implemented CI/CD pipeline with automated Lighthouse checks",
 
-  "Enhanced user engagement by improving UI animations and interaction feedback"
-],
+      "Optimized images using Next.js Image component, reducing bandwidth usage by 30%",
+      "Improved SEO performance through metadata optimization and structured data",
+      "Developed responsive UI components supporting mobile, tablet, and desktop devices",
+      "Collaborated with backend team to integrate REST APIs and improve data flow",
+
+      "Implemented state management using Redux/Zustand for scalable application structure",
+
+      "Enhanced user engagement by improving UI animations and interaction feedback"
+    ],
     technologies: [
       { name: "Next.js" },
       { name: "TypeScript" },

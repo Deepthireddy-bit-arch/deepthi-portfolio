@@ -1,6 +1,5 @@
 import type { TechnicalSkill, InterpersonalSkill, NavTab } from '../skills/types';
 
-// ─── Nav tab definitions ──────────────────────────────────────────────────────
 export const NAV_TABS: NavTab[] = [
   {
     id: 'technical',
@@ -14,122 +13,9 @@ export const NAV_TABS: NavTab[] = [
   },
 ];
 
-// ─── Technical skills ─────────────────────────────────────────────────────────
-// export const TECHNICAL_SKILLS: TechnicalSkill[] = [
-//   // Frontend
-//   {
-//     id: 'react',
-//     name: 'React',
-//     category: 'Frontend',
-//     level: 'expert',
-//     percentage: 95,
-//     yearsExp: 5,
-//     tags: ['JSX', 'Hooks', 'Context'],
-//   },
-//   {
-//     id: 'nextjs',
-//     name: 'Next.js',
-//     category: 'Frontend',
-//     level: 'expert',
-//     percentage: 92,
-//     yearsExp: 4,
-//     tags: ['App Router', 'SSR', 'ISR'],
-//   },
-//   {
-//     id: 'typescript',
-//     name: 'TypeScript',
-//     category: 'Frontend',
-//     level: 'expert',
-//     percentage: 90,
-//     yearsExp: 4,
-//     tags: ['Generics', 'Utility Types'],
-//   },
-//   {
-//     id: 'tailwind',
-//     name: 'Tailwind CSS',
-//     category: 'Frontend',
-//     level: 'expert',
-//     percentage: 94,
-//     yearsExp: 3,
-//     tags: ['Variants', 'Custom Config'],
-//   },
-//   // Backend
-//   {
-//     id: 'java',
-//     name: 'JAVA',
-//     category: 'Backend',
-//     level: 'advanced',
-//     percentage: 84,
-//     yearsExp: 5,
-//     tags: ['Express', 'REST', 'Streams'],
-//   },
-//   {
-//     id: 'postgres',
-//     name: 'PostgreSQL',
-//     category: 'Backend',
-//     level: 'advanced',
-//     percentage: 80,
-//     yearsExp: 4,
-//     tags: ['Indexing', 'Joins', 'CTEs'],
-//   },
-//   {
-//     id: 'graphql',
-//     name: 'GraphQL',
-//     category: 'Backend',
-//     level: 'intermediate',
-//     percentage: 68,
-//     yearsExp: 2,
-//     tags: ['Resolvers', 'Schema'],
-//   },
-//   // Tooling
-//   {
-//     id: 'git',
-//     name: 'Git',
-//     category: 'Tooling',
-//     level: 'expert',
-//     percentage: 96,
-//     yearsExp: 6,
-//     tags: ['Branching', 'Rebase', 'CI'],
-//   },
-//   {
-//     id: 'docker',
-//     name: 'Docker',
-//     category: 'Tooling',
-//     level: 'advanced',
-//     percentage: 76,
-//     yearsExp: 3,
-//     tags: ['Compose', 'Multi-stage'],
-//   },
-//   {
-//     id: 'figma',
-//     name: 'Figma',
-//     category: 'Design',
-//     level: 'advanced',
-//     percentage: 83,
-//     yearsExp: 3,
-//     tags: ['Components', 'Auto Layout'],
-//   },
-//   {
-//     id: 'gsap',
-//     name: 'GSAP',
-//     category: 'Animation',
-//     level: 'advanced',
-//     percentage: 80,
-//     yearsExp: 2,
-//     tags: ['ScrollTrigger', 'Timeline'],
-//   },
-//   {
-//     id: 'prisma',
-//     name: 'Prisma',
-//     category: 'Backend',
-//     level: 'advanced',
-//     percentage: 82,
-//     yearsExp: 3,
-//     tags: ['ORM', 'Migrations'],
-//   },
-// ];
+
 export const TECHNICAL_SKILLS: TechnicalSkill[] = [
-  // ── Frontend ─────────────────────────────
+
   {
     id: 'html',
     name: 'HTML',
@@ -212,7 +98,7 @@ export const TECHNICAL_SKILLS: TechnicalSkill[] = [
     tags: ['State', 'Store'],
   },
 
-  // ── Backend / Basics ─────────────────────
+
   {
     id: 'java',
     name: 'Java',
@@ -232,7 +118,7 @@ export const TECHNICAL_SKILLS: TechnicalSkill[] = [
     tags: ['Fetch', 'Axios'],
   },
 
-  // ── Tools ───────────────────────────────
+
   {
     id: 'git',
     name: 'Git',
@@ -242,10 +128,10 @@ export const TECHNICAL_SKILLS: TechnicalSkill[] = [
     yearsExp: 1,
     tags: ['Commit', 'Branch'],
   },
- 
+
 ];
 
-// ─── Interpersonal / soft skills ──────────────────────────────────────────────
+
 export const INTERPERSONAL_SKILLS: InterpersonalSkill[] = [
   {
     id: 'team-leadership',
@@ -302,29 +188,29 @@ export const INTERPERSONAL_SKILLS: InterpersonalSkill[] = [
     strength: 80,
   },
   {
-  id: 'problem-solving',
-  name: 'Problem Solving',
-  description:
-    'Breaking down complex problems into manageable parts and delivering efficient, scalable solutions under constraints.',
-  icon: '✦',
-  pillars: ['Analytical Thinking', 'Debugging', 'Optimization'],
-  strength: 92,
-},
-{
-  id: 'time-management',
-  name: 'Time Management',
-  description:
-    'Prioritizing tasks effectively to meet deadlines while maintaining quality and consistency across deliverables.',
-  icon: '⏱',
-  pillars: ['Prioritization', 'Planning', 'Focus'],
-  strength: 89,
-}
+    id: 'problem-solving',
+    name: 'Problem Solving',
+    description:
+      'Breaking down complex problems into manageable parts and delivering efficient, scalable solutions under constraints.',
+    icon: '✦',
+    pillars: ['Analytical Thinking', 'Debugging', 'Optimization'],
+    strength: 92,
+  },
+  {
+    id: 'time-management',
+    name: 'Time Management',
+    description:
+      'Prioritizing tasks effectively to meet deadlines while maintaining quality and consistency across deliverables.',
+    icon: '⏱',
+    pillars: ['Prioritization', 'Planning', 'Focus'],
+    strength: 89,
+  }
 ];
 
-// ─── Level display config ─────────────────────────────────────────────────────
+
 export const LEVEL_CONFIG = {
-  expert:       { label: 'Expert',       color: '#e86c2c' },
-  advanced:     { label: 'Advanced',     color: '#f5a06a' },
+  expert: { label: 'Expert', color: '#e86c2c' },
+  advanced: { label: 'Advanced', color: '#f5a06a' },
   intermediate: { label: 'Intermediate', color: '#c9a882' },
-  learning:     { label: 'Learning',     color: '#8c7a66' },
+  learning: { label: 'Learning', color: '#8c7a66' },
 } as const;

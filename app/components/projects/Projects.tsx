@@ -9,7 +9,6 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── Types ── */
 interface Project {
   number: string;
   tag: string;
@@ -20,8 +19,6 @@ interface Project {
   highlights: string[];
   visual: { image: string; pattern: string; accent: string; };
 }
-
-/* ─── Data ── */
 const PROJECTS: Project[] = [
   {
     number: "01",
@@ -67,11 +64,9 @@ const PROJECTS: Project[] = [
 
 const TYPE_LABEL: Record<string, string> = {
   internship: "Internship",
-  academic:  "Academic",
-  personal:  "Personal",
+  academic: "Academic",
+  personal: "Personal",
 };
-
-/* ─── Visual Panel ── */
 function VisualPanel({ project }: { project: Project }) {
   const { image, pattern, accent } = project.visual;
 
@@ -108,12 +103,11 @@ function VisualPanel({ project }: { project: Project }) {
           </defs>
         )}
         <rect width="100%" height="100%"
-          fill={`url(#${
-            pattern === "grid"     ? `grid-${project.number}` :
-            pattern === "diagonal" ? `diag-${project.number}` :
-            pattern === "dots"     ? `dots-${project.number}` :
-                                       `cross-${project.number}`
-          })`}
+          fill={`url(#${pattern === "grid" ? `grid-${project.number}` :
+              pattern === "diagonal" ? `diag-${project.number}` :
+                pattern === "dots" ? `dots-${project.number}` :
+                  `cross-${project.number}`
+            })`}
         />
         <text x="50%" y="54%" textAnchor="middle" dominantBaseline="middle"
           fontSize="160" fontWeight="900"
@@ -124,29 +118,20 @@ function VisualPanel({ project }: { project: Project }) {
           {project.number}
         </text>
       </svg>
-
-      {/* <div 
-        className={styles.visualImage}
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      /> */}
       <div className={styles.visualImage}>
-  <Image
-    src={image || "/assets/images/placeholder.jpg"}
-    alt={project.title}
-    fill
-    sizes="(max-width: 768px) 100vw, 50vw"
-    quality={85}
-    priority={project.number === "01"} // first image loads faster
-    style={{
-      objectFit: "cover",
-    }}
-  />
-</div>
-      
+        <Image
+          src={image || "/assets/images/placeholder.jpg"}
+          alt={project.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          quality={85}
+          priority={project.number === "01"}
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
       <div className={styles.visualBadge}
         style={{ background: `${accent}18`, borderColor: `${accent}35`, color: accent }}>
         {TYPE_LABEL[project.type]}
@@ -156,38 +141,32 @@ function VisualPanel({ project }: { project: Project }) {
     </div>
   );
 }
-
-/* ─── Main ── */
 export default function Projects() {
-  const [active, setActive]       = useState(0);
-  const [visible, setVisible]     = useState(false);
-  const sectionRef  = useRef<HTMLElement>(null);
-  const headerRef   = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
   const showcaseRef = useRef<HTMLDivElement>(null);
-  const footerRef   = useRef<HTMLDivElement>(null);
-  const visualRef   = useRef<HTMLDivElement>(null);
-  const contentRef  = useRef<HTMLDivElement>(null);
-  const autoRef     = useRef<ReturnType<typeof setInterval> | null>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  /* ── Section entrance (once) ── */
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      /* Header drops in */
       gsap.from(headerRef.current, {
         opacity: 0, y: 40, duration: 0.85, ease: "power4.out",
-        scrollTrigger: { trigger: headerRef.current, start: "top 88%", once: true,
-          onEnter: () => setVisible(true) },
+        scrollTrigger: {
+          trigger: headerRef.current, start: "top 88%", once: true,
+          onEnter: () => setVisible(true)
+        },
       });
-
-      /* Showcase panel rises */
       gsap.from(showcaseRef.current, {
         opacity: 0, y: 56, duration: 0.9, ease: "power3.out",
         scrollTrigger: { trigger: showcaseRef.current, start: "top 84%", once: true },
         delay: 0.15,
       });
-
-      /* Footer fades */
       gsap.from(footerRef.current, {
         opacity: 0, y: 20, duration: 0.6, ease: "power2.out",
         scrollTrigger: { trigger: footerRef.current, start: "top 90%", once: true },
@@ -199,15 +178,14 @@ export default function Projects() {
     return () => ctx.revert();
   }, []);
 
-  /* ── Animate panel swap when active changes ── */
   const animateSwap = useCallback((dir: "left" | "right") => {
-    const xIn  = dir === "right" ?  40 : -40;
-    const xOut = dir === "right" ? -40 :  40;
+    const xIn = dir === "right" ? 40 : -40;
+    const xOut = dir === "right" ? -40 : 40;
 
     if (visualRef.current) {
       gsap.fromTo(visualRef.current,
-        { opacity: 0, x: xIn,  scale: 0.97 },
-        { opacity: 1, x: 0,    scale: 1, duration: 0.55, ease: "power3.out" }
+        { opacity: 0, x: xIn, scale: 0.97 },
+        { opacity: 1, x: 0, scale: 1, duration: 0.55, ease: "power3.out" }
       );
     }
     if (contentRef.current) {
@@ -218,7 +196,6 @@ export default function Projects() {
     }
   }, []);
 
-  /* ── Auto-advance ── */
   const startAuto = useCallback(() => {
     if (autoRef.current) clearInterval(autoRef.current);
     autoRef.current = setInterval(() => {
@@ -250,7 +227,7 @@ export default function Projects() {
     <section ref={sectionRef} className={styles.section}>
       <div className={styles.inner}>
 
-        {/* ── Header ── */}
+
         <div ref={headerRef} className={styles.header}>
           <div className={styles.tag}>
             <span className={styles.tagDot} />
@@ -273,18 +250,16 @@ export default function Projects() {
               </button>
             </div>
           </div>
-          {/* <div className={styles.divider} /> */}
+
         </div>
 
-        {/* ── Showcase ── */}
+
         <div ref={showcaseRef} className={styles.showcase}>
 
-          {/* LEFT — Visual */}
           <div ref={visualRef} className={styles.visualWrap}>
             <VisualPanel project={project} />
           </div>
 
-          {/* RIGHT — Content */}
           <div ref={contentRef} className={styles.content}>
             <div className={styles.contentMeta}>
               <span className={styles.projectNum}>{project.number}</span>
@@ -308,28 +283,7 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* ── Footer ── */}
-        {/* <div ref={footerRef} className={styles.footer}>
-          <div className={styles.dots}>
-            {PROJECTS.map((_, i) => (
-              <button
-                key={i}
-                className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                onClick={() => goTo(i, i > active ? "right" : "left")}
-                aria-label={`Go to project ${i + 1}`}
-              />
-            ))}
-          </div>
-          <div className={styles.progressTrack}>
-            <div
-              className={styles.progressFill}
-              style={{ width: `${((active + 1) / PROJECTS.length) * 100}%` }}
-            />
-          </div>
-          <span className={styles.counter}>
-            {String(active + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}
-          </span>
-        </div> */}
+
 
       </div>
     </section>

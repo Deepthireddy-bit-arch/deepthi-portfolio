@@ -3,46 +3,45 @@ import { useEffect, useRef } from 'react'
 import styles from './HeroSection.module.css'
 
 const STATS = [
-  { val: '1+',  label: 'Years of Experience' },
+  { val: '1+', label: 'Years of Experience' },
   { val: '20+', label: 'Reusable Components' },
-  { val: '1',   label: 'End-to-End Dashboard' },
-  { val: '3+',  label: 'Production Releases' },
+  { val: '1', label: 'End-to-End Dashboard' },
+  { val: '3+', label: 'Production Releases' },
 ]
 
 const STACK = ['React', 'Next.js', 'Tailwind', 'REST APIs']
 
 export default function HeroSection() {
-  const ref     = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
 
   // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
-    ;(async () => {
-      const { gsap } = await import('gsap')
-      ctx = gsap.context(() => {
-        gsap.fromTo('.hero-card', { opacity: 0, y: -22 }, {
-          opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
-        })
-        gsap.fromTo('.hero-stat', { opacity: 0, scale: 0.85 }, {
-          opacity: 1, scale: 1, duration: 0.4, stagger: 0.09,
-          ease: 'back.out(1.5)', delay: 0.35,
-        })
-        gsap.to('.scroll-ind', {
-          y: 6, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: -1,
-        })
-      }, ref)
-    })()
+      ; (async () => {
+        const { gsap } = await import('gsap')
+        ctx = gsap.context(() => {
+          gsap.fromTo('.hero-card', { opacity: 0, y: -22 }, {
+            opacity: 1, y: 0, duration: 0.65, ease: 'power3.out',
+          })
+          gsap.fromTo('.hero-stat', { opacity: 0, scale: 0.85 }, {
+            opacity: 1, scale: 1, duration: 0.4, stagger: 0.09,
+            ease: 'back.out(1.5)', delay: 0.35,
+          })
+          gsap.to('.scroll-ind', {
+            y: 6, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: -1,
+          })
+        }, ref)
+      })()
     return () => ctx?.revert()
   }, [])
 
-  // ── Mobile: IntersectionObserver for card + stat tiles ───────────────────
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 760px)').matches
     if (!isMobile || !ref.current) return
 
-    const card   = ref.current.querySelector<HTMLElement>(`.${styles.card}`)
-    const tiles  = ref.current.querySelectorAll<HTMLElement>(`.${styles.statTile}`)
+    const card = ref.current.querySelector<HTMLElement>(`.${styles.card}`)
+    const tiles = ref.current.querySelectorAll<HTMLElement>(`.${styles.statTile}`)
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -56,7 +55,7 @@ export default function HeroSection() {
       { threshold: 0.12 }
     )
 
-    if (card)   observer.observe(card)
+    if (card) observer.observe(card)
     tiles.forEach((t) => observer.observe(t))
 
     return () => observer.disconnect()
@@ -70,7 +69,6 @@ export default function HeroSection() {
     <section ref={ref} className={styles.hero}>
       <div className={styles.container}>
 
-        {/* ── LEFT: profile card ── */}
         <div ref={cardRef} className={`hero-card ${styles.card}`}>
 
           <div className={styles.cardBanner}>
@@ -124,7 +122,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* ── RIGHT: code block ── */}
         <div className={styles.codeBlock}>
           <div className={styles.codeBar}>
             <span style={{ background: '#ff5f57' }} />
@@ -152,7 +149,7 @@ export default function HeroSection() {
 
       </div>
 
-      {/* Scroll indicator */}
+
       <div className={`scroll-ind ${styles.scrollInd}`} onClick={() => scrollTo('tools')}>
         <span>↓</span>
       </div>

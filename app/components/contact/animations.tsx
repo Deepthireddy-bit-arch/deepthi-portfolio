@@ -12,21 +12,16 @@ export const DURATION = {
   xslow: 1.4,
 } as const;
 
-// ─── Stagger config for list items ───
 export const staggerConfig = {
   amount: 0.15,
   from: "start" as const,
 };
-
-// ─── Timeline defaults ───
 export const timelineDefaults = {
   defaults: {
     ease: EASE.expo,
     duration: DURATION.normal,
   },
 };
-
-// ─── Heading reveal (split chars) ───
 export const headingReveal = {
   from: {
     yPercent: 110,
@@ -44,8 +39,6 @@ export const headingReveal = {
     stagger: 0.04,
   },
 };
-
-// ─── Fade-slide up ───
 export const fadeSlideUp = {
   from: { opacity: 0, y: 40 },
   to: {
@@ -55,8 +48,6 @@ export const fadeSlideUp = {
     duration: DURATION.normal,
   },
 };
-
-// ─── Fade-slide left ───
 export const fadeSlideLeft = {
   from: { opacity: 0, x: 50 },
   to: {
@@ -66,8 +57,6 @@ export const fadeSlideLeft = {
     duration: DURATION.slow,
   },
 };
-
-// ─── Scale-in ───
 export const scaleIn = {
   from: { opacity: 0, scale: 0.88 },
   to: {
@@ -77,8 +66,6 @@ export const scaleIn = {
     duration: DURATION.normal,
   },
 };
-
-// ─── Underline draw ───
 export const underlineDraw = {
   from: { scaleX: 0, transformOrigin: "left center" },
   to: {
@@ -87,22 +74,16 @@ export const underlineDraw = {
     duration: DURATION.slow,
   },
 };
-
-// ─── Number count-up config ───
 export const countUpConfig = {
   ease: EASE.expo,
   duration: 2,
   snap: { innerText: 1 },
 };
-
-// ─── Field focus tween ───
 export const fieldFocusTween = {
   borderBottomColor: "var(--accent)",
   duration: DURATION.fast,
   ease: EASE.smooth,
 };
-
-// ─── Scroll trigger defaults ───
 export const scrollTriggerDefaults = {
   start: "top 80%",
   end: "bottom 20%",

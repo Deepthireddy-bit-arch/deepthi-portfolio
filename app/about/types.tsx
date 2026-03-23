@@ -2,17 +2,17 @@ export type Theme = 'white' | 'orange';
 
 export interface AboutPageData {
   name: string;
-  handleLine: string;           // e.g. "Developer + Designer + Human"
-  heroImage: string | null;     // /public path or null
+  handleLine: string;
+  heroImage: string | null;
   avatarImage: string | null;
 
-  randomFacts: string[];        // bullet list of fun facts
-  nutshell: string;             // small code-block label
+  randomFacts: string[];
+  nutshell: string;
 
-  identityLine: string;         // "I'm a husband, father…"
+  identityLine: string;
 
   backstoryTitle: string;
-  backstory: string[];          // array of paragraphs
+  backstory: string[];
 
   lifeMoments: {
     id: string;
@@ -21,12 +21,12 @@ export interface AboutPageData {
   }[];
 
   passionsTitle: string;
-  passionsLine: string;         // "Outside of code, I love…"
+  passionsLine: string;
 
   techStack: {
     name: string;
     years: number;
-    tag: string;                // "daily driver" | "go-to" | "learning" etc.
+    tag: string;
   }[];
 
   currentlyBuilding: string;

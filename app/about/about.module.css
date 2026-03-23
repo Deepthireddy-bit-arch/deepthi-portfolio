@@ -1,12 +1,3 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   About Page — WHITE THEME
-   Editorial / Long-form magazine aesthetic
-   Feel: Warm ivory paper, ink-black type, orange underscores, generous air.
-   Fonts (add to globals.css):
-     @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@400;500;700&display=swap');
-     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 .root {
   --c-bg: #ffffff;
   --c-bg-alt: #ffffff;
@@ -26,7 +17,6 @@
 
 }
 
-/* ── Base ─────────────────────────────────────────────────────────────────── */
 .page {
   background: var(--c-bg);
   color: var(--c-text-1);
@@ -34,20 +24,17 @@
 }
 
 .container {
-  /* max-width: 860px; */
+
   margin: 0 auto;
   padding: 0 32px;
 }
 
 .containerWide {
-  /* max-width: 1100px; */
+
   margin: 0 auto;
-  /* padding: 0 32px; */
+
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HERO
-   ═══════════════════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
   height: 100vh;
@@ -67,19 +54,18 @@
 .heroImg {
   width: 100%;
   height: 115%;
-  /* extra for parallax travel */
+
   object-fit: cover;
   object-position: center top;
 }
 
-/* Placeholder SVG shown when no image */
+
 .heroPlaceholder {
   width: 100%;
   height: 115%;
   background: linear-gradient(160deg, #e8d5bc 0%, #c4a882 40%, #a07850 100%);
 }
 
-/* Text gradient scrim */
 .heroOverlay {
   position: absolute;
   inset: 0;
@@ -119,11 +105,6 @@
   color: var(--c-accent);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TICKER STRIP
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* FIX 1: The @keyframes was missing — added here so the scroll actually runs */
 @keyframes tickerScroll {
   0% {
     transform: translateX(0);
@@ -153,7 +134,6 @@
   will-change: transform;
 }
 
-/* FIX 2: Hover pauses the scroll — was already written but needed the keyframe above to work */
 .ticker:hover .tickerInner {
   animation-play-state: paused;
 }
@@ -175,9 +155,6 @@
   font-size: 8px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RANDOM FACTS
-   ═══════════════════════════════════════════════════════════════════════════ */
 .factsSection {
   padding: 47px 0 39px;
   text-align: justify;
@@ -241,7 +218,6 @@
   flex-shrink: 0;
 }
 
-/* Nutshell code badge */
 .nutshell {
   display: inline-flex;
   align-items: center;
@@ -254,9 +230,6 @@
   letter-spacing: 0.04em;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   IDENTITY STATEMENT
-   ═══════════════════════════════════════════════════════════════════════════ */
 .identitySection {
   padding: 16px 0 72px;
   border-top: 1px solid var(--c-divider);
@@ -284,22 +257,17 @@
   opacity: 0.35;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BACKSTORY
-   ═══════════════════════════════════════════════════════════════════════════ */
 .backstorySection {
   padding: 88px 0 72px;
   text-align: justify;
 }
 
-/* Two column layout */
 .splitLayout {
   display: flex;
   gap: 4rem;
   align-items: flex-start;
 }
 
-/* Left column - Backstory content */
 .contentLeft {
   flex: 1;
   max-width: 50%;
@@ -327,7 +295,6 @@
   font-weight: 500;
 }
 
-/* Right column - Life moments grid */
 .illustrationsRight {
   flex: 1;
   max-width: 50%;
@@ -388,9 +355,6 @@
   transition: opacity 0.3s;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TECH STACK
-   ═══════════════════════════════════════════════════════════════════════════ */
 .techSection {
   padding: 72px 0;
   border-top: 1px solid var(--c-divider);
@@ -438,9 +402,6 @@
   letter-spacing: 0.04em;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PASSIONS
-   ═══════════════════════════════════════════════════════════════════════════ */
 .passionsSection {
   padding: 88px 0 80px;
 }
@@ -462,9 +423,6 @@
   padding-left: 24px;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CURRENTLY BUILDING
-   ═══════════════════════════════════════════════════════════════════════════ */
 .buildingSection {
   padding: 0 0 88px;
 }
@@ -494,9 +452,6 @@
   color: rgba(248, 246, 241, 0.88);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CONTACT FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
 .contactSection {
   padding: 72px 0 96px;
   border-top: 1px solid var(--c-divider);
@@ -548,9 +503,6 @@
   color: var(--c-accent);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   WHAT I ENJOY BUILDING
-   ═══════════════════════════════════════════════════════════════════════════ */
 .enjoySection {
   padding: 80px 0 72px;
   border-top: 1px solid var(--c-divider);
@@ -609,9 +561,6 @@
   color: var(--c-text-2);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HOW I WORK
-   ═══════════════════════════════════════════════════════════════════════════ */
 .howSection {
   padding: 72px 0;
   border-top: 1px solid var(--c-divider);
@@ -668,7 +617,7 @@
   font-style: italic;
 }
 
-/* contact label */
+
 .contactLabel {
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -678,12 +627,7 @@
   display: block;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE — MOBILE ONLY
-   Nothing above this line is touched. All desktop styles are original.
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/* tablet: stack the split layout */
 @media (max-width: 968px) {
   .splitLayout {
     flex-direction: column;
@@ -701,7 +645,7 @@
   }
 }
 
-/* mobile */
+
 @media (max-width: 768px) {
 
   .container,
@@ -709,7 +653,6 @@
     padding: 0 18px;
   }
 
-  /* HERO HEIGHT FIX — stops it being a full screen tall on mobile */
   .hero {
     height: 65vh;
     min-height: 360px;
@@ -729,7 +672,6 @@
     margin-bottom: 10px;
   }
 
-  /* facts — single column */
   .factsList {
     grid-template-columns: 1fr;
   }
@@ -744,7 +686,6 @@
     padding: 14px 0;
   }
 
-  /* identity */
   .identitySection {
     padding: 12px 0 48px;
   }
@@ -760,7 +701,6 @@
     top: 12px;
   }
 
-  /* backstory */
   .backstorySection {
     padding: 52px 0 44px;
   }
@@ -773,7 +713,6 @@
     font-size: 16px;
   }
 
-  /* moments — 2 col on mobile */
   .momentsGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
@@ -784,7 +723,6 @@
     padding: 24px 10px 10px;
   }
 
-  /* enjoy — single col */
   .enjoySection {
     padding: 52px 0 44px;
   }
@@ -806,7 +744,6 @@
     font-size: 13px;
   }
 
-  /* how I work — single col */
   .howSection {
     padding: 48px 0 44px;
   }
@@ -837,7 +774,6 @@
     font-size: 11px;
   }
 
-  /* building */
   .buildingInner {
     flex-direction: column;
     gap: 12px;
@@ -849,7 +785,6 @@
     font-size: 15px;
   }
 
-  /* passions */
   .passionsSection {
     padding: 52px 0 48px;
   }
@@ -859,7 +794,6 @@
     padding-left: 18px;
   }
 
-  /* contact */
   .contactSection {
     padding: 52px 0 64px;
   }
@@ -870,7 +804,6 @@
   }
 }
 
-/* small phones */
 @media (max-width: 480px) {
   .hero {
     height: 58vh;

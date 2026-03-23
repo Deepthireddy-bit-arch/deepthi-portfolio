@@ -6,7 +6,6 @@ import styles from './ToolsSection.module.css'
 export default function ToolsSection() {
   const ref = useRef<HTMLElement>(null)
 
-  // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
     ;(async () => {
@@ -39,10 +38,6 @@ export default function ToolsSection() {
     })()
     return () => ctx?.revert()
   }, [])
-
-  // ── Mobile: IntersectionObserver for gridWrap + each cell ────────────────
-  // CSS handles staggered pop-in via nth-child transition-delay.
-  // GSAP scale hover is not used on mobile — :active CSS handles tap feedback.
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 600px)').matches
     if (!isMobile || !ref.current) return

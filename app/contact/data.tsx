@@ -1,5 +1,4 @@
-// data/contact.data.ts
-// ✏️  Replace all placeholder values with your real info
+
 
 import type { SocialLink, ContactInfo } from "../contact/types";
 

@@ -1,34 +1,32 @@
 :root {
-  --bg:            #ffffff;
-  --bg-soft:       #faf9f7;
-  --orange:        #f05a00;
-  --orange-hover:  #ff6d1a;
-  --orange-pale:   #fff3ec;
+  --bg: #ffffff;
+  --bg-soft: #faf9f7;
+  --orange: #f05a00;
+  --orange-hover: #ff6d1a;
+  --orange-pale: #fff3ec;
   --orange-border: rgba(240, 90, 0, 0.20);
-  --ink:           #111110;
-  --ink-soft:      #38342f;
-  --muted:         #7a766f;
-  --muted-light:   #b8b3ad;
-  --border:        #f0ece6;
-  --success:       #1a9e5c;
-  --font-display:  'Syne', sans-serif;
-  --font-body:     'DM Sans', sans-serif;
-  --ease:          cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-back:     cubic-bezier(0.34, 1.56, 0.64, 1);
-  --shadow-btn:    0 6px 24px rgba(240, 90, 0, 0.22);
-  --shadow-hover:  0 12px 36px rgba(240, 90, 0, 0.30);
+  --ink: #111110;
+  --ink-soft: #38342f;
+  --muted: #7a766f;
+  --muted-light: #b8b3ad;
+  --border: #f0ece6;
+  --success: #1a9e5c;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --shadow-btn: 0 6px 24px rgba(240, 90, 0, 0.22);
+  --shadow-hover: 0 12px 36px rgba(240, 90, 0, 0.30);
 }
 
-/* ─── Footer wrapper ─── */
 .footer {
-  margin-top:40px;
+  margin-top: 40px;
   position: relative;
   background: var(--bg);
   overflow: hidden;
   border-top: 1px solid var(--border);
 }
 
-/* Big soft orange circle — bottom right */
 .footer::before {
   content: '';
   position: absolute;
@@ -43,7 +41,6 @@
   z-index: 0;
 }
 
-/* Thin orange left-edge accent bar */
 .slash {
   position: absolute;
   top: 0;
@@ -55,14 +52,14 @@
   z-index: 1;
 }
 
-/* ─── Marquee strip ─── */
+
 .marqueeWrap {
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   padding: 14px 0;
   background: var(--bg-soft);
   position: relative;
-  cursor:pointer;
+  cursor: pointer;
   z-index: 1;
 }
 
@@ -77,8 +74,13 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .marqueeItem {
@@ -110,4 +112,3 @@
     padding: 44px 28px 36px;
   }
 }
-

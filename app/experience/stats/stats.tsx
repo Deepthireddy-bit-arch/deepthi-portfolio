@@ -6,53 +6,49 @@ import styles from './stats.module.css'
 export default function StatsSection() {
   const ref = useRef<HTMLElement>(null)
 
-  // ── GSAP (desktop) ────────────────────────────────────────────────────────
   useEffect(() => {
     let ctx: any
-    ;(async () => {
-      const { gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-      ctx = gsap.context(() => {
-        gsap.fromTo(['.st-pill', '.st-title', '.st-sub'], { opacity: 0, y: -20 }, {
-          opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
-        })
-        gsap.fromTo('.stat-item', { opacity: 0, y: 40 }, {
-          opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: 'power3.out',
-          scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
-        })
-        document.querySelectorAll<HTMLElement>('.stat-bar-fill').forEach(el => {
-          const w = el.dataset.width || '0'
-          gsap.fromTo(el, { width: '0%' }, {
-            width: w + '%', duration: 1.4, ease: 'power3.out', delay: 0.3,
-            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+      ; (async () => {
+        const { gsap } = await import('gsap')
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+        gsap.registerPlugin(ScrollTrigger)
+        ctx = gsap.context(() => {
+          gsap.fromTo(['.st-pill', '.st-title', '.st-sub'], { opacity: 0, y: -20 }, {
+            opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
           })
-        })
-        document.querySelectorAll<HTMLElement>('.stat-counter').forEach(el => {
-          const target = parseFloat(el.dataset.target || '0')
-          const dec    = el.dataset.dec === '1'
-          gsap.fromTo({ v: 0 }, { v: target }, {
-            duration: 1.6, ease: 'power2.out', delay: 0.3,
-            onUpdate: function () {
-              const v = this.targets()[0].v
-              el.textContent = dec ? v.toFixed(1) : Math.round(v).toString()
-            },
-            scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+          gsap.fromTo('.stat-item', { opacity: 0, y: 40 }, {
+            opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: 'power3.out',
+            scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true },
           })
-        })
-        document.querySelectorAll<HTMLElement>('.stat-item').forEach(el => {
-          el.addEventListener('mouseenter', () => gsap.to(el, { y: -4, duration: 0.25, ease: 'power2.out' }))
-          el.addEventListener('mouseleave', () => gsap.to(el, { y: 0,  duration: 0.3,  ease: 'power2.inOut' }))
-        })
-      }, ref)
-    })()
+          document.querySelectorAll<HTMLElement>('.stat-bar-fill').forEach(el => {
+            const w = el.dataset.width || '0'
+            gsap.fromTo(el, { width: '0%' }, {
+              width: w + '%', duration: 1.4, ease: 'power3.out', delay: 0.3,
+              scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+            })
+          })
+          document.querySelectorAll<HTMLElement>('.stat-counter').forEach(el => {
+            const target = parseFloat(el.dataset.target || '0')
+            const dec = el.dataset.dec === '1'
+            gsap.fromTo({ v: 0 }, { v: target }, {
+              duration: 1.6, ease: 'power2.out', delay: 0.3,
+              onUpdate: function () {
+                const v = this.targets()[0].v
+                el.textContent = dec ? v.toFixed(1) : Math.round(v).toString()
+              },
+              scrollTrigger: { trigger: ref.current, start: 'top 78%', once: true },
+            })
+          })
+          document.querySelectorAll<HTMLElement>('.stat-item').forEach(el => {
+            el.addEventListener('mouseenter', () => gsap.to(el, { y: -4, duration: 0.25, ease: 'power2.out' }))
+            el.addEventListener('mouseleave', () => gsap.to(el, { y: 0, duration: 0.3, ease: 'power2.inOut' }))
+          })
+        }, ref)
+      })()
     return () => ctx?.revert()
   }, [])
 
-  // ── Mobile: IntersectionObserver for cards + bar fills ───────────────────
-  // On mobile GSAP is skipped. CSS transitions handle everything.
-  // Bar widths are set via --bar-w CSS custom property so the CSS transition works.
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 620px)').matches
     if (!isMobile || !ref.current) return
@@ -66,7 +62,7 @@ export default function StatsSection() {
             const card = entry.target as HTMLElement
             card.classList.add(styles.isVisible)
 
-            // also trigger the bar fill inside this card
+
             const bar = card.querySelector<HTMLElement>('.stat-bar-fill')
             if (bar) {
               const w = bar.dataset.width || '0'

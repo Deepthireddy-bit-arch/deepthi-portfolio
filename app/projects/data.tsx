@@ -1,14 +1,15 @@
-// data/projects.data.ts
+
 
 import type { Project, FilterOption, StatItem } from "../projects/types";
 
 export const PROJECTS: Project[] = [
 
-  // ── ACADEMIC / FINAL YEAR ─────────────────────────────────────────────
+
   {
     id: 1,
     title: "Dementia Detection",
     subtitle: "Final Year Academic Project",
+
     desc: "Machine learning system for early detection of dementia using clinical, neuroimaging, and genetic datasets. Trained predictive models using state-of-the-art ML algorithms to identify early signs — helping enable timely intervention.",
     type: "academic",
     team: "team",
@@ -20,7 +21,7 @@ export const PROJECTS: Project[] = [
     color: "#F05A1A",
   },
 
-  // ── INTERNSHIP PROJECTS ───────────────────────────────────────────────
+
   {
     id: 2,
     title: "College Fest",
@@ -31,7 +32,7 @@ export const PROJECTS: Project[] = [
     tags: ["HTML", "CSS", "JavaScript", "Responsive"],
     year: "2023",
     isFinal: false,
-  img: "/assets/images/collegefest.jpg",
+    img: "/assets/images/collegefest.jpg",
     highlights: ["Event Management", "Multi-event Support", "Responsive UI", "Registration Flow"],
     color: "#FF8040",
   },
@@ -45,12 +46,12 @@ export const PROJECTS: Project[] = [
     tags: ["React", "CSS", "JavaScript", "REST API", "Responsive"],
     year: "2024",
     isFinal: false,
-      img: "/assets/images/netflix.jpg",
+    img: "/assets/images/netflix.jpg",
     highlights: ["Netflix UI Clone", "Responsive Layout", "React Components", "API Integration"],
     color: "#E84D0E",
   },
 
-  // ── PROFESSIONAL / OFFICE PROJECTS ───────────────────────────────────
+
   {
     id: 4,
     title: "STEM E-Commerce",
@@ -61,7 +62,7 @@ export const PROJECTS: Project[] = [
     tags: ["Next", "TypeScript", "Tailwind css"],
     year: "2026",
     isFinal: false,
-      img: "/assets/images/electronics.jpg",
+    img: "/assets/images/electronics.jpg",
     highlights: ["Customer Panel", "Admin Dashboard", "Stripe Payments", "Live Inventory"],
     color: "#F05A1A",
   },
@@ -75,7 +76,7 @@ export const PROJECTS: Project[] = [
     tags: ["React", "TypeScript", "Shad CN", "REST API"],
     year: "2025",
     isFinal: true,
-        img: "/assets/images/lms.jpg",
+    img: "/assets/images/lms.jpg",
     highlights: ["Student Records", "Attendance", "Grade Reports", "Parent Portal"],
     color: "#FF8040",
   },
@@ -89,7 +90,7 @@ export const PROJECTS: Project[] = [
     tags: ["Debugging", "Code Review", "Performance", "Testing"],
     year: "2025",
     isFinal: false,
-      img: "/assets/images/mgr.jpg",
+    img: "/assets/images/mgr.jpg",
     highlights: ["Bug Fixes", "Code Refactor", "Performance Boost", "QA Testing"],
     color: "#E84D0E",
   },
@@ -103,7 +104,7 @@ export const PROJECTS: Project[] = [
     tags: ["HTML", "CSS", "GSAP", "JavaScript", "Responsive"],
     year: "2026",
     isFinal: false,
-         img: "/assets/images/acu.jpg",
+    img: "/assets/images/acu.jpg",
     highlights: ["Scroll Animations", "Fully Responsive", "GSAP Powered", "Cross-browser"],
     color: "#F07030",
   },
@@ -117,7 +118,7 @@ export const PROJECTS: Project[] = [
     tags: ["Figma", "UI/UX", "Prototyping", "Design System"],
     year: "2025",
     isFinal: false,
-      img: "/assets/images/sports.jpg",
+    img: "/assets/images/sports.jpg",
     highlights: ["Hi-Fi Mockups", "Design System", "User Flows", "Prototype"],
     color: "#FF9050",
   },
@@ -125,17 +126,17 @@ export const PROJECTS: Project[] = [
 ];
 
 export const FILTER_OPTIONS: FilterOption[] = [
-  { label: "All",          value: "all",          count: 8 },
+  { label: "All", value: "all", count: 8 },
   { label: "Professional", value: "professional", count: 4 },
-  { label: "Internship",   value: "internship",   count: 2 },
-  { label: "Academic",     value: "academic",     count: 1 },
-  { label: "Individual",   value: "individual",   count: 5 },
-  { label: "Team",         value: "team",         count: 3 },
+  { label: "Internship", value: "internship", count: 2 },
+  { label: "Academic", value: "academic", count: 1 },
+  { label: "Individual", value: "individual", count: 5 },
+  { label: "Team", value: "team", count: 3 },
 ];
 
 export const STATS: StatItem[] = [
-  { value: "8",   label: "Total Projects" },
-  { value: "4",   label: "Professional"   },
-  { value: "2",   label: "Internships"    },
-  { value: "15+", label: "Technologies"   },
+  { value: "8", label: "Total Projects" },
+  { value: "4", label: "Professional" },
+  { value: "2", label: "Internships" },
+  { value: "15+", label: "Technologies" },
 ];

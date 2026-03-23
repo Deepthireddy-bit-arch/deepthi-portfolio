@@ -4,12 +4,11 @@ import { useEffect, useRef, useCallback } from 'react';
 
 type GSAPInstance = typeof import('gsap').gsap;
 
-// ─── useSkillsAnimation ───────────────────────────────────────────────────────
-// All GSAP logic lives here — components stay declarative.
+
 export function useSkillsAnimation() {
   const gsapRef = useRef<GSAPInstance | null>(null);
 
-  // Lazy-load GSAP once on mount
+
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -21,7 +20,7 @@ export function useSkillsAnimation() {
     return () => { mounted = false; };
   }, []);
 
-  // ── Animate tab nav pill sliding between buttons ──────────────────────────
+
   const animateNavSwitch = useCallback(
     (
       fromEl: HTMLElement | null,
@@ -41,7 +40,7 @@ export function useSkillsAnimation() {
         ease: 'power3.inOut',
       });
 
-      // Bounce scale on the tab label text
+
       gsap.fromTo(
         toEl.querySelector('[data-tab-label]'),
         { scale: 0.92 },
@@ -51,7 +50,7 @@ export function useSkillsAnimation() {
     []
   );
 
-  // ── Animate cards out (before tab switch) ────────────────────────────────
+
   const animateCardsOut = useCallback(
     (containerEl: HTMLElement | null, onComplete?: () => void) => {
       const gsap = gsapRef.current;
@@ -71,7 +70,6 @@ export function useSkillsAnimation() {
     []
   );
 
-  // ── Animate cards in (after tab switch) ──────────────────────────────────
   const animateCardsIn = useCallback(
     (containerEl: HTMLElement | null) => {
       const gsap = gsapRef.current;
@@ -94,12 +92,10 @@ export function useSkillsAnimation() {
     []
   );
 
-  // ── Animate heading on mount ──────────────────────────────────────────────
   const animateHeading = useCallback((el: HTMLElement | null) => {
     const gsap = gsapRef.current;
     if (!gsap || !el) return;
 
-    // Split-word reveal
     const words = el.querySelectorAll('[data-word]');
     gsap.fromTo(
       words,
@@ -114,7 +110,7 @@ export function useSkillsAnimation() {
     );
   }, []);
 
-  // ── Animate progress bar ─────────────────────────────────────────────────
+
   const animateBar = useCallback(
     (el: HTMLElement | null, pct: number, delay = 0) => {
       const gsap = gsapRef.current;
@@ -134,7 +130,7 @@ export function useSkillsAnimation() {
     []
   );
 
-  // ── Animate radial strength ring (SVG dashoffset) ────────────────────────
+
   const animateRing = useCallback(
     (el: SVGCircleElement | null, strength: number, delay = 0) => {
       const gsap = gsapRef.current;
@@ -145,7 +141,7 @@ export function useSkillsAnimation() {
       const offset = circumference * (1 - strength / 100);
 
       el.style.strokeDasharray = String(circumference);
-      el.style.strokeDashoffset = String(circumference); // start empty
+      el.style.strokeDashoffset = String(circumference);
 
       gsap.to(el, {
         strokeDashoffset: offset,
@@ -157,7 +153,6 @@ export function useSkillsAnimation() {
     []
   );
 
-  // ── Hover tilt on cards ───────────────────────────────────────────────────
   const bindCardTilt = useCallback((el: HTMLElement | null) => {
     const gsap = gsapRef.current;
     if (!gsap || !el) return;

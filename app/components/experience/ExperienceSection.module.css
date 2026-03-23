@@ -1,8 +1,3 @@
-/* ============================================================
-   ExperienceSection.module.css
-   White & Orange — Timeline Left / Infinite Scroll Gallery Right
-   ============================================================ */
-
 :root {
   --orange: #ff6b00;
   --orange-light: #ff9a3c;
@@ -11,13 +6,13 @@
   --text-muted: #6b7280;
   --text-faint: #9ca3af;
   --bg: #ffffff;
-  --card-shadow: 0 2px 14px rgba(0,0,0,0.04);
+  --card-shadow: 0 2px 14px rgba(0, 0, 0, 0.04);
 }
 
-/* ---------- Section ---------- */
+
 .section {
   position: relative;
-padding-top:32px;
+  padding-top: 32px;
   background: var(--bg);
   overflow: hidden;
 }
@@ -25,9 +20,11 @@ padding-top:32px;
 .section::before {
   content: "";
   position: absolute;
-  top: -160px; right: -120px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(255,107,0,0.05) 0%, transparent 65%);
+  top: -160px;
+  right: -120px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 107, 0, 0.05) 0%, transparent 65%);
   pointer-events: none;
   border-radius: 50%;
 }
@@ -35,19 +32,21 @@ padding-top:32px;
 .container {
   position: relative;
   z-index: 1;
- 
+
   margin: 0 auto;
- 
+
 }
 
-/* ---------- Header ---------- */
-.header { margin-bottom: 3.5rem; }
+
+.header {
+  margin-bottom: 3.5rem;
+}
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
- 
+
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -59,7 +58,8 @@ padding-top:32px;
 .eyebrow::before {
   content: "";
   display: block;
-  width: 28px; height: 2px;
+  width: 28px;
+  height: 2px;
   background: linear-gradient(90deg, var(--orange), var(--orange-light));
   border-radius: 2px;
 }
@@ -72,11 +72,11 @@ padding-top:32px;
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
-.title span { color: var(--orange); }
 
-/* ============================================================
-   ROW — two horizontal halves
-   ============================================================ */
+.title span {
+  color: var(--orange);
+}
+
 
 .experienceRow {
   display: grid;
@@ -86,15 +86,22 @@ padding-top:32px;
   margin-bottom: 5rem;
 }
 
-.experienceRow:last-child { margin-bottom: 0; }
+.experienceRow:last-child {
+  margin-bottom: 0;
+}
 
-.experienceRow + .experienceRow {
+.experienceRow+.experienceRow {
   padding-top: 5rem;
   border-top: 1px solid var(--border);
 }
 
-.experienceRow:nth-child(even) .timelineCol { order: 2; }
-.experienceRow:nth-child(even) .galleryCol  { order: 1; }
+.experienceRow:nth-child(even) .timelineCol {
+  order: 2;
+}
+
+.experienceRow:nth-child(even) .galleryCol {
+  order: 1;
+}
 
 .timelineCol {
   display: flex;
@@ -104,41 +111,28 @@ padding-top:32px;
 .galleryCol {
   position: sticky;
   top: 2rem;
-  /* REMOVE: align-self: start */
+
 }
 
-/* ============================================================
-   TIMELINE
-   ============================================================ */
 
-/* .timeline { position: relative; }
 
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 11px; top: 8px; bottom: 8px;
-  width: 1.5px;
-  background: linear-gradient(to bottom, var(--orange), rgba(255,107,0,0.2), transparent);
-} */
- .timeline {
+.timeline {
   position: relative;
-  height: 100%; /* IMPORTANT */
+  height: 100%;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 18px; /* half of 36px column */
-  transform: translateX(-50%); /* TRUE CENTER ALIGNMENT */
+  left: 18px;
+  transform: translateX(-50%);
   top: 5px;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(
-    to bottom,
-    var(--orange),
-    rgba(255,107,0,0.2),
-    transparent
-  );
+  background: linear-gradient(to bottom,
+      var(--orange),
+      rgba(255, 107, 0, 0.2),
+      transparent);
 }
 
 .card {
@@ -156,32 +150,44 @@ padding-top:32px;
 }
 
 .dotOuter {
-  width: 22px; height: 22px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   background: var(--bg);
   border: 2px solid var(--orange);
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   transition: all 0.25s ease;
-  box-shadow: 0 0 0 4px rgba(255,107,0,0.07);
+  box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.07);
 }
 
 .dotInner {
-  width: 9px; height: 9px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: var(--orange);
   transition: transform 0.25s ease;
 }
 
-.card:hover .dotOuter { box-shadow: 0 0 0 7px rgba(255,107,0,0.12); }
-.card:hover .dotInner { transform: scale(1.25); }
+.card:hover .dotOuter {
+  box-shadow: 0 0 0 7px rgba(255, 107, 0, 0.12);
+}
+
+.card:hover .dotInner {
+  transform: scale(1.25);
+}
 
 .dotCurrent {
   background: var(--orange) !important;
   border-color: var(--orange) !important;
-  box-shadow: 0 0 0 6px rgba(255,107,0,0.14), 0 0 20px rgba(255,107,0,0.3) !important;
+  box-shadow: 0 0 0 6px rgba(255, 107, 0, 0.14), 0 0 20px rgba(255, 107, 0, 0.3) !important;
 }
-.dotCurrentInner { background: #fff !important; }
+
+.dotCurrentInner {
+  background: #fff !important;
+}
 
 .body {
   background: var(--bg);
@@ -193,8 +199,8 @@ padding-top:32px;
 }
 
 .body:hover {
-  border-color: rgba(255,107,0,0.22);
-  box-shadow: 0 8px 32px rgba(255,107,0,0.07), 0 2px 8px rgba(0,0,0,0.04);
+  border-color: rgba(255, 107, 0, 0.22);
+  box-shadow: 0 8px 32px rgba(255, 107, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
   transform: translateY(-2px);
 }
 
@@ -208,7 +214,7 @@ padding-top:32px;
 }
 
 .role {
- 
+
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -232,20 +238,30 @@ padding-top:32px;
 
 .dateBadgeCurrent {
   color: var(--orange);
-  background: rgba(255,107,0,0.055);
-  border-color: rgba(255,107,0,0.2);
+  background: rgba(255, 107, 0, 0.055);
+  border-color: rgba(255, 107, 0, 0.2);
 }
 
 .dateDot {
-  width: 6px; height: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--orange);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.45; transform: scale(0.75); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
 }
 
 .companyRow {
@@ -263,15 +279,22 @@ padding-top:32px;
   color: var(--orange);
 }
 
-.separator { color: #d1c9bf; font-size: 0.72rem; }
-.location  { font-size: 0.76rem; color: var(--text-faint); }
+.separator {
+  color: #d1c9bf;
+  font-size: 0.72rem;
+}
+
+.location {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
 
 .description {
   font-size: 0.85rem;
   line-height: 1.72;
   color: #4b5563;
   margin-bottom: 1.1rem;
-  border-left: 2px solid rgba(255,107,0,0.18);
+  border-left: 2px solid rgba(255, 107, 0, 0.18);
   padding-left: 0.8rem;
 }
 
@@ -282,7 +305,7 @@ padding-top:32px;
   text-transform: uppercase;
   color: var(--text-faint);
   margin-bottom: 0.55rem;
-  
+
 }
 
 .achievementsList {
@@ -306,7 +329,8 @@ padding-top:32px;
 .achievementIcon {
   flex-shrink: 0;
   margin-top: 4px;
-  width: 13px; height: 13px;
+  width: 13px;
+  height: 13px;
   color: var(--orange);
 }
 
@@ -317,7 +341,7 @@ padding-top:32px;
 }
 
 .techBadge {
-  
+
   font-size: 0.65rem;
   font-weight: 500;
   color: var(--text-muted);
@@ -329,26 +353,23 @@ padding-top:32px;
 }
 
 .techBadge:hover {
-  background: rgba(255,107,0,0.055);
-  border-color: rgba(255,107,0,0.25);
+  background: rgba(255, 107, 0, 0.055);
+  border-color: rgba(255, 107, 0, 0.25);
   color: var(--orange);
 }
-
-/* ============================================================
-   GALLERY — infinite two-column scroll
-   ============================================================ */
 
 .galleryWrap {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  height: 100%;         /* now resolves to 480px */
+  height: 100%;
 }
+
 .galleryLabel {
   display: flex;
   align-items: center;
   gap: 0.5rem;
- 
+
   font-size: 0.67rem;
   font-weight: 600;
   letter-spacing: 0.15em;
@@ -364,10 +385,9 @@ padding-top:32px;
   background: linear-gradient(90deg, #ede9e3, transparent);
 }
 
-/* The clipping viewport */
 .galleryScroller {
   flex: 1;
-  min-height: 0;        /* prevents flex overflow */
+  min-height: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.65rem;
@@ -377,26 +397,28 @@ padding-top:32px;
   position: relative;
   background: #faf9f7;
 }
-/* Fade masks top + bottom */
+
 .galleryScroller::before,
 .galleryScroller::after {
   content: "";
   position: absolute;
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   height: 72px;
   z-index: 3;
   pointer-events: none;
 }
+
 .galleryScroller::before {
   top: 0;
   background: linear-gradient(to bottom, #faf9f7 10%, transparent 100%);
 }
+
 .galleryScroller::after {
   bottom: 0;
   background: linear-gradient(to top, #faf9f7 10%, transparent 100%);
 }
 
-/* Each scrolling column */
 .galleryTrack {
   display: flex;
   flex-direction: column;
@@ -419,39 +441,55 @@ padding-top:32px;
 }
 
 @keyframes scrollUp {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes scrollDown {
-  0%   { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
-/* Individual image card */
 .galleryItem {
   position: relative;
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: 0;
-  border: 1px solid rgba(240,237,233,0.8);
+  border: 1px solid rgba(240, 237, 233, 0.8);
   background: #ede9e3;
   cursor: pointer;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .galleryItem:hover {
-  border-color: rgba(255,107,0,0.4);
-  box-shadow: 0 6px 24px rgba(255,107,0,0.14);
+  border-color: rgba(255, 107, 0, 0.4);
+  box-shadow: 0 6px 24px rgba(255, 107, 0, 0.14);
   transform: scale(1.02);
   z-index: 2;
 }
 
-/* Fixed heights — no aspect-ratio + fill mismatch */
-.galleryItemPortrait  { height: 200px; }
-.galleryItemLandscape { height: 140px; }
-.galleryItemSquare    { height: 160px; }
+.galleryItemPortrait {
+  height: 200px;
+}
+
+.galleryItemLandscape {
+  height: 140px;
+}
+
+.galleryItemSquare {
+  height: 160px;
+}
 
 .galleryImg {
   width: 100%;
@@ -461,18 +499,21 @@ padding-top:32px;
   transition: transform 0.45s ease;
 }
 
-.galleryItem:hover .galleryImg { transform: scale(1.07); }
+.galleryItem:hover .galleryImg {
+  transform: scale(1.07);
+}
 
-/* Caption on hover */
 .galleryCaption {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   padding: 0.45rem 0.65rem;
-  background: linear-gradient(to top, rgba(10,10,10,0.72) 0%, transparent 100%);
-  
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.72) 0%, transparent 100%);
+
   font-size: 0.58rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255, 255, 255, 0.92);
   letter-spacing: 0.07em;
   opacity: 0;
   transform: translateY(4px);
@@ -484,46 +525,43 @@ padding-top:32px;
   transform: translateY(0);
 }
 
-/* Orange dot on hover */
 .galleryItem::after {
   content: "";
   position: absolute;
-  top: 8px; right: 8px;
-  width: 7px; height: 7px;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--orange);
   opacity: 0;
   transition: opacity 0.2s ease;
   z-index: 4;
 }
-.galleryItem:hover::after { opacity: 1; }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+.galleryItem:hover::after {
+  opacity: 1;
+}
 
-/* @media (max-width: 960px) {
-  .experienceRow {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  } */
-   @media (max-width: 960px) {
+@media (max-width: 960px) {
   .galleryCol {
     position: static;
-    height: 380px;      /* slightly shorter on tablet */
+    height: 380px;
   }
 }
 
-  .experienceRow:nth-child(even) .timelineCol,
-  .experienceRow:nth-child(even) .galleryCol { order: unset; }
+.experienceRow:nth-child(even) .timelineCol,
+.experienceRow:nth-child(even) .galleryCol {
+  order: unset;
+}
 
 .galleryCol {
   position: sticky;
   top: 2rem;
   align-self: start;
-  height: 480px;        /* ← matches a comfortable card height */
+  height: 480px;
 }
-  
+
 @media (max-width: 560px) {
   .galleryCol {
     height: 300px;
@@ -531,19 +569,31 @@ padding-top:32px;
 }
 
 @media (max-width: 560px) {
-  .section { padding: 4rem 0; }
-  .container { padding: 0 1rem; }
-  .body { padding: 1.1rem; }
-  
-  .galleryItemPortrait  { height: 150px; }
-  .galleryItemLandscape { height: 110px; }
-  .galleryItemSquare    { height: 125px; }
-}
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
+  .section {
+    padding: 4rem 0;
+  }
 
-/* Tablet (960px and below) */
+  .container {
+    padding: 0 1rem;
+  }
+
+  .body {
+    padding: 1.1rem;
+  }
+
+  .galleryItemPortrait {
+    height: 150px;
+  }
+
+  .galleryItemLandscape {
+    height: 110px;
+  }
+
+  .galleryItemSquare {
+    height: 125px;
+  }
+}
+
 @media (max-width: 960px) {
   .section {
     padding: 4rem 1.5rem;
@@ -559,13 +609,13 @@ padding-top:32px;
     margin-bottom: 3.5rem;
   }
 
-  .experienceRow + .experienceRow {
+  .experienceRow+.experienceRow {
     padding-top: 3.5rem;
   }
 
   .experienceRow:nth-child(even) .timelineCol,
-  .experienceRow:nth-child(even) .galleryCol { 
-    order: unset; 
+  .experienceRow:nth-child(even) .galleryCol {
+    order: unset;
   }
 
   .galleryCol {
@@ -591,7 +641,6 @@ padding-top:32px;
   }
 }
 
-/* Small Tablet (768px and below) */
 @media (max-width: 768px) {
   .section {
     padding: 3.5rem 1.25rem;
@@ -625,16 +674,16 @@ padding-top:32px;
   }
 }
 
-/* Mobile (560px and below) */
+
 @media (max-width: 560px) {
-  .section { 
-    padding: 3rem 1rem; 
+  .section {
+    padding: 3rem 1rem;
   }
-  
-  .container { 
-    padding: 0; 
+
+  .container {
+    padding: 0;
   }
-  
+
   .header {
     margin-bottom: 2rem;
   }
@@ -657,7 +706,7 @@ padding-top:32px;
     margin-bottom: 3rem;
   }
 
-  .experienceRow + .experienceRow {
+  .experienceRow+.experienceRow {
     padding-top: 3rem;
   }
 
@@ -665,7 +714,7 @@ padding-top:32px;
     height: 340px;
   }
 
-  .body { 
+  .body {
     padding: 1.1rem;
   }
 
@@ -728,16 +777,16 @@ padding-top:32px;
     padding: 0.18rem 0.5rem;
   }
 
-  .galleryItemPortrait  { 
-    height: 150px; 
+  .galleryItemPortrait {
+    height: 150px;
   }
-  
-  .galleryItemLandscape { 
-    height: 110px; 
+
+  .galleryItemLandscape {
+    height: 110px;
   }
-  
-  .galleryItemSquare    { 
-    height: 125px; 
+
+  .galleryItemSquare {
+    height: 125px;
   }
 
   .galleryCaption {
@@ -746,7 +795,7 @@ padding-top:32px;
   }
 }
 
-/* Small Mobile (400px and below) */
+
 @media (max-width: 400px) {
   .section {
     padding: 2.5rem 0.85rem;
@@ -760,16 +809,16 @@ padding-top:32px;
     height: 300px;
   }
 
-  .galleryItemPortrait  { 
-    height: 130px; 
+  .galleryItemPortrait {
+    height: 130px;
   }
-  
-  .galleryItemLandscape { 
-    height: 95px; 
+
+  .galleryItemLandscape {
+    height: 95px;
   }
-  
-  .galleryItemSquare    { 
-    height: 110px; 
+
+  .galleryItemSquare {
+    height: 110px;
   }
 
   .body {
@@ -790,7 +839,7 @@ padding-top:32px;
   }
 }
 
-/* Landscape orientation for mobile */
+
 @media (max-width: 850px) and (orientation: landscape) {
   .experienceRow {
     gap: 2rem;
@@ -800,15 +849,15 @@ padding-top:32px;
     height: 350px;
   }
 
-  .galleryItemPortrait  { 
-    height: 140px; 
+  .galleryItemPortrait {
+    height: 140px;
   }
-  
-  .galleryItemLandscape { 
-    height: 100px; 
+
+  .galleryItemLandscape {
+    height: 100px;
   }
-  
-  .galleryItemSquare    { 
-    height: 115px; 
+
+  .galleryItemSquare {
+    height: 115px;
   }
 }

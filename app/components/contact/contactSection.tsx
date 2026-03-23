@@ -9,7 +9,6 @@ import { EASE, DURATION, scrollTriggerDefaults } from "../contact/animations";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── Data ─── */
 const CARDS = [
   {
     id: "email",
@@ -45,7 +44,7 @@ const CARDS = [
     label: "Download",
     title: "Resume / CV",
     sub: "PDF · Updated Jan 2025",
-    href: "/assets/resume.pdf",  
+    href: "/assets/resume.pdf",
     primary: false,
     arrow: "↓",
     icon: (
@@ -68,7 +67,6 @@ const ROLES = [
   "Open to relocation",
 ];
 
-/* ─── Component ─── */
 export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const tagRef = useRef<HTMLDivElement>(null);
@@ -80,7 +78,7 @@ export default function ContactSection() {
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Set all animated elements invisible before GSAP takes over
+
     const elementsToHide = [
       tagRef.current,
       headlineRef.current,
@@ -100,10 +98,10 @@ export default function ContactSection() {
         },
       });
 
-      // Status tag
+
       tl.fromTo(tagRef.current, { y: -12, opacity: 0 }, { y: 0, opacity: 1, duration: DURATION.normal, ease: EASE.expo }, 0);
 
-      // Headline lines
+
       const lines = headlineRef.current?.querySelectorAll(`.${styles.line}`);
       if (lines && lines.length) {
         tl.fromTo(
@@ -114,17 +112,17 @@ export default function ContactSection() {
         );
       }
 
-      // Draw underline on highlight word
+
       tl.add(() => hlRef.current?.classList.add(styles.drawn), 0.6);
 
-      // Sub
+
       tl.fromTo(subRef.current,
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: DURATION.normal, ease: EASE.expo },
         0.35
       );
 
-      // Cards stagger
+
       const validCards = cardRefs.current.filter(Boolean);
       tl.fromTo(
         validCards,
@@ -133,14 +131,14 @@ export default function ContactSection() {
         0.5
       );
 
-      // Roles
+
       tl.fromTo(rolesRef.current,
         { opacity: 0, y: 18 },
         { opacity: 1, y: 0, duration: DURATION.normal, ease: EASE.expo },
         0.75
       );
 
-      // Footer
+
       tl.fromTo(footerRef.current,
         { opacity: 0 },
         { opacity: 1, duration: DURATION.normal },
@@ -159,30 +157,21 @@ export default function ContactSection() {
 
       <div className={styles.container}>
 
-        {/* Status tag */}
+
         <div ref={tagRef} className={styles.tag}>
           <span className={styles.tagDot} aria-hidden />
           Open to new opportunities
         </div>
 
-        {/* Headline */}
-        {/* <h2 ref={headlineRef} className={styles.headline}>
-          <span className={styles.line}>Let's build</span>
-          <span className={styles.line}>
-            something{" "}
-            <span ref={hlRef} className={styles.hl}>great</span>
-          </span>
-          <span className={styles.line}>together.</span>
-        </h2> */}
+
         <h2 className={styles.heading}>Let's build Something Great</h2>
 
-        {/* Sub */}
+
         <p ref={subRef} className={styles.sub}>
           I'm actively looking for exciting full-time roles. If you think
           there's a fit, I'd love to connect — it only takes one message.
         </p>
 
-        {/* Cards */}
         <div className={styles.cards}>
           {CARDS.map((card, i) => (
             <a
@@ -206,25 +195,8 @@ export default function ContactSection() {
           ))}
         </div>
 
-        {/* Roles */}
-        {/* <div ref={rolesRef} className={styles.rolesWrap}>
-          <p className={styles.rolesLabel}>Roles I'm open to</p>
-          <div className={styles.roles}>
-            {ROLES.map((r) => (
-              <span key={r} className={styles.role}>{r}</span>
-            ))}
-          </div>
-        </div> */}
 
-        {/* Footer */}
-        {/* <footer ref={footerRef} className={styles.footer}>
-          <span className={styles.footerLeft}>© 2025 Your Name</span>
-          <nav className={styles.footerLinks}>
-            <a href="https://github.com/yourusername"  target="_blank" rel="noopener noreferrer" className={styles.footerLink}>GitHub</a>
-            <a href="https://twitter.com/yourhandle"   target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Twitter</a>
-            <a href="https://dribbble.com/yourhandle"  target="_blank" rel="noopener noreferrer" className={styles.footerLink}>Dribbble</a>
-          </nav>
-        </footer> */}
+
 
       </div>
     </section>

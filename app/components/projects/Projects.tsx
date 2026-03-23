@@ -112,7 +112,7 @@ function VisualPanel({ project }: { project: Project }) {
         <text x="50%" y="54%" textAnchor="middle" dominantBaseline="middle"
           fontSize="160" fontWeight="900"
           fill={accent} fillOpacity="0.06"
-          fontFamily="'Bricolage Grotesque', sans-serif"
+          
           letterSpacing="-8"
         >
           {project.number}

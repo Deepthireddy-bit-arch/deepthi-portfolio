@@ -80,14 +80,14 @@ const MOMENT_SVGS: Record<string, React.ReactNode> = {
       <circle cx="34" cy="51" r="4" fill="#ff5f57" />
       <circle cx="46" cy="51" r="4" fill="#ffbd2e" />
       <circle cx="58" cy="51" r="4" fill="#28c840" />
-      <text x="30" y="83" fontFamily="monospace" fontSize="9" fill="#ff6b1a">❯ npm run dev</text>
-      <text x="30" y="98" fontFamily="monospace" fontSize="8" fill="#34d399">  ✓ Ready on http://localhost:3000</text>
-      <text x="30" y="113" fontFamily="monospace" fontSize="8" fill="#60a5fa">  ✓ Compiled in 847ms</text>
-      <text x="30" y="130" fontFamily="monospace" fontSize="9" fill="#ff6b1a">❯ git status</text>
-      <text x="30" y="145" fontFamily="monospace" fontSize="8" fill="#34d399">  M  src/components/Nav.tsx</text>
-      <text x="30" y="158" fontFamily="monospace" fontSize="8" fill="#ff9f5a">  ?? src/utils/format.ts</text>
-      <text x="30" y="174" fontFamily="monospace" fontSize="9" fill="#ff6b1a">❯ git commit -m "fix:"</text>
-      <text x="30" y="189" fontFamily="monospace" fontSize="8" fill="#a8987e">  (still thinking about message)</text>
+      <text x="30" y="83" fontSize="9" fill="#ff6b1a">❯ npm run dev</text>
+      <text x="30" y="98"  fontSize="8" fill="#34d399">  ✓ Ready on http://localhost:3000</text>
+      <text x="30" y="113"  fontSize="8" fill="#60a5fa">  ✓ Compiled in 847ms</text>
+      <text x="30" y="130" fontSize="9" fill="#ff6b1a">❯ git status</text>
+      <text x="30" y="145"  fontSize="8" fill="#34d399">  M  src/components/Nav.tsx</text>
+      <text x="30" y="158" fontSize="8" fill="#ff9f5a">  ?? src/utils/format.ts</text>
+      <text x="30" y="174"  fontSize="9" fill="#ff6b1a">❯ git commit -m "fix:"</text>
+      <text x="30" y="189"  fontSize="8" fill="#a8987e">  (still thinking about message)</text>
       <rect x="30" y="200" width="7" height="11" rx="1" fill="#ff6b1a" opacity="0.9" />
     </svg>
   ),
@@ -118,21 +118,21 @@ const MOMENT_SVGS: Record<string, React.ReactNode> = {
       {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => (
         <line key={i} x1="50" y1={56 + i * 12} x2="162" y2={56 + i * 12} stroke="#2a2518" strokeWidth="0.7" />
       ))}
-      <text x="52" y="52" fontFamily="monospace" fontSize="7" fill="#ff6b1a" opacity="0.9">Architecture — Todo App v3</text>
-      <text x="52" y="70" fontFamily="monospace" fontSize="6.5" fill="#a8987e">Client → Next.js (App Router)</text>
-      <text x="52" y="82" fontFamily="monospace" fontSize="6.5" fill="#a8987e">API   → tRPC + Zod validation</text>
-      <text x="52" y="94" fontFamily="monospace" fontSize="6.5" fill="#a8987e">DB    → PostgreSQL + Prisma</text>
-      <text x="52" y="106" fontFamily="monospace" fontSize="6.5" fill="#a8987e">Cache → Redis (sessions only)</text>
+      <text x="52" y="52"  fontSize="7" fill="#ff6b1a" opacity="0.9">Architecture — Todo App v3</text>
+      <text x="52" y="70"  fontSize="6.5" fill="#a8987e">Client → Next.js (App Router)</text>
+      <text x="52" y="82" fontSize="6.5" fill="#a8987e">API   → tRPC + Zod validation</text>
+      <text x="52" y="94"  fontSize="6.5" fill="#a8987e">DB    → PostgreSQL + Prisma</text>
+      <text x="52" y="106"  fontSize="6.5" fill="#a8987e">Cache → Redis (sessions only)</text>
       <rect x="52" y="116" width="50" height="30" rx="2" stroke="#3a3528" strokeWidth="0.8" fill="none" />
-      <text x="68" y="134" fontFamily="monospace" fontSize="6" fill="#60a5fa">Next.js</text>
+      <text x="68" y="134"  fontSize="6" fill="#60a5fa">Next.js</text>
       <rect x="112" y="116" width="44" height="30" rx="2" stroke="#3a3528" strokeWidth="0.8" fill="none" />
-      <text x="120" y="134" fontFamily="monospace" fontSize="6" fill="#34d399">Postgres</text>
+      <text x="120" y="134"  fontSize="6" fill="#34d399">Postgres</text>
       <line x1="102" y1="131" x2="112" y2="131" stroke="#ff6b1a" strokeWidth="0.8" />
-      <text x="52" y="162" fontFamily="monospace" fontSize="6.5" fill="#a8987e">TODO: write the damn tests</text>
-      <text x="52" y="174" fontFamily="monospace" fontSize="6.5" fill="#ff9f5a">NOTE: don't over-engineer auth</text>
-      <text x="52" y="186" fontFamily="monospace" fontSize="6.5" fill="#a8987e">Q: do I need a queue? (no)</text>
-      <text x="52" y="198" fontFamily="monospace" fontSize="6.5" fill="#a8987e">Q: do I want a queue? (yes)</text>
-      <text x="52" y="212" fontFamily="monospace" fontSize="6" fill="#544737">11:48 PM — probably ship by 2 AM</text>
+      <text x="52" y="162"  fontSize="6.5" fill="#a8987e">TODO: write the damn tests</text>
+      <text x="52" y="174"  fontSize="6.5" fill="#ff9f5a">NOTE: don't over-engineer auth</text>
+      <text x="52" y="186"  fontSize="6.5" fill="#a8987e">Q: do I need a queue? (no)</text>
+      <text x="52" y="198"  fontSize="6.5" fill="#a8987e">Q: do I want a queue? (yes)</text>
+      <text x="52" y="212"  fontSize="6" fill="#544737">11:48 PM — probably ship by 2 AM</text>
       <line x1="158" y1="200" x2="168" y2="240" stroke="#c8a060" strokeWidth="3" strokeLinecap="round" />
       <polygon points="168,240 164,242 165,238" fill="#ff6b1a" />
     </svg>

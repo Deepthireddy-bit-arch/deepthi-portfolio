@@ -11,15 +11,14 @@
   --muted-light: #b8b3ad;
   --border: #f0ece6;
   --success: #1a9e5c;
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
+
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .section {
   position: relative;
-
+  margin-top: 40px;
   background: var(--bg);
   overflow: hidden;
   display: flex;
@@ -98,6 +97,7 @@
 }
 
 .tagDot {
+
   width: 7px;
   height: 7px;
   background: var(--success);

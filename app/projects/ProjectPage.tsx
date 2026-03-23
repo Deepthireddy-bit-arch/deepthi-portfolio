@@ -252,16 +252,14 @@ const PAGE_CSS = `
 export default function ProjectsPage() {
   const [filter, setFilter] = useState<FilterType>("all");
   const { gsapReady, initAnimations, reanimateCards } = useProjectAnimations();
-
-
-
   const filtered = PROJECTS.filter((p) => {
-    if (filter === "all") return true;
-    if (filter === "professional") return p.type === "professional";
-    if (filter === "personal") return p.type === "personal";
-    if (filter === "individual") return p.team === "individual";
-    if (filter === "team") return p.team === "team";
-    return true;
+  if (filter === "all") return true;
+  if (filter === "professional") return p.type === "professional";
+  if (filter === "academic") return p.type === "academic";
+  if (filter === "internship") return p.type === "internship";
+  if (filter === "individual") return p.team === "individual";
+  if (filter === "team") return p.team === "team";
+  return true;
   });
 
   useEffect(() => { if (gsapReady) initAnimations(); }, [gsapReady, initAnimations]);

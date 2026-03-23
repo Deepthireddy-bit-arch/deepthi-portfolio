@@ -8,7 +8,7 @@
   --text-muted: #888;
 
   --font-display: "Bricolage Grotesque", sans-serif;
-  --font-mono: "DM Mono", monospace;
+ 
   --rx: clamp(1.5rem, 6vw, 7rem);
   --max-width: 1480px;
   --padding-desktop: 2rem;
@@ -48,6 +48,7 @@ html {
 }
 
 body {
+  
   font-family: var(--font-display);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;

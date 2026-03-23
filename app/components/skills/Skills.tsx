@@ -41,14 +41,21 @@ export default function Skills() {
     const ctx = gsap.context(() => {
 
 
+    
       const tagLine = tagRef.current?.querySelector(`.${styles.tagLine}`);
-      gsap.fromTo(tagLine,
-        { scaleX: 0, opacity: 0 },
-        {
-          scaleX: 1, opacity: 1, duration: 0.7, ease: "power3.out",
-          scrollTrigger: { trigger: tagRef.current, start: "top 88%", once: true },
-        }
-      );
+if (tagLine instanceof HTMLElement) {
+  gsap.fromTo(
+    tagLine,
+    { scaleX: 0, opacity: 0 },
+    {
+      scaleX: 1,
+      opacity: 1,
+      duration: 0.7,
+      ease: "power3.out",
+      scrollTrigger: { trigger: tagRef.current, start: "top 88%", once: true },
+    }
+  );
+}
       gsap.fromTo(tagRef.current,
         { opacity: 0, x: -16 },
         {

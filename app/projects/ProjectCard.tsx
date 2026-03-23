@@ -88,14 +88,14 @@ export default function ProjectCard({
         <span style={{
           position: "absolute", top: 12, right: 12, zIndex: 2,
           padding: "4px 10px", borderRadius: 100, fontSize: 10, fontWeight: 700,
-          fontFamily: "monospace", color: "#fff", letterSpacing: ".04em",
+           color: "#fff", letterSpacing: ".04em",
           background: "rgba(255,255,255,0.18)", backdropFilter: "blur(8px)",
         }}>{project.year}</span>
 
 
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2, padding: "16px 18px 14px" }}>
           <h3 style={{
-            fontFamily: "'Syne', sans-serif", fontSize: 19, fontWeight: 800,
+             fontSize: 19, fontWeight: 800,
             color: "#fff", lineHeight: 1.1, margin: 0,
             textShadow: "0 2px 10px rgba(0,0,0,0.5)",
           }}>{project.title}</h3>

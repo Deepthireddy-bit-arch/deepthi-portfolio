@@ -109,8 +109,8 @@ export default function HeroSection() {
             </div>
 
             <div className={styles.cardFooter}>
-              <a href="https://aimwindow.com" className={styles.footerLink} target="_blank" rel="noopener noreferrer">
-                ↗ aimwindow.com
+              <a href="https://aimwindow.in" className={styles.footerLink} target="_blank" rel="noopener noreferrer">
+                ↗ aimwindow.in
               </a>
               <div className={styles.footerStack}>
                 {STACK.map((s, i) => (

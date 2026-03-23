@@ -8,19 +8,19 @@ import LoaderProvider from "./components/loader/Loaderprovider";
 
 
 
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "800"],
-  variable: "--font-display",
-  display: "swap",
-});
+// const bricolage = Bricolage_Grotesque({
+//   subsets: ["latin"],
+//   weight: ["400", "500", "700", "800"],
+//   variable: "--font-display",
+//   display: "swap",
+// });
 
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-  display: "swap",
-});
+// const dmMono = DM_Mono({
+//   subsets: ["latin"],
+//   weight: ["400", "500"],
+//   variable: "--font-mono",
+//   display: "swap",
+// });
 
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${dmMono.variable}`}
+      // className={`${bricolage.variable} ${dmMono.variable}`}
     >
       <body>
         <LoaderProvider>

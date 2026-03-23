@@ -6,7 +6,7 @@ export const experienceData: ExperienceItem[] = [
     id: "01",
     role: "Frontend Developer",
     company: "Aim Window Info Tech",
-    location: "Bommanahalli Karnataka",
+    location: "Bengaluru, Karnataka",
     startDate: "Feb 2025",
     endDate: "Present",
     current: true,

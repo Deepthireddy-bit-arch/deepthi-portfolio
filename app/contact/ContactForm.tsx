@@ -88,7 +88,7 @@ export default function ContactForm() {
     border: `1.5px solid ${errors[field as keyof FormErrors] ? "#E84D0E" : focused === field ? "#F05A1A" : "#ECEAE6"}`,
     borderRadius: 12,
     fontSize: 14,
-    fontFamily: "'DM Sans', sans-serif",
+  
     color: "#0C0C0A",
     background: focused === field ? "#FFFAF7" : "#FAFAF8",
     outline: "none",
@@ -106,7 +106,7 @@ export default function ContactForm() {
     }}>
       <div style={{ marginBottom: 28 }}>
         <h3 style={{
-          fontFamily: "'Syne', sans-serif",
+         
           fontSize: isMobile ? 18 : 22,
           fontWeight: 800,
           color: "#0C0C0A",
@@ -205,7 +205,7 @@ export default function ContactForm() {
             color: "#fff",
             fontSize: 15,
             fontWeight: 700,
-            fontFamily: "'DM Sans', sans-serif",
+           
             cursor: status === "submitting" ? "not-allowed" : "pointer",
             boxShadow: "0 4px 20px rgba(240,90,26,0.3)",
             transition: "transform .25s, box-shadow .25s",

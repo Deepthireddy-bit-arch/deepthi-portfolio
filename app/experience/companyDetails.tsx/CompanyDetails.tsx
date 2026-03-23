@@ -40,15 +40,15 @@ const COMPANIES: Company[] = [
     type: 'Product Startup',
     about:
       'Aim Window is a growing product startup building web applications for business clients. I joined as a frontend developer working closely with the backend team — consuming REST APIs, translating Figma designs into pixel-perfect React interfaces, and owning the UI end-to-end.',
-    website: 'veritas.com',
+    website: 'aimwindow.in',
     images: [
-      { src: '/assets/images/snapshot1.svg', label: 'Dashboard' },
+      { src: '/assets/images/snapshot1.svg', label: '' },
       { src: '/assets/images/aimsnapshottwo.png', label: 'Team Leads' },
-      { src: '/assets/images/aimsnapshotthree.png', label: 'Responsive' },
+      { src: '/assets/images/aimsnapshotthree.png', label: '' },
       { src: '/assets/images/aimsnapshotsix.png', label: 'Team' },
-      { src: '/assets/images/aimsnapshotfour.png', label: 'Codebase' },
+      { src: '/assets/images/aimsnapshotfour.png', label: '' },
     ],
-    stack: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Redux', 'CSS', 'REST APIs'],
+    stack: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Bootstrap', 'Redux', ],
     timeline: [
       {
         date: 'Jan 2024 · Joined',

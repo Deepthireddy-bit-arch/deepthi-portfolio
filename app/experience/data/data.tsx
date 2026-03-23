@@ -7,24 +7,7 @@ export interface Tool {
   primary?: boolean
 }
 
-// export const TOOLS: Tool[] = [
-//   { name: 'React',       bg: '#20232a', color: '#61DAFB', label: '⚛',  primary: true },
-//   { name: 'Node.js',     bg: '#339933', color: '#fff',    label: '⬡',  primary: true },
-//   { name: 'MongoDB',     bg: '#00684a', color: '#fff',    label: '🍃',  primary: true },
-//   { name: 'Express',     bg: '#1a1a2e', color: '#bbb',    label: 'ex'  },
-//   { name: 'JavaScript',  bg: '#f7df1e', color: '#000',    label: 'JS'  },
-//   { name: 'Next.js',     bg: '#fff',    color: '#000',    label: 'N',  primary: true },
-//   { name: 'C++',         bg: '#00599c', color: '#fff',    label: 'C++' },
-//   { name: 'Tailwind',    bg: '#06b6d4', color: '#fff',    label: '〰', primary: true },
-//   { name: 'Redux',       bg: '#764abc', color: '#fff',    label: '⊛'  },
-//   { name: 'AWS',         bg: '#232f3e', color: '#ff9900', label: 'AWS' },
-//   { name: 'GCP',         bg: '#4285f4', color: '#fff',    label: '☁'  },
-//   { name: 'Docker',      bg: '#2496ed', color: '#fff',    label: '🐳'  },
-//   { name: 'GitHub',      bg: '#24292e', color: '#fff',    label: '⑂'  },
-//   { name: 'PostgreSQL',  bg: '#336791', color: '#fff',    label: 'PG'  },
-//   { name: 'Figma',       bg: '#f24e1e', color: '#fff',    label: '✦'  },
-//   { name: 'TypeScript',  bg: '#3178c6', color: '#fff',    label: 'TS', primary: true },
-// ]
+
 export const TOOLS: Tool[] = [
   { name: 'React',       bg: '#20232a', color: '#61DAFB', label: '⚛', primary: true },
   { name: 'Next.js',     bg: '#000',    color: '#fff',    label: 'N',  primary: true },

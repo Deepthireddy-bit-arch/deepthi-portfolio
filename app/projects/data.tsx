@@ -75,7 +75,7 @@ export const PROJECTS: Project[] = [
     team: "team",
     tags: ["React", "TypeScript", "Shad CN", "REST API"],
     year: "2025",
-    isFinal: true,
+    isFinal: false,
     img: "/assets/images/lms.jpg",
     highlights: ["Student Records", "Attendance", "Grade Reports", "Parent Portal"],
     color: "#FF8040",

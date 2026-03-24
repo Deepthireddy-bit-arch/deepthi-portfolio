@@ -1,0 +1,300 @@
+.footer {
+  background: #ffffff;
+  border-top: 1px solid #f0f0f0;
+}
+
+
+.accent {
+  height: 4px;
+  background: linear-gradient(90deg, #f97316 0%, #fdba74 60%, transparent 100%);
+}
+
+.top {
+  padding: 4rem 0 3rem;
+}
+
+.container {
+  max-width: 1480px;   
+  margin: 0 auto;
+  padding: 0 2rem;
+} 
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.2rem;
+}
+
+.brandDot {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.brandName {
+
+  font-size: 17px;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -.3px;
+}
+
+.ctaTitle {
+
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.25;
+  letter-spacing: -.4px;
+  margin-bottom: .45rem;
+}
+
+.ctaTitle span {
+  color: #f97316;
+}
+
+.ctaSub {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 1.4rem;
+}
+
+.ctaBtns {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  background: #f97316;
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+  will-change: transform;
+}
+
+.btnPrimary:hover {
+  background: #ea6c0a;
+}
+
+.btnOutline {
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  background: transparent;
+  color: #f97316;
+  border: 1.5px solid #f97316;
+  padding: 9px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.btnOutline:hover {
+  background: #fff7ed;
+}
+
+
+.socials {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.social {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f97316;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  will-change: transform;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+
+.social:hover {
+  background: #ea6c0a;
+}
+
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.col {}
+
+.colHeading {
+
+  font-size: 11px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  padding-bottom: .5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f97316;
+  display: inline-block;
+}
+
+.linkList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.link {
+  font-size: 13px;
+  color: #666;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color .15s, padding-left .15s;
+  display: inline-block;
+}
+
+.link:hover {
+  color: #f97316;
+  padding-left: 4px;
+}
+
+
+.bottom {
+  border-top: 1px solid #f0f0f0;
+  padding: 1.1rem 0;
+}
+
+.bottomInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.bottomLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.copyright {
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 400;
+}
+
+.copyright span {
+  color: #f97316;
+  font-weight: 600;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.bottomLink {
+  font-size: 11px;
+  color: #aaa;
+  text-decoration: none;
+  transition: color .15s;
+  font-weight: 400;
+}
+
+.bottomLink:hover {
+  color: #f97316;
+}
+
+.lang {
+  font-size: 12px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.langSelect {
+  font-size: 12px;
+  color: #333;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  padding: 3px 8px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.langSelect:focus {
+  border-color: #f97316;
+}
+
+
+@media (max-width: 760px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
+
+  .bottomLinks {
+    gap: .8rem;
+  }
+
+  .bottomInner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

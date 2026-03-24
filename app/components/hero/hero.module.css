@@ -374,7 +374,7 @@
   will-change: transform, opacity;
 }
 
-.cardTL {
+ .cardTL {
   top: -16px;
   left: -48px;
 }
@@ -382,8 +382,8 @@
 .cardBR {
   bottom: -16px;
   right: -48px;
-}
-
+} 
+ 
 .cardNum {
   font-size: 1.5rem;
   font-weight: 800;
@@ -479,6 +479,34 @@
   .photoBox {
     height: 290px;
   }
+  @media (max-width: 960px) {
+  .photoWrap {
+    overflow: visible;   /* ← ADD THIS */
+    padding: 16px;       /* ← ADD THIS — gives space for float cards */
+  }
+
+  .cardTL {
+    left: 20px;           /* was -14px */
+    top: -15px;
+  }
+
+  .cardBR {
+    right: 4px;          /* was -14px */
+    bottom: -12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cardTL {
+    top: -10px;
+    left: 2px;
+  }
+
+  .cardBR {
+    bottom: -10px;
+    right: 2px;
+  }
+}
 
   .cardTL {
     left: -14px;
@@ -534,6 +562,15 @@
 
   .chips {
     justify-content: center;
+  }
+   .cardTL {
+    left: 4px;           /* was -14px */
+    top: -12px;
+  }
+
+  .cardBR {
+    right: 4px;          /* was -14px */
+    bottom: -12px;
   }
 
   .ctaRow {

@@ -1,6 +1,6 @@
 # My Portfolio 🚀
 
-🔗 Live Website: https://your-portfolio-link.com
+🔗 Live Website: https://tinyurl.com/deepthi-portfolio
 
 ## About
 This is my personal portfolio built using Next.js and React.

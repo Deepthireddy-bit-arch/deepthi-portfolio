@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -42,66 +41,67 @@ export default function Navbar() {
     <>
       <style>{`
 
-
-        // .nav-root {
-        //   position: fixed;
-        //   top: 0;
-        //   left: 0;
-        //   right: 0;
-        //   z-index: 1000;
-       
-        //   padding: 0 1.5rem;
-        //   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        // }
- .nav-root {
+        /* ── Root: no padding, full width ── */
+       .nav-root {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
   z-index: 1000;
-
-  padding: 0;          /* ← remove the 0 1.5rem, move it to nav-inner */
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
 }
 
-.nav-inner {
-  max-width: 1580px;
+        /*
+          nav-inner mirrors section-container exactly:
+            section-container: max-width 1480px + margin auto + padding 0 2rem
+            nav-inner:         max-width 1480px + margin auto + width calc(100% - 4rem)
+          Result: logo left edge = content left edge at every zoom level
+        */
+   .nav-inner {
+  max-width: 1480px;
   margin: 0 auto;
+  padding: 0 2rem;           /* ← EXACTLY matches section-container */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 72px;
   background: rgba(255, 255, 255, 0.92);
-  border-radius: 999px;
-  padding: 0 1.5rem 0 1.75rem;
-  margin-top: 14px;
-  margin-left: 1.5rem;   /* ← add this */
-  margin-right: 1.5rem;  /* ← add this */
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1.5px solid rgba(255,255,255,0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  box-sizing: border-box;
+  transition: all 0.35s ease;
 }
 
-        .nav-root.scrolled .nav-inner {
-          box-shadow:
-            0 8px 32px rgba(255, 107, 0, 0.12),
-            0 2px 12px rgba(0, 0, 0, 0.08);
-          background: rgba(255, 255, 255, 0.97);
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          border-color: rgba(255, 107, 0, 0.15);
-        }
+        
 
-        /* Logo */
-        .nav-logo {
-          font-size: 1.25rem;
-          font-weight: 800;
-          letter-spacing: -0.5px;
-          text-decoration: none;
-          cursor: pointer;
-          flex-shrink: 0;
-          user-select: none;
-        }
+      .nav-root.scrolled .nav-inner {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: rgba(255, 255, 255, 0.98);
+  border-bottom-color: rgba(255, 107, 0, 0.12);
+}
+  @media (max-width: 1024px) {
+  .nav-inner { padding: 0 1.5rem; }
+}
+
+@media (max-width: 640px) {
+  .nav-inner { padding: 0 1rem; }
+}
+
+        /* ── Logo ── */
+     .nav-logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  padding-left: 0;         /* ← no extra indent */
+  margin-left: 0;
+}
         .nav-logo-first { color: #1a1a2e; }
         .nav-logo-last {
           color: #ff6b00;
@@ -123,31 +123,35 @@ export default function Navbar() {
         }
         .nav-logo:hover .nav-logo-last::after { transform: scaleX(1); }
 
-        /* Desktop links */
+        /* ── Desktop links ── */
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 0.25rem;
+          gap: 0.1rem;
           list-style: none;
           margin: 0;
           padding: 0;
         }
         .nav-link-item { position: relative; }
         .nav-link {
-          font-size: 0.78rem;
+          font-size: 0.75rem;
           font-weight: 500;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.07em;
           text-transform: uppercase;
           text-decoration: none;
           color: #555;
-          padding: 0.5rem 0.85rem;
+          padding: 0.5rem 0.7rem;
           border-radius: 999px;
           display: block;
           transition: color 0.25s ease, background 0.25s ease;
           position: relative;
           cursor: pointer;
+          white-space: nowrap;
         }
-        .nav-link:hover { color: #ff6b00; background: rgba(255, 107, 0, 0.07); }
+        .nav-link:hover {
+          color: #ff6b00;
+          background: rgba(255, 107, 0, 0.07);
+        }
         .nav-link.active {
           color: #ff6b00;
           font-weight: 600;
@@ -164,15 +168,15 @@ export default function Navbar() {
           background: #ff6b00;
         }
 
-        /* Resume button */
+        /* ── Resume button ── */
         .nav-resume {
           background: linear-gradient(135deg, #ff6b00 0%, #ff8c38 100%);
           color: #fff;
-          font-size: 0.75rem;
+          font-size: 0.72rem;
           font-weight: 700;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          padding: 0.55rem 1.3rem;
+          padding: 0.5rem 1.1rem;
           border-radius: 999px;
           border: none;
           cursor: pointer;
@@ -183,6 +187,7 @@ export default function Navbar() {
           box-shadow: 0 4px 14px rgba(255, 107, 0, 0.4);
           transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
           flex-shrink: 0;
+          white-space: nowrap;
         }
         .nav-resume:hover {
           transform: translateY(-2px) scale(1.03);
@@ -191,7 +196,7 @@ export default function Navbar() {
         }
         .nav-resume:active { transform: translateY(0) scale(0.98); }
 
-        /* Hamburger */
+        /* ── Hamburger ── */
         .nav-hamburger {
           display: none;
           flex-direction: column;
@@ -215,20 +220,23 @@ export default function Navbar() {
           background: #ff6b00;
         }
         .nav-hamburger.open .hamburger-line:nth-child(2) {
-          opacity: 0; transform: scaleX(0);
+          opacity: 0;
+          transform: scaleX(0);
         }
         .nav-hamburger.open .hamburger-line:nth-child(3) {
           transform: translateY(-7px) rotate(-45deg);
           background: #ff6b00;
         }
 
-        /* Mobile menu */
+        /* ── Mobile dropdown menu ── */
         .nav-mobile {
           position: absolute;
           top: calc(100% + 10px);
-          left: 1.5rem;
-          right: 1.5rem;
-          background: rgba(255,255,255,0.97);
+          left: 50%;
+          transform: translateX(-50%);
+          width: calc(100% - 4rem);
+          max-width: 1480px;
+          background: rgba(255, 255, 255, 0.97);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           border-radius: 20px;
@@ -238,11 +246,12 @@ export default function Navbar() {
           transform-origin: top center;
           animation: mobileMenuIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
           padding: 1rem;
+          box-sizing: border-box;
         }
 
         @keyframes mobileMenuIn {
-          from { opacity: 0; transform: scaleY(0.85) translateY(-10px); }
-          to   { opacity: 1; transform: scaleY(1) translateY(0); }
+          from { opacity: 0; transform: translateX(-50%) scaleY(0.85) translateY(-10px); }
+          to   { opacity: 1; transform: translateX(-50%) scaleY(1) translateY(0); }
         }
 
         .nav-mobile-links {
@@ -268,23 +277,27 @@ export default function Navbar() {
           cursor: pointer;
           transition: all 0.2s ease;
         }
-        .nav-mobile-link:hover, .nav-mobile-link.active {
+        .nav-mobile-link:hover,
+        .nav-mobile-link.active {
           color: #ff6b00;
           background: rgba(255, 107, 0, 0.07);
         }
         .nav-mobile-link .dot {
-          width: 6px; height: 6px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
           background: #ff6b00;
           opacity: 0;
           transition: opacity 0.2s ease;
         }
         .nav-mobile-link.active .dot { opacity: 1; }
+
         .nav-mobile-divider {
           height: 1px;
-          background: rgba(255,107,0,0.12);
+          background: rgba(255, 107, 0, 0.12);
           margin: 0.5rem 0;
         }
+
         .nav-mobile-resume {
           width: 100%;
           background: linear-gradient(135deg, #ff6b00, #ff8c38);
@@ -308,19 +321,39 @@ export default function Navbar() {
           box-shadow: 0 6px 20px rgba(255, 107, 0, 0.45);
         }
 
-        /* Entrance animation for desktop nav */
+        /* ── Entrance animation ── */
         @keyframes navSlideDown {
           from { opacity: 0; transform: translateY(-24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .nav-inner { animation: navSlideDown 0.55s cubic-bezier(0.34, 1.3, 0.64, 1) both; }
 
+        /* ── Tablet: matches @media (max-width: 1024px) in globals ── */
+        @media (max-width: 1024px) {
+          .nav-inner {
+            width: calc(100% - 3rem); /* matches --padding-tablet: 1.5rem each side */
+          }
+          .nav-mobile {
+            width: calc(100% - 3rem);
+          }
+        }
+
+        /* ── Mobile ── */
         @media (max-width: 768px) {
-          .nav-links, .nav-resume { display: none; }
+          .nav-links,
+          .nav-resume { display: none; }
           .nav-hamburger { display: flex; }
         }
-      `}</style>
 
+        /* ── Small mobile: matches @media (max-width: 640px) in globals ── */
+        @media (max-width: 640px) {
+          .nav-inner {
+            width: calc(100% - 2rem); /* matches --padding-mobile: 1rem each side */
+          }
+          .nav-mobile {
+            width: calc(100% - 2rem);
+          }
+        }
+      `}</style>
 
       <nav
         className={`nav-root${scrolled ? " scrolled" : ""}`}
@@ -329,13 +362,11 @@ export default function Navbar() {
         ref={menuRef}
       >
         <div className="nav-inner">
-         
           <Link href="/" className="nav-logo">
             <span className="nav-logo-first">Doddipalli </span>
             <span className="nav-logo-last">Deepthi</span>
           </Link>
 
-        
           <ul className="nav-links" role="list">
             {navLinks.map(({ label, href }) => (
               <li key={label} className="nav-link-item">
@@ -349,9 +380,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-        
           <a href="/resume" className="nav-resume" rel="noopener noreferrer">
-           
             Resume
           </a>
 
